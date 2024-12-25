@@ -1,0 +1,17 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": [
+		"config:recommended",
+		":pinAllExceptPeerDependencies",
+		"github>christopher-buss/rokit-renovate-config",
+		"helpers:pinGitHubActionDigests",
+		"npm:unpublishSafe"
+	],
+	"packageRules": [
+		{
+			"matchPackageNames": ["@rbxts/types"],
+			"automerge": true,
+			"minimumReleaseAge": "0 days"
+		}
+	]
+}

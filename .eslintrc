@@ -1,0 +1,95 @@
+{
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"jsx": true,
+		"useJSXTextNode": true,
+		"ecmaVersion": 2018,
+		"sourceType": "module",
+		"project": "./tsconfig.json"
+	},
+	"ignorePatterns": ["/out"],
+	"plugins": ["@typescript-eslint", "roblox-ts", "prettier"],
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:roblox-ts/recommended",
+		"plugin:prettier/recommended"
+	],
+	"rules": {
+		"spaced-comment": "warn",
+		"prettier/prettier": "warn",
+		"@typescript-eslint/naming-convention": [
+			"warn",
+			{
+				"selector": "typeAlias",
+				"format": ["PascalCase"]
+			},
+			{
+				"selector": "interface",
+				"format": ["PascalCase"]
+			},
+			{
+				"selector": "class",
+				"format": ["PascalCase"]
+			},
+			{
+				"selector": "variable",
+				"format": ["camelCase"]
+			},
+			{
+				"selector": "variable",
+				"modifiers": ["const"],
+				"format": ["UPPER_CASE", "camelCase"]
+			},
+			{
+				"selector": "variable",
+				"modifiers": ["destructured"],
+				"format": null
+			},
+			{
+				"selector": "function",
+				"format": ["camelCase"]
+			}
+		]
+	},
+	"overrides": [
+		{
+			"files": ["*.tsx"],
+			"rules": {
+				"@typescript-eslint/naming-convention": [
+					"warn",
+					{
+						"selector": "typeAlias",
+						"format": ["PascalCase"]
+					},
+					{
+						"selector": "interface",
+						"format": ["PascalCase"]
+					},
+					{
+						"selector": "class",
+						"format": ["PascalCase"]
+					},
+					{
+						"selector": "variable",
+						"format": ["camelCase"]
+					},
+					{
+						"selector": "variable",
+						"modifiers": ["const"],
+						"format": ["UPPER_CASE", "camelCase"]
+					},
+					{
+						"selector": "variable",
+						"modifiers": ["destructured"],
+						"format": null
+					},
+					{
+						"selector": "function",
+						"format": ["camelCase", "PascalCase"]
+					}
+				]
+			}
+		}
+	]
+}

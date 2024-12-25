@@ -1,0 +1,26 @@
+version: "0.2"
+lenguage: en
+ignorePaths:
+  - cspell.config.yaml
+  - node_modules/**
+  - out/**
+  - include/**
+  - .gitignore
+  - package.json
+  - .vscode/**
+  - pnpm-lock.yaml
+  - flamework.build
+  - renovate.json
+  - rokit.toml
+  - .husky
+dictionaryDefinitions: []
+dictionaries:
+  - roblox
+  - rbxts
+  - typescript
+  - javascript
+words:
+  - andal
+  - Inet
+  - serde
+ignoreWords: []
