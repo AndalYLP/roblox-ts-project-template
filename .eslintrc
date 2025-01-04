@@ -8,14 +8,36 @@
 		"project": "./tsconfig.json"
 	},
 	"ignorePatterns": ["/out"],
-	"plugins": ["@typescript-eslint", "roblox-ts", "prettier"],
+	"plugins": ["@typescript-eslint", "roblox-ts", "prettier", "jsdoc"],
 	"extends": [
 		"eslint:recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:roblox-ts/recommended",
-		"plugin:prettier/recommended"
+		"plugin:prettier/recommended",
+		"plugin:jsdoc/recommended-typescript",
+		"plugin:react-hooks/recommended"
+		//"plugin:React/recommended"
 	],
 	"rules": {
+		"@typescript-eslint/explicit-member-accessibility": [
+			"error",
+			{
+				"accessibility": "explicit",
+				"overrides": {
+					"constructors": "no-public"
+				}
+			}
+		],
+		"@typescript-eslint/explicit-function-return-type": [
+			"error",
+			{
+				"allowExpressions": true,
+				"allowTypedFunctionExpressions": true,
+				"allowHigherOrderFunctions": true
+			}
+		],
+		"jsdoc/check-tag-names": 0,
+		"jsdoc/require-jsdoc": 0,
 		"spaced-comment": "warn",
 		"prettier/prettier": "warn",
 		"@typescript-eslint/naming-convention": [
@@ -48,6 +70,10 @@
 			},
 			{
 				"selector": "function",
+				"format": ["camelCase"]
+			},
+			{
+				"selector": "method",
 				"format": ["camelCase"]
 			}
 		]

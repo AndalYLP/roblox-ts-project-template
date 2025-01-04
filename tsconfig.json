@@ -33,7 +33,11 @@
 				"shortCircuitNodeEnv": false,
 				"defaultEnvironment": "development"
 			}
-		]
+		],
+		"paths": {
+			"@utils/*": ["utils/shared/*"],
+			"@utils-server/*": ["utils/server/*"]
+		}
 	},
-	"exclude": ["node_modules", "include", "out"]
+	"exclude": ["node_modules", "include", "out", "dist"]
 }
