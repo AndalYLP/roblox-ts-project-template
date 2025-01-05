@@ -17,7 +17,7 @@
 		"dev:stop": "rbxts-build stop",
 		"dev:sync": "rbxts-build sync",
 		"dev:watch": "rbxts-build watch",
-		"dev:test": "pnpm dev:build && run-in-roblox --place game.rbxl --script out/__test__/init.server.luau",
+		"dev:test": "pnpm dev:build && run-in-roblox --place game.rbxl --script test/init.server.luau",
 		"prepare": "node .husky/install.js",
 		"prod:build": "pnpm clean && NODE_ENV=production && npx rbxtsc --verbose && pnpm darklua",
 		"prod:sync": "rojo serve ./build.project.json"
