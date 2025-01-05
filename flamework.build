@@ -44,7 +44,13 @@
 		"roblox-ts-project-template:out/server/decorators/mtx@RegisterProductHandler": "server/decorators/mtx@RegisterProductHandler",
 		"roblox-ts-project-template:out/server/services/player/badge@PlayerBadgeService": "server/services/player/badge@PlayerBadgeService",
 		"roblox-ts-project-template:out/client/controllers/audio/init@AudioController": "client/controllers/audio/init@AudioController",
-		"roblox-ts-project-template:out/shared/network/init@globalEvents": "shared/network/init@globalEvents"
+		"roblox-ts-project-template:out/shared/network/init@globalEvents": "shared/network/init@globalEvents",
+		"roblox-ts-project-template:out/server/test.server@Example": "server/test.server@Example",
+		"roblox-ts-project-template:out/server/test.server@LogCall": "server/test.server@LogCall",
+		"roblox-ts-project-template:out/server/decorators/misc/logging/log-execution-time@A": "server/decorators/misc/logging/log-execution-time@A",
+		"roblox-ts-project-template:out/server/test.server@A": "server/test.server@A",
+		"roblox-ts-project-template:out/server/services/test@Test": "server/services/test@Test",
+		"roblox-ts-project-template:out/server/services/test@TestService": "server/services/test@TestService"
 	},
 	"metadata": {}
 }

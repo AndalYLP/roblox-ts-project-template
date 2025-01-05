@@ -22,5 +22,6 @@ dictionaries:
 words:
   - andal
   - Inet
+  - NOCOLOR
   - serde
 ignoreWords: []
