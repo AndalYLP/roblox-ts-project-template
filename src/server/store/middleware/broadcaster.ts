@@ -30,6 +30,11 @@ export function broadcasterMiddleware(): ProducerMiddleware {
 }
 
 function beforeHydrate(player: Player, state: SharedState): SharedState {
+	const newState = {
+		...state,
+		players: new Map<Player, unknown>().set(player, state.players.get(player))
+	};
+
 	return stateSerDes.serialize(state) as unknown as SharedState;
 }
 
@@ -45,10 +50,5 @@ function dispatch(player: Player, actions: Array<BroadcastAction>): void {
 }
 
 function hydrate(player: Player, state: SharedState): void {
-	const newState = {
-		...state,
-		players: { player: state.players.get(player) }
-	};
-
-	events.store.hydrate.fire(player, newState as unknown as SerializedSharedState);
+	events.store.hydrate.fire(player, state as unknown as SerializedSharedState);
 }
