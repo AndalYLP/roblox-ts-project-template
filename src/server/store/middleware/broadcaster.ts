@@ -18,7 +18,8 @@ export function broadcasterMiddleware(): ProducerMiddleware {
 		producers: slices,
 		dispatch,
 		hydrate,
-		beforeHydrate
+		beforeHydrate,
+		beforeDispatch
 	});
 
 	events.store.start.connect((player) => {
@@ -32,10 +33,22 @@ function beforeHydrate(player: Player, state: SharedState): SharedState {
 	return stateSerDes.serialize(state) as unknown as SharedState;
 }
 
+function beforeDispatch(player: Player, action: BroadcastAction): BroadcastAction | undefined {
+	if (action.name === "removePlayer") return;
+	if (action.arguments[0] !== player) return;
+
+	return action;
+}
+
 function dispatch(player: Player, actions: Array<BroadcastAction>): void {
 	events.store.dispatch.fire(player, actions);
 }
 
 function hydrate(player: Player, state: SharedState): void {
-	events.store.hydrate.fire(player, state as unknown as SerializedSharedState);
+	const newState = {
+		...state,
+		players: { player: state.players.get(player) }
+	};
+
+	events.store.hydrate.fire(player, newState as unknown as SerializedSharedState);
 }
