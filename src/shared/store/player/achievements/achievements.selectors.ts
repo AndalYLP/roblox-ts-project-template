@@ -1,5 +1,7 @@
-import { SharedState } from "shared/store";
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import { createSelector } from "@rbxts/reflex";
+import { selectPlayerData } from "../player.selectors";
 
 export function selectPlayerAchievements(player: Player) {
-	return (state: SharedState) => state.players.achievements.get(player);
+	return createSelector(selectPlayerData(player), (state) => state?.achievements);
 }

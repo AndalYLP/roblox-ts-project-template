@@ -1,5 +1,4 @@
 import { createProducer } from "@rbxts/reflex";
-import { withMultiplayer } from "shared/functions/withMultiplayer";
 import { GamePass, Product } from "types/enum/mtx";
 import { PlayerData } from "../player.types";
 import { defaultPlayerMtx, PlayerMtx } from "./mtx.types";
@@ -49,4 +48,4 @@ export const mtxSlice = createProducer(initialState, {
 
 	/** @ignore */
 	loadPlayerData: (_state, data: PlayerData): MtxState => data.mtx
-}).enhance(withMultiplayer);
+});

@@ -1,5 +1,7 @@
-import { SharedState } from "shared/store";
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import { createSelector } from "@rbxts/reflex";
+import { selectPlayerSettingsData } from "../settings.selectors";
 
-export function selectPlayerAudioSettings(player: Player) {
-	return (state: SharedState) => state.players.settings.audio.get(player);
+export function selectPlayerAchievements(player: Player) {
+	return createSelector(selectPlayerSettingsData(player), (state) => state?.audio);
 }

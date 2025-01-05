@@ -52,6 +52,7 @@ export class PlayerDataService {
 
 			document.beforeClose(() => {
 				unsubscribe();
+				store.removePlayer(player);
 			});
 
 			store.loadPlayerData(player, document.read());

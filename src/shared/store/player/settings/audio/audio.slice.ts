@@ -1,5 +1,4 @@
 import { createProducer } from "@rbxts/reflex";
-import { withMultiplayer } from "shared/functions/withMultiplayer";
 import { PlayerData } from "../../player.types";
 import { PlayerSettings } from "../settings.types";
 import { defaultPlayerAudioSettings, PlayerAudioSettings } from "./audio.types";
@@ -29,4 +28,4 @@ export const audioSlice = createProducer(initialState, {
 
 	/** @ignore */
 	loadPlayerData: (_state, data: PlayerData): AudioState => data.settings.audio
-}).enhance(withMultiplayer);
+});

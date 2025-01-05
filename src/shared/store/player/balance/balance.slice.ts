@@ -1,5 +1,4 @@
 import { createProducer } from "@rbxts/reflex";
-import { withMultiplayer } from "shared/functions/withMultiplayer";
 import { PlayerData } from "..";
 import { defaultPlayerBalance, PlayerBalance } from "./balance.types";
 
@@ -15,4 +14,4 @@ export const balanceSlice = createProducer(initialState, {
 
 	/** @ignore */
 	loadPlayerData: (_state, data: PlayerData): BalanceState => data.balance
-}).enhance(withMultiplayer);
+});

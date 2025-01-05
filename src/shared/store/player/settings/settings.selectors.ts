@@ -1,12 +1,7 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { createSelector } from "@rbxts/reflex";
-import { selectPlayerAudioSettings } from "./audio";
-import { PlayerSettings } from "./settings.types";
+import { selectPlayerData } from "../player.selectors";
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export const selectPlayerSettingsData = (player: Player) => {
-	return createSelector(selectPlayerAudioSettings(player), (audio): PlayerSettings | undefined => {
-		if (!audio) return;
-
-		return { audio };
-	});
-};
+export function selectPlayerSettingsData(player: Player) {
+	return createSelector(selectPlayerData(player), (state) => state?.settings);
+}

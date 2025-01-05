@@ -43,7 +43,8 @@
 		"roblox-ts-project-template:out/server/services/mtx/ProductEvents@ProductEventsService": "server/services/mtx/ProductEvents@ProductEventsService",
 		"roblox-ts-project-template:out/server/decorators/mtx@RegisterProductHandler": "server/decorators/mtx@RegisterProductHandler",
 		"roblox-ts-project-template:out/server/services/player/badge@PlayerBadgeService": "server/services/player/badge@PlayerBadgeService",
-		"roblox-ts-project-template:out/client/controllers/audio/init@AudioController": "client/controllers/audio/init@AudioController"
+		"roblox-ts-project-template:out/client/controllers/audio/init@AudioController": "client/controllers/audio/init@AudioController",
+		"roblox-ts-project-template:out/shared/network/init@globalEvents": "shared/network/init@globalEvents"
 	},
 	"metadata": {}
 }

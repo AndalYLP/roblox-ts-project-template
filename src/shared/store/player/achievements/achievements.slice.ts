@@ -1,5 +1,4 @@
 import { createProducer } from "@rbxts/reflex";
-import { withMultiplayer } from "shared/functions/withMultiplayer";
 import { Badge } from "types/enum/badge";
 import { PlayerData } from "../player.types";
 import { defaultPlayerAchievements, PlayerAchievements } from "./achievements.types";
@@ -17,4 +16,4 @@ export const achievementsSlice = createProducer(initialState, {
 
 	/** @ignore */
 	loadPlayerData: (_state, data: PlayerData): AchievementState => data.achievements
-}).enhance(withMultiplayer);
+});
