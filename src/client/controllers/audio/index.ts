@@ -3,8 +3,8 @@ import { Logger } from "@rbxts/log";
 import Make from "@rbxts/make";
 import { Inspect } from "@rbxts/rbx-debug";
 import { SoundService, TweenService } from "@rbxts/services";
+import { LocalPlayer } from "client/constants/player";
 import { store } from "client/store";
-import { USER_ID } from "shared/constants/player";
 import { SoundSystem } from "shared/modules/3dSound";
 import { PlayerSettings, selectPlayerSettingsData } from "shared/store/player/settings";
 
@@ -105,7 +105,7 @@ export class AudioController implements OnInit, OnStart {
 
 	/** @ignore */
 	public onStart(): void {
-		store.subscribe(selectPlayerSettingsData(USER_ID), (current) => {
+		store.subscribe(selectPlayerSettingsData(LocalPlayer), (current) => {
 			if (!current) return;
 
 			this.onSettingsChanged(current);

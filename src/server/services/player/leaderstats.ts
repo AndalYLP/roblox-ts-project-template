@@ -111,8 +111,10 @@ export class LeaderstatsService implements OnInit, OnPlayerJoin, OnPlayerLeave {
 	 * @param valueMap - The map of leaderstats to update.
 	 */
 	private subscribeToPlayerData(playerEntity: PlayerEntity, valueMap: Map<Leaderstats, LeaderstatValue>): void {
-		playerEntity.janitor.Add(
-			store.subscribe(selectPlayerData(playerEntity.UserId), (save) => {
+		const { janitor, player } = playerEntity;
+
+		janitor.Add(
+			store.subscribe(selectPlayerData(player), (save) => {
 				if (!save) return;
 
 				for (const entry of this.leaderstats) {
@@ -129,7 +131,7 @@ export class LeaderstatsService implements OnInit, OnPlayerJoin, OnPlayerLeave {
 
 	/** @ignore */
 	public onPlayerJoin(playerEntity: PlayerEntity): void {
-		const { Name, player, UserId } = playerEntity;
+		const { Name, player } = playerEntity;
 
 		const leaderstats = new Instance("Folder");
 		leaderstats.Name = "leaderstats";
@@ -139,7 +141,7 @@ export class LeaderstatsService implements OnInit, OnPlayerJoin, OnPlayerLeave {
 
 		this.logger.Info(`Assigning leaderboard stats to ${Name}.`);
 
-		const playerData = store.getState(selectPlayerData(UserId));
+		const playerData = store.getState(selectPlayerData(player));
 		const valueMap = new Map<Leaderstats, LeaderstatValue>();
 
 		for (const entry of this.leaderstats) {

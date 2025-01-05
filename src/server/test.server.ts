@@ -1,3 +1,6 @@
+import { setInterval } from "@rbxts/set-timeout";
 import { store } from "./store";
 
-print(store.getState());
+setInterval(() => {
+	print(store.getState());
+}, 5);

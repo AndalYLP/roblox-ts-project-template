@@ -126,20 +126,20 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 	 * Checks if a game pass is active for a specific player. This method will
 	 * return false if the game pass is not owned by the player.
 	 * @param playerEntity - The player entity for whom to check the game pass.
-	 * @param playerEntity.UserId A string representation of the player's UserId.
+	 * @param playerEntity.player The player's instance.
 	 * @param gamePassId - The ID of the game pass to check.
 	 * @returns A boolean indicating whether the game pass is active or not.
 	 */
-	public isGamePassActive({ UserId }: PlayerEntity, gamePassId: GamePass): boolean {
-		return store.getState(selectPlayerMtx(UserId))?.gamePasses.get(gamePassId)?.active ?? false;
+	public isGamePassActive({ player }: PlayerEntity, gamePassId: GamePass): boolean {
+		return store.getState(selectPlayerMtx(player))?.gamePasses.get(gamePassId)?.active ?? false;
 	}
 
-	private async checkForGamePassOwned({ player, UserId }: PlayerEntity, gamePassId: GamePass): Promise<boolean> {
+	private async checkForGamePassOwned({ player }: PlayerEntity, gamePassId: GamePass): Promise<boolean> {
 		if (!Object.values(gamePass).includes(gamePassId)) {
 			throw `Invalid game pass id ${gamePassId}`;
 		}
 
-		const owned = store.getState(selectPlayerMtx(UserId))?.gamePasses.has(gamePassId);
+		const owned = store.getState(selectPlayerMtx(player))?.gamePasses.has(gamePassId);
 		if (owned === true) {
 			return true;
 		}
@@ -148,7 +148,7 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 	}
 
 	private grantProduct(playerEntity: PlayerEntity, productId: number, currencySpent: number): boolean {
-		const { UserId } = playerEntity;
+		const { UserId, player } = playerEntity;
 
 		const productIds = tostring(productId) as Product;
 
@@ -170,13 +170,13 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 		}
 
 		this.logger.Info(`Player ${UserId} purchased developer product ${productId}`);
-		store.purchaseDeveloperProduct(UserId, productIds, currencySpent);
+		store.purchaseDeveloperProduct(player, productIds, currencySpent);
 		return true;
 	}
 
 	private async setGamePassActive(playerEntity: PlayerEntity, gamePassId: GamePass, active: boolean): Promise<void> {
 		await this.checkForGamePassOwned(playerEntity, gamePassId).then((owned) => {
-			const { UserId } = playerEntity;
+			const { UserId, player } = playerEntity;
 			if (!owned) {
 				this.logger.Warn(
 					`Player ${UserId} tried to activate not game pass ${gamePassId} that they do not own.`
@@ -185,7 +185,7 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 				return;
 			}
 
-			store.setGamePassActive(UserId, gamePassId, active);
+			store.setGamePassActive(player, gamePassId, active);
 			this.notifyProductActive(playerEntity, gamePassId, active);
 		});
 	}
@@ -195,7 +195,7 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 	}
 
 	private grantGamePass(playerEntity: PlayerEntity, gamePassId: number): void {
-		const { UserId } = playerEntity;
+		const { UserId, player } = playerEntity;
 		const gamePassIds = tostring(gamePassId) as GamePass;
 
 		if (!Object.values(gamePass).includes(gamePassIds)) {
@@ -204,7 +204,7 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 		}
 
 		this.logger.Info(`Player ${UserId} purchased game pass ${gamePassId}`);
-		store.purchaseGamePass(UserId, gamePassIds);
+		store.purchaseGamePass(player, gamePassIds);
 		this.notifyProductActive(playerEntity, gamePassIds, true);
 	}
 
@@ -229,7 +229,7 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 		playerEntity: PlayerEntity,
 		{ CurrencySpent, ProductId, PurchaseId }: ReceiptInfo
 	): Promise<Enum.ProductPurchaseDecision> {
-		const { document, UserId } = playerEntity;
+		const { document, player } = playerEntity;
 
 		if (document.read().mtx.receiptHistory.includes(PurchaseId)) {
 			const [success] = document.save().await();
@@ -240,7 +240,7 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 			return Enum.ProductPurchaseDecision.PurchaseGranted;
 		}
 
-		const data = store.getState(selectPlayerData(UserId));
+		const data = store.getState(selectPlayerData(player));
 		if (!data) {
 			return Enum.ProductPurchaseDecision.NotProcessedYet;
 		}
@@ -249,7 +249,7 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 			return Enum.ProductPurchaseDecision.NotProcessedYet;
 		}
 
-		this.updateReceiptHistory(UserId, data, PurchaseId);
+		this.updateReceiptHistory(player, data, PurchaseId);
 
 		const [success] = document.save().await();
 		if (!success) {
@@ -259,7 +259,7 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 		return Enum.ProductPurchaseDecision.PurchaseGranted;
 	}
 
-	private updateReceiptHistory(userId: string, data: PlayerData, purchaseId: string): void {
+	private updateReceiptHistory(player: Player, data: PlayerData, purchaseId: string): void {
 		const { receiptHistory } = data.mtx;
 
 		let updatedReceiptHistory = Sift.Array.push(receiptHistory, purchaseId);
@@ -270,14 +270,14 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 			);
 		}
 
-		store.updateReceiptHistory(userId, updatedReceiptHistory);
+		store.updateReceiptHistory(player, updatedReceiptHistory);
 	}
 
 	/** @ignore */
 	public onPlayerJoin(playerEntity: PlayerEntity): void {
-		const { UserId } = playerEntity;
+		const { player } = playerEntity;
 
-		const gamePasses = store.getState(selectPlayerMtx(UserId))?.gamePasses;
+		const gamePasses = store.getState(selectPlayerMtx(player))?.gamePasses;
 		if (gamePasses === undefined) return;
 
 		const unowned = Object.values(gamePass).filter((gamePassId) => !gamePasses.has(gamePassId));

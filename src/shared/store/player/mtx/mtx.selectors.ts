@@ -1,5 +1,5 @@
 import { SharedState } from "shared/store";
 
-export function selectPlayerMtx(playerId: string) {
-	return (state: SharedState) => state.players.mtx[playerId];
+export function selectPlayerMtx(player: Player) {
+	return (state: SharedState) => state.players.mtx.get(player);
 }

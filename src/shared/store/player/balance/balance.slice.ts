@@ -1,32 +1,18 @@
 import { createProducer } from "@rbxts/reflex";
-import { PlayerBalance } from ".";
+import { withMultiplayer } from "shared/functions/withMultiplayer";
 import { PlayerData } from "..";
+import { defaultPlayerBalance, PlayerBalance } from "./balance.types";
 
-export type BalanceState = Readonly<Record<string, PlayerBalance | undefined>>;
+export type BalanceState = Readonly<PlayerBalance>;
 
-const initialState: BalanceState = {};
+const initialState: BalanceState = defaultPlayerBalance;
 
 export const balanceSlice = createProducer(initialState, {
-	addBalance: (state, player: string, amount: number): BalanceState => {
-		const balance = state[player];
-		return {
-			...state,
-			[player]: balance && {
-				...balance,
-				currency: balance.currency + amount
-			}
-		};
-	},
-
-	/** @ignore */
-	loadPlayerData: (state, player: string, data: PlayerData): BalanceState => ({
+	addBalance: (state, amount: number): BalanceState => ({
 		...state,
-		[player]: data.balance
+		currency: state.currency + amount
 	}),
 
 	/** @ignore */
-	closePlayerData: (state, player: string): BalanceState => ({
-		...state,
-		[player]: undefined
-	})
-});
+	loadPlayerData: (_state, data: PlayerData): BalanceState => data.balance
+}).enhance(withMultiplayer);

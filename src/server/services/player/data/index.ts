@@ -46,16 +46,15 @@ export class PlayerDataService {
 
 			if (!player.IsDescendantOf(Players)) return;
 
-			const unsubscribe = store.subscribe(selectPlayerData(tostring(player.UserId)), (data) => {
+			const unsubscribe = store.subscribe(selectPlayerData(player), (data) => {
 				if (data) document.write(data);
 			});
 
 			document.beforeClose(() => {
 				unsubscribe();
-				store.closePlayerData(tostring(player.UserId));
 			});
 
-			store.loadPlayerData(tostring(player.UserId), document.read());
+			store.loadPlayerData(player, document.read());
 
 			return document;
 		} catch (e) {

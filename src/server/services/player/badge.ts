@@ -30,7 +30,7 @@ export class PlayerBadgeService implements OnPlayerJoin {
 	}
 
 	public async checkIfPlayerHasBadge({ player, UserId }: PlayerEntity, badge: Badge): Promise<boolean> {
-		const hasBadge = store.getState(selectPlayerAchievements(UserId))?.badges.get(badge);
+		const hasBadge = store.getState(selectPlayerAchievements(player))?.badges.get(badge);
 		if (hasBadge !== undefined) return true;
 
 		return Promise.try(() => BadgeService.UserHasBadgeAsync(player.UserId, tonumber(badge) as number));
@@ -58,13 +58,13 @@ export class PlayerBadgeService implements OnPlayerJoin {
 			this.logger.Info(`Awarded badge ${badge} to ${UserId}`);
 		}
 
-		store.awardBadge(UserId, badge, awarded);
+		store.awardBadge(player, badge, awarded);
 	}
 
 	private async awardUnrewardedBadges(playerEntity: PlayerEntity): Promise<void> {
-		const { UserId } = playerEntity;
+		const { UserId, player } = playerEntity;
 
-		const badges = store.getState(selectPlayerAchievements(UserId))?.badges;
+		const badges = store.getState(selectPlayerAchievements(player))?.badges;
 		if (badges === undefined) return;
 
 		for (const [badge, hasBadge] of badges) {
