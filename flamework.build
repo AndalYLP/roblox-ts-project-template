@@ -50,7 +50,8 @@
 		"roblox-ts-project-template:out/server/decorators/misc/logging/log-execution-time@A": "server/decorators/misc/logging/log-execution-time@A",
 		"roblox-ts-project-template:out/server/test.server@A": "server/test.server@A",
 		"roblox-ts-project-template:out/server/services/test@Test": "server/services/test@Test",
-		"roblox-ts-project-template:out/server/services/test@TestService": "server/services/test@TestService"
+		"roblox-ts-project-template:out/server/services/test@TestService": "server/services/test@TestService",
+		"roblox-ts-project-template:out/client/ui/components/error-handler/error-boundary@ErrorBoundary": "client/ui/components/error-handler/error-boundary@ErrorBoundary"
 	},
 	"metadata": {}
 }
