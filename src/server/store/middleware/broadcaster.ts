@@ -10,9 +10,7 @@ import { SerializedSharedState, SharedState, slices, stateSerDes } from "shared/
  */
 export function broadcasterMiddleware(): ProducerMiddleware {
 	// Storybook support
-	if (IS_DEV && IS_EDIT) {
-		return () => (innerDispatch) => innerDispatch;
-	}
+	if (IS_DEV && IS_EDIT) return () => (innerDispatch) => innerDispatch;
 
 	const broadcaster = createBroadcaster({
 		producers: slices,
@@ -32,10 +30,10 @@ export function broadcasterMiddleware(): ProducerMiddleware {
 function beforeHydrate(player: Player, state: SharedState): SharedState {
 	const newState = {
 		...state,
-		players: new Map<Player, unknown>().set(player, state.players.get(player))
-	};
+		players: new Map([[player, state.players.get(player)!]])
+	} satisfies SharedState;
 
-	return stateSerDes.serialize(state) as unknown as SharedState;
+	return stateSerDes.serialize(newState) as unknown as SharedState;
 }
 
 function beforeDispatch(player: Player, action: BroadcastAction): BroadcastAction | undefined {
