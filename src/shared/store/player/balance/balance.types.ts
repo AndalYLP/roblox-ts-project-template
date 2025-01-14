@@ -1,5 +1,5 @@
 export interface PlayerBalance {
-	readonly currency: number;
+	currency: number;
 }
 
 export const defaultPlayerBalance: PlayerBalance = {

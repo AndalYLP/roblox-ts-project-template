@@ -2,7 +2,7 @@ import { Service } from "@flamework/core";
 import { Logger } from "@rbxts/log";
 import { BadgeService } from "@rbxts/services";
 import { store } from "server/store";
-import { selectPlayerAchievements } from "shared/store/player/achievements";
+import { selectPlayerAchievements } from "shared/store/player/achievements/achievements.selectors";
 import { badge, Badge } from "types/enum/badge";
 import { OnPlayerJoin } from ".";
 import { PlayerEntity } from "./entity";

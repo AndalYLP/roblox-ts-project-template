@@ -1,7 +1,7 @@
 import { Badge } from "types/enum/badge";
 
 export interface PlayerAchievements {
-	readonly badges: Map<Badge, boolean>;
+	badges: Map<Badge, boolean>;
 }
 
 export const defaultPlayerAchievements: PlayerAchievements = { badges: new Map<Badge, boolean>() };

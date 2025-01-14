@@ -8,7 +8,7 @@ import { noYield } from "@utils/no-yield";
 import { events } from "server/network";
 import { store } from "server/store";
 import { PlayerData, selectPlayerData } from "shared/store/player";
-import { selectPlayerMtx } from "shared/store/player/mtx";
+import { selectPlayerMtx } from "shared/store/player/mtx/mtx.selectors";
 import { GamePass, gamePass, product, Product } from "types/enum/mtx";
 import { OnPlayerJoin, PlayerService } from "../player";
 import { PlayerEntity } from "../player/entity";

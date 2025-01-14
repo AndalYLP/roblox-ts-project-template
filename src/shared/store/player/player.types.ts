@@ -1,6 +1,6 @@
-import { defaultPlayerAchievements, PlayerAchievements } from "./achievements";
-import { defaultPlayerBalance, PlayerBalance } from "./balance";
-import { defaultPlayerMtx, PlayerMtx } from "./mtx";
+import { defaultPlayerAchievements, PlayerAchievements } from "./achievements/achievements.types";
+import { defaultPlayerBalance, PlayerBalance } from "./balance/balance.types";
+import { defaultPlayerMtx, PlayerMtx } from "./mtx/mtx.types";
 import { defaultPlayerSettings, PlayerSettings } from "./settings";
 
 export interface PlayerData {

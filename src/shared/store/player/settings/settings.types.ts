@@ -1,4 +1,4 @@
-import { defaultPlayerAudioSettings, PlayerAudioSettings } from "./audio";
+import { defaultPlayerAudioSettings, PlayerAudioSettings } from "./audio/audio.types";
 
 export interface PlayerSettings {
 	readonly audio: PlayerAudioSettings;

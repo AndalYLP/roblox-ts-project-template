@@ -1,9 +1,9 @@
 import { GamePass, GamePassData, Product, ProductData } from "types/enum/mtx";
 
 export interface PlayerMtx {
-	readonly gamePasses: Map<GamePass, GamePassData>;
-	readonly products: Map<Product, ProductData>;
-	readonly receiptHistory: Array<string>;
+	gamePasses: Map<GamePass, GamePassData>;
+	products: Map<Product, ProductData>;
+	receiptHistory: Array<string>;
 }
 
 export const defaultPlayerMtx: PlayerMtx = {

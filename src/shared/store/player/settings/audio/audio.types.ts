@@ -1,6 +1,6 @@
 export interface PlayerAudioSettings {
-	readonly musicVolume: number;
-	readonly sfxVolume: number;
+	musicVolume: number;
+	sfxVolume: number;
 }
 
 export const defaultPlayerAudioSettings: PlayerAudioSettings = {
