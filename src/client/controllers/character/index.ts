@@ -13,7 +13,7 @@ export interface OnCharacterAdded {
 }
 
 export interface OnCharacterRemoved {
-	/** Fires when the character is added to the game. */
+	/** Fires when the character is removed from the game. */
 	onCharacterRemoved(): void;
 }
 
