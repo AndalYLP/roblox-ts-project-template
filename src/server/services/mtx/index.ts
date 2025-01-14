@@ -55,6 +55,7 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 		{
 			handler: (object: Record<string, Callback>, playerEntity: PlayerEntity, productId: Product) => boolean;
 			object: Record<string, Callback>;
+			args: unknown[];
 		}
 	>();
 
@@ -81,7 +82,8 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 	public registerProductHandler(
 		object: Record<string, Callback>,
 		productId: Product,
-		handler: (object: Record<string, Callback>, playerEntity: PlayerEntity, productId: Product) => boolean
+		handler: (object: Record<string, Callback>, playerEntity: PlayerEntity, productId: Product) => boolean,
+		...args: unknown[]
 	): void {
 		if (this.productHandlers.has(productId)) {
 			this.logger.Error(`Handler already registered for product ${productId}`);
@@ -89,7 +91,7 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 		}
 
 		this.logger.Debug(`Registered handler for product ${productId}`);
-		this.productHandlers.set(productId, { handler, object });
+		this.productHandlers.set(productId, { handler, object, args });
 	}
 
 	/**
@@ -101,9 +103,7 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 	 *   if the information is not available.
 	 */
 	public async getProductInfo(infoType: Enum.InfoType, productId: number): Promise<ProductInfo | undefined> {
-		if (this.productInfoCache.has(productId)) {
-			return this.productInfoCache.get(productId);
-		}
+		if (this.productInfoCache.has(productId)) return this.productInfoCache.get(productId);
 
 		const productInfo = await Promise.retryWithDelay(
 			async () => MarketplaceService.GetProductInfo(productId, infoType) as ProductInfo,
@@ -113,9 +113,7 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 			this.logger.Warn(`Failed to get price for product ${productId}`);
 		});
 
-		if (productInfo === undefined) {
-			return undefined;
-		}
+		if (productInfo === undefined) return undefined;
 
 		this.productInfoCache.set(productId, productInfo);
 
@@ -135,14 +133,10 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 	}
 
 	private async checkForGamePassOwned({ player }: PlayerEntity, gamePassId: GamePass): Promise<boolean> {
-		if (!Object.values(gamePass).includes(gamePassId)) {
-			throw `Invalid game pass id ${gamePassId}`;
-		}
+		if (!Object.values(gamePass).includes(gamePassId)) throw `Invalid game pass id ${gamePassId}`;
 
 		const owned = store.getState(selectPlayerMtx(player))?.gamePasses.has(gamePassId);
-		if (owned === true) {
-			return true;
-		}
+		if (owned === true) return true;
 
 		return MarketplaceService.UserOwnsGamePassAsync(player.UserId, tonumber(gamePassId) as number);
 	}
@@ -212,9 +206,7 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 		this.logger.Info(`Processing receipt ${receiptInfo.PurchaseId} for ${receiptInfo.PlayerId}`);
 
 		const player = Players.GetPlayerByUserId(receiptInfo.PlayerId);
-		if (!player) {
-			return Enum.ProductPurchaseDecision.NotProcessedYet;
-		}
+		if (!player) return Enum.ProductPurchaseDecision.NotProcessedYet;
 
 		const playerEntity = await this.playerService.getPlayerEntityAsync(player);
 		if (!playerEntity) {
@@ -233,28 +225,21 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 
 		if (document.read().mtx.receiptHistory.includes(PurchaseId)) {
 			const [success] = document.save().await();
-			if (!success) {
-				return Enum.ProductPurchaseDecision.NotProcessedYet;
-			}
+			if (!success) return Enum.ProductPurchaseDecision.NotProcessedYet;
 
 			return Enum.ProductPurchaseDecision.PurchaseGranted;
 		}
 
 		const data = store.getState(selectPlayerData(player));
-		if (!data) {
-			return Enum.ProductPurchaseDecision.NotProcessedYet;
-		}
+		if (!data) return Enum.ProductPurchaseDecision.NotProcessedYet;
 
-		if (!this.grantProduct(playerEntity, ProductId, CurrencySpent)) {
+		if (!this.grantProduct(playerEntity, ProductId, CurrencySpent))
 			return Enum.ProductPurchaseDecision.NotProcessedYet;
-		}
 
 		this.updateReceiptHistory(player, data, PurchaseId);
 
 		const [success] = document.save().await();
-		if (!success) {
-			return Enum.ProductPurchaseDecision.NotProcessedYet;
-		}
+		if (!success) return Enum.ProductPurchaseDecision.NotProcessedYet;
 
 		return Enum.ProductPurchaseDecision.PurchaseGranted;
 	}
@@ -284,9 +269,7 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 		for (const gamePassId of unowned) {
 			this.checkForGamePassOwned(playerEntity, gamePassId)
 				.then((owned) => {
-					if (!owned) {
-						return;
-					}
+					if (!owned) return;
 
 					this.grantGamePass(playerEntity, tonumber(gamePassId) as number);
 				})

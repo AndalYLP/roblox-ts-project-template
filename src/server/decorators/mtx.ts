@@ -1,11 +1,17 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Modding, OnStart, Service } from "@flamework/core";
+import Log from "@rbxts/log";
 import Signal from "@rbxts/signal";
 import { MtxService } from "server/services/mtx";
 import { GamePass, Product } from "types/enum/mtx";
 
-const registeredProductHandlers = new Map<Product, { object: Record<string, Callback>; callback: Callback }>();
-const onProductAdded = new Signal<(object: Record<string, Callback>, callback: Callback, product: Product) => void>();
+const registeredProductHandlers = new Map<
+	Product,
+	{ object: Record<string, Callback>; callback: Callback; args?: unknown[] }
+>();
+const onProductAdded = new Signal<
+	(object: Record<string, Callback>, callback: Callback, product: Product, ...args: unknown[]) => void
+>();
 const gamePassCallbacks = new Map<GamePass, Array<{ object: Record<string, Callback>; callback: Callback }>>();
 
 /**
@@ -43,9 +49,45 @@ export const RegisterProductHandler = Modding.createDecorator<[product: Product]
 	const object = <Record<string, Callback>>Modding.resolveSingleton(descriptor.constructor!);
 	const callback = object[descriptor.property];
 
+	if (registeredProductHandlers.has(product)) {
+		Log.Error(`Handler already registered for product ${product}`);
+		return;
+	}
+
 	registeredProductHandlers.set(product, { object, callback });
 	onProductAdded.Fire(object, callback, product);
 });
+
+/**
+ * Registers a `method` as a handler for specific developer products. The handler will
+ * be invoked when a player purchases one of the registered products.
+ *
+ * The handler should return `true` if the product was successfully processed, or `false`
+ * if there was an error. Attempting to register a handler for a product that already has
+ * one will result in an error being logged.
+ * @param products - A record mapping a key to their associated ID.
+ * @example
+ * (method) (playerEntity: PlayerEntity, product: Product, key: string | number): boolean
+ * @note Handlers must be registered before the player attempts to purchase a product.
+ *       Handlers should not yield or perform any asynchronous operations.
+ */
+export const RegisterHandlerForEachProduct = Modding.createDecorator<[products: Record<string | number, Product>]>(
+	"Method",
+	(descriptor, [products]) => {
+		const object = <Record<string, Callback>>Modding.resolveSingleton(descriptor.constructor!);
+		const callback = object[descriptor.property];
+
+		for (const [key, product] of pairs(products)) {
+			if (registeredProductHandlers.has(product)) {
+				Log.Error(`Handler already registered for product ${product}`);
+				return;
+			}
+
+			registeredProductHandlers.set(product, { object, callback, args: [key] });
+			onProductAdded.Fire(object, callback, product, key);
+		}
+	}
+);
 
 /**
  * Handles the callbacks registered by the `gamePassStatusChanged` decorator.
@@ -65,14 +107,14 @@ export class MtxDecoratorService implements OnStart {
 			}
 		});
 
-		for (const [product, { object, callback }] of registeredProductHandlers) {
+		for (const [product, { object, callback, args }] of registeredProductHandlers) {
 			Promise.defer(() => {
-				this.mtxService.registerProductHandler(object, product, callback);
+				this.mtxService.registerProductHandler(object, product, callback, ...(args || []));
 			});
 		}
 
-		onProductAdded.Connect((object, callback, product) => {
-			this.mtxService.registerProductHandler(object, product, callback);
+		onProductAdded.Connect((object, callback, product, ...args) => {
+			this.mtxService.registerProductHandler(object, product, callback, ...args);
 		});
 	}
 }
