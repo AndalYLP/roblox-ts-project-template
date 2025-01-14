@@ -51,9 +51,7 @@ class LogEventSFTOutputSink implements ILogEventSink {
 	}
 
 	private getFileInformation(context: string): string {
-		if (LOG_LEVEL > LogLevel.Verbose) {
-			return "";
-		}
+		if (LOG_LEVEL > LogLevel.Verbose) return "";
 
 		const source =
 			context === "Game"

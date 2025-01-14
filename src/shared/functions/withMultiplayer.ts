@@ -28,9 +28,7 @@ export const withMultiplayer = <
 			return (combinedState: Map<Player, S>, player: Player, ...args: unknown[]) => {
 				const nextState = table.clone(combinedState);
 
-				if (!nextState.has(player)) {
-					nextState.set(player, producer.getState());
-				}
+				if (!nextState.has(player)) nextState.set(player, producer.getState());
 
 				const producerState = nextState.get(player)!;
 				nextState.set(player, action(producerState, ...args));
