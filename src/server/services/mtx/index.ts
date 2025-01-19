@@ -53,7 +53,12 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 	private readonly productHandlers = new Map<
 		Product,
 		{
-			handler: (object: Record<string, Callback>, playerEntity: PlayerEntity, productId: Product) => boolean;
+			handler: (
+				object: Record<string, Callback>,
+				playerEntity: PlayerEntity,
+				productId: Product,
+				...args: unknown[]
+			) => boolean;
 			object: Record<string, Callback>;
 			args: unknown[];
 		}
@@ -157,7 +162,9 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 			return false;
 		}
 
-		const [success, result] = pcall(() => noYield(data.handler, data.object, playerEntity, productIds));
+		const [success, result] = pcall(() =>
+			noYield(data.handler, data.object, playerEntity, productIds, ...data.args)
+		);
 		if (!success || !result) {
 			this.logger.Error(`Failed to process product ${productIds}`);
 			return false;
