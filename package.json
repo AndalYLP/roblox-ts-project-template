@@ -97,7 +97,7 @@
 			"cspell"
 		]
 	},
-	"packageManager": "pnpm@9.15.0",
+	"packageManager": "pnpm@9.15.4",
 	"pnpm": {
 		"patchedDependencies": {
 			"rbxts-transform-env": "patches/rbxts-transform-env.patch"
