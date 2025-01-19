@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
     branches: 
-      - "main"
+      - main
   workflow_dispatch:
 
 permissions:
@@ -36,7 +36,7 @@ jobs:
         cache: pnpm
 
     - name: Install dependencies
-    - run: pnpm install
+      run: pnpm install
 
     - name: Setup Rokit
       uses: CompeyDev/setup-rokit@v0.1.2
