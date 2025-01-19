@@ -7,7 +7,7 @@
 rojo = "rojo-rbx/rojo@7.4.4"
 darklua = "seaofvoices/darklua@0.14.1"
 lune = "lune-org/lune@0.8.9"
-asphalt = "jacktabscode/asphalt@0.8.2"
+asphalt = "jacktabscode/asphalt@0.8.4"
 mantle = "blake-mealey/mantle@0.11.16"
 run-in-roblox = "rojo-rbx/run-in-roblox@0.3.0"
 # rojo = "rojo-rbx/rojo@6.2.0"
