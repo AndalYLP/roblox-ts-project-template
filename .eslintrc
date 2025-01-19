@@ -11,6 +11,7 @@
 	"plugins": ["@typescript-eslint", "roblox-ts", "prettier", "jsdoc"],
 	"extends": [
 		"eslint:recommended",
+		"json:recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:roblox-ts/recommended",
 		"plugin:prettier/recommended",
