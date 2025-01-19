@@ -42,7 +42,7 @@
 		"eslint-plugin-roblox-ts": "^0.0.36",
 		"git-pull-run": "^1.4.0",
 		"husky": "^8.0.3",
-		"lint-staged": "^15.2.11",
+		"lint-staged": "^15.4.1",
 		"prettier": "^3.4.2",
 		"rbxts-build": "^2.4.0",
 		"rbxts-transformer-flamework": "^1.2.3",
