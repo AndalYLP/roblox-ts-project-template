@@ -103,9 +103,6 @@ importers:
       '@rbxts/ui-labs':
         specifier: ^2.3.1
         version: 2.3.1
-      '@rbxts/ui-scaler':
-        specifier: ^0.2.1
-        version: 0.2.1(@rbxts/react-roblox@17.2.3)(@rbxts/react@17.2.3)
       '@rbxts/validate-tree':
         specifier: ^2.0.2
         version: 2.0.2
@@ -874,12 +871,6 @@ packages:
 
   '@rbxts/ui-labs@2.3.1':
     resolution: {integrity: sha512-IKKxXY4mMvMszh99w6a1M29yx6x1Cueu2d9a2SsUjv6/swJdzI4gAE0KLZgN8wfdm3gSF6A8F81Oftr8QuFN9w==}
-
-  '@rbxts/ui-scaler@0.2.1':
-    resolution: {integrity: sha512-td5Q2i4LXcSJ5cuJNUrL1QzzFX+DpXGIqYC1/31cvFoTvNN4pNq/81SlqVgsl9uWr+ETpRNjT4OVh71/iOkjfw==}
-    peerDependencies:
-      '@rbxts/react': '*'
-      '@rbxts/react-roblox': '*'
 
   '@rbxts/validate-tree@2.0.2':
     resolution: {integrity: sha512-OA0E9ZjEeOpPa3XeV5/oC51aro2QFcL5dItufbagYZW8TOsX8C+FDXLx+A/ulMwcF42WcFNcQybxzcWSS/QSrA==}
@@ -3384,11 +3375,6 @@ snapshots:
   '@rbxts/types@1.0.813': {}
 
   '@rbxts/ui-labs@2.3.1': {}
-
-  '@rbxts/ui-scaler@0.2.1(@rbxts/react-roblox@17.2.3)(@rbxts/react@17.2.3)':
-    dependencies:
-      '@rbxts/react': 17.2.3
-      '@rbxts/react-roblox': 17.2.3
 
   '@rbxts/validate-tree@2.0.2': {}
 
