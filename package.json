@@ -91,7 +91,7 @@
 		"@rbxts/compiler-types": "3.0.0-types.0"
 	},
 	"lint-staged": {
-		"*.{js,ts}": [
+		"*.{js,ts,tsx}": [
 			"eslint --fix",
 			"prettier --write",
 			"cspell"
