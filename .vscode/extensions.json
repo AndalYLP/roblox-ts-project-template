@@ -1,18 +1,14 @@
 {
 	"recommendations": [
 		"streetsidesoftware.code-spell-checker",
-		"ms-vscode-remote.remote-containers",
-		"icrawl.discord-vscode",
-		"ms-azuretools.vscode-docker",
 		"usernamehw.errorlens",
 		"dbaeumer.vscode-eslint",
-		"ms-vsliveshare.vsliveshare",
-		"PKief.material-icon-theme",
+		"flamework.flamework-vscode",
+		"eamodio.gitlens",
 		"esbenp.prettier-vscode",
-		"YoavBls.pretty-ts-errors",
+		"yoavbls.pretty-ts-errors",
 		"roblox-ts.vscode-roblox-ts",
 		"evaera.vscode-rojo",
-		"Gruntfuggly.todo-tree",
-		"flamework.flamework-vscode"
+		"gruntfuggly.todo-tree"
 	]
 }

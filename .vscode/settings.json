@@ -14,7 +14,6 @@
 	"npm.packageManager": "pnpm",
 	"explorer.fileNesting.patterns": {
 		"package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, .gitignore, .eslintrc, .prettierrc, cspell*.yaml, .gitattributes, renovate.json, rokit.toml, .darklua.json, .commitlintrc, asphalt.toml, flamework.build, .npmrc",
-		"*.project.json": "*.rbxl",
 		"*.rbxl": "*.rbxl.lock"
 	},
 	"files.exclude": {
