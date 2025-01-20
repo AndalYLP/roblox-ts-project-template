@@ -1,18 +1,9 @@
-version: "0.2"
+version: '0.2'
 lenguage: en
 ignorePaths:
-  - cspell.config.yaml
-  - node_modules/**
-  - out/**
-  - include/**
-  - .gitignore
-  - package.json
-  - .vscode/**
-  - pnpm-lock.yaml
-  - flamework.build
-  - renovate.json
-  - rokit.toml
-  - .husky
+  - ./**
+includePaths:
+  - src/**
 dictionaryDefinitions: []
 dictionaries:
   - roblox
@@ -21,7 +12,4 @@ dictionaries:
   - javascript
 words:
   - andal
-  - Inet
-  - NOCOLOR
-  - serde
 ignoreWords: []
