@@ -34,6 +34,7 @@ export default style(
 			"ts/no-non-null-assertion": "off",
 			"ts/no-unused-expressions": "off",
 		},
+		test: true,
 		typescript: {
 			parserOptions: {
 				project: "tsconfig.build.json",

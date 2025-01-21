@@ -1,8 +1,8 @@
-import { describe, expect, it, test } from "@rbxts/jest-globals";
+import { describe, expect, it } from "@rbxts/jest-globals";
 
 // TODO: add an actual test
 describe("example", () => {
-	test("example", () => {
+	it("example", () => {
 		expect(typeOf("example")).toBe("string");
 	});
 
