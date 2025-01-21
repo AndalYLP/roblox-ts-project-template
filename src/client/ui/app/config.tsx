@@ -8,20 +8,15 @@ export function reactConfig(): void {
 	}
 
 	_G.__DEV__ = true;
-	_G.__PROFILE__ = false;
-
-	// Avoid implicit React import before setting the __DEV__ flag
-
-	void import("client/ui/functions/profiler").then(({ profileAllComponents }) => {
-		profileAllComponents();
-	});
+	_G.__PROFILE__ = true;
+	_G.__REACT_MICROPROFILER_LEVEL = 1;
 }
 
 export async function createApp(): Promise<void> {
 	// Avoid implicit React import before setting the __DEV__ flag
 	const React = await import("@rbxts/react");
 	const { App } = await import("client/ui/app");
-	const { mount } = await import("client/ui/functions");
+	const { mount } = await import("client/ui/functions/mount");
 
 	mount({ key: "app", children: <App /> });
 }
