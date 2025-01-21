@@ -24,13 +24,13 @@ jobs:
         node-version: [22.x]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
       - name: Install pnpm
         uses: pnpm/action-setup@v3
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: pnpm
@@ -39,7 +39,7 @@ jobs:
         run: pnpm install
 
       - name: Setup Rokit
-        uses: CompeyDev/setup-rokit@v0.1.2
+        uses: CompeyDev/setup-rokit@d49be92bd9502180218c3f43e7988faa945217b0 # v0.1.2
 
       - name: Lint
         run: pnpm lint
