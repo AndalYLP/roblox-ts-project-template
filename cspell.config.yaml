@@ -1,10 +1,5 @@
 version: '0.2'
-lenguage: en
-ignorePaths:
-  - ./**
-includePaths:
-  - src/**
-dictionaryDefinitions: []
+language: en
 dictionaries:
   - roblox
   - rbxts
@@ -12,4 +7,3 @@ dictionaries:
   - javascript
 words:
   - andal
-ignoreWords: []
