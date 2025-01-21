@@ -1,7 +1,7 @@
 import { Networking } from "@flamework/networking";
 
-import type { MtxClientEvents } from "./mtx";
-import type { StoreClientEvents, StoreServerEvents } from "./store";
+import type { MtxClientEvents } from "./remotes/mtx";
+import type { StoreClientEvents, StoreServerEvents } from "./remotes/store";
 
 /** Fired by client to server. */
 interface ClientToServerEvents {
