@@ -1,5 +1,5 @@
 {
-	"generator": "readable",
+	"generator": { "name": "dense", "column_span": 50 },
 	"rules": [
 		"remove_spaces",
 		{
