@@ -38,8 +38,8 @@ importers:
         specifier: 0.1.0
         version: 0.1.0
       '@rbxts/lapis':
-        specifier: 0.3.6
-        version: 0.3.6(@rbxts/t@3.1.1)
+        specifier: 0.3.7
+        version: 0.3.7(@rbxts/t@3.1.1)
       '@rbxts/lapis-mockdatastore':
         specifier: 0.3.7
         version: 0.3.7
@@ -1308,8 +1308,8 @@ packages:
   '@rbxts/lapis-mockdatastore@0.3.7':
     resolution: {integrity: sha512-D8DhcnTDoMit7Rne6AQxAas8H5ZK7B6StFIGNTUoe2oUfQVmEbPF85Q78PjBEww2vAjVAnAF2FbMnbcALQjaUQ==}
 
-  '@rbxts/lapis@0.3.6':
-    resolution: {integrity: sha512-NpvnT1yQYmgKlddxFTmaHSEXlcuDJOSMVMcnZOjL5ILy8ia/KiPqQ1ESWmXfvdfNNwQ7+fI0H/qtZU5PY2/0fA==}
+  '@rbxts/lapis@0.3.7':
+    resolution: {integrity: sha512-R4fdrBFQ4NKQ6I3E4hzL19Yap2SbYg6Twe7sfd5CHO+2SwSUhxPacCWR/wChOmbYRb8BcSNtXyryTf+OOhMUig==}
     peerDependencies:
       '@rbxts/t': '*'
 
@@ -5851,7 +5851,7 @@ snapshots:
 
   '@rbxts/lapis-mockdatastore@0.3.7': {}
 
-  '@rbxts/lapis@0.3.6(@rbxts/t@3.1.1)':
+  '@rbxts/lapis@0.3.7(@rbxts/t@3.1.1)':
     dependencies:
       '@rbxts/t': 3.1.1
 
