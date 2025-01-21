@@ -1,16 +1,19 @@
-import { Controller, OnInit, OnStart } from "@flamework/core";
-import { Logger } from "@rbxts/log";
+import type { OnInit, OnStart } from "@flamework/core";
+import { Controller } from "@flamework/core";
+import type { Logger } from "@rbxts/log";
 import Make from "@rbxts/make";
 import { Inspect } from "@rbxts/rbx-debug";
 import { SoundService, TweenService } from "@rbxts/services";
+
 import { LocalPlayer } from "client/constants/player";
 import { store } from "client/store";
 import { SoundSystem } from "shared/modules/3dSound";
-import { PlayerSettings, selectPlayerSettingsData } from "shared/store/player/settings";
+import type { PlayerSettings } from "shared/store/player/settings";
+import { selectPlayerSettingsData } from "shared/store/player/settings";
 
 export const enum SoundType {
 	Music = "Music",
-	SoundEffect = "SoundEffect"
+	SoundEffect = "SoundEffect",
 }
 
 interface PlaySoundOptions {
@@ -27,7 +30,13 @@ export class AudioController implements OnInit, OnStart {
 
 	constructor(private readonly logger: Logger) {}
 
-	public createSound({ attachToPoint, debugName, sound, soundProperties = {}, soundType }: PlaySoundOptions): Sound {
+	public createSound({
+		attachToPoint,
+		debugName,
+		sound,
+		soundProperties = {},
+		soundType,
+	}: PlaySoundOptions): Sound {
 		const soundGroup = this.soundGroups.get(soundType);
 		assert(soundGroup, `SoundGroup not found for SoundType ${soundType}`);
 
@@ -37,10 +46,12 @@ export class AudioController implements OnInit, OnStart {
 			Name: debugName ?? Inspect(sound),
 			Parent: soundParent,
 			SoundGroup: soundGroup,
-			SoundId: `rbxassetid://${sound}`
+			SoundId: `rbxassetid://${sound}`,
 		});
 
-		if (attachToPoint) SoundSystem.attach(soundObject);
+		if (attachToPoint) {
+			SoundSystem.attach(soundObject);
+		}
 
 		this.logger.Info(`Playing sound ${sound} of type ${soundType}`);
 
@@ -49,8 +60,9 @@ export class AudioController implements OnInit, OnStart {
 
 	/**
 	 * Play a sound!
-	 * @param soundObject The sound's instance to play.
-	 * @param fadeInTime The fade time.
+	 *
+	 * @param soundObject - The sound's instance to play.
+	 * @param fadeInTime - Duration for the fade-in effect.
 	 */
 	public play(soundObject: Sound, fadeInTime?: number): void {
 		soundObject.Play();
@@ -61,27 +73,35 @@ export class AudioController implements OnInit, OnStart {
 	}
 
 	/**
-	 * Don't use directly, it won't play the sound, use `AudioController.play` with `fadeInTime` instead.
-	 * @param soundObject The sound's instance.
-	 * @param fadeInTime The fade time.
+	 * Don't use directly, it won't play the sound, use `AudioController.play`
+	 * with `fadeInTime` instead.
+	 *
+	 * @param soundObject - The sound's instance.
+	 * @param fadeInTime - Duration for the fade-in effect.
 	 */
 	public fadeInSound(soundObject: Sound, fadeInTime: number): void {
 		const desiredVolume = soundObject.Volume;
 		soundObject.Volume = 0;
 
-		const tweenInfo = new TweenInfo(fadeInTime, Enum.EasingStyle.Quad, Enum.EasingDirection.Out);
+		const tweenInfo = new TweenInfo(
+			fadeInTime,
+			Enum.EasingStyle.Quad,
+			Enum.EasingDirection.Out,
+		);
 
 		TweenService.Create(soundObject, tweenInfo, { Volume: desiredVolume }).Play();
 	}
 
 	private makeSoundGroup(soundType: SoundType): SoundGroup {
 		const existing = SoundService.FindFirstChild(soundType);
-		if (existing?.IsA("SoundGroup") === true) return existing;
+		if (existing?.IsA("SoundGroup") === true) {
+			return existing;
+		}
 
 		return Make("SoundGroup", {
 			Name: soundType,
 			Parent: SoundService,
-			Volume: 1
+			Volume: 1,
 		});
 	}
 
@@ -105,8 +125,10 @@ export class AudioController implements OnInit, OnStart {
 
 	/** @ignore */
 	public onStart(): void {
-		store.subscribe(selectPlayerSettingsData(LocalPlayer), (current) => {
-			if (!current) return;
+		store.subscribe(selectPlayerSettingsData(LocalPlayer), current => {
+			if (!current) {
+				return;
+			}
 
 			this.onSettingsChanged(current);
 		});

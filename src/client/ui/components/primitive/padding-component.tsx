@@ -7,11 +7,13 @@ interface PaddingProps extends PropsWithChildren {
 
 /**
  * A component for adding consistent padding around an element.
+ *
  * @example
  *
  * ```tsx
  * <Padding Padding={10}>
  * ```
+ *
  * @component
  * @see https://developer.roblox.com/en-us/api-reference/class/UIPadding
  */
@@ -29,5 +31,5 @@ export const PaddingComponent = forwardRef(
 				{children}
 			</uipadding>
 		);
-	}
+	},
 );

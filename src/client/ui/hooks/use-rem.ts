@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { useCallback, useContext } from "@rbxts/react";
 
 import { DEFAULT_REM, RemContext } from "../providers/rem";
@@ -26,7 +25,7 @@ const scaleFunctions = {
 		return new UDim2(value.X.Scale, value.X.Offset * rem, value.Y.Scale, value.Y.Offset * rem);
 	},
 
-	Vector2: (value: Vector2, rem: number): Vector2 => new Vector2(value.X * rem, value.Y * rem)
+	Vector2: (value: Vector2, rem: number): Vector2 => new Vector2(value.X * rem, value.Y * rem),
 };
 
 function useRemContext({ maximum = math.huge, minimum = 0 }: RemOptions = {}): number {
@@ -37,6 +36,7 @@ function useRemContext({ maximum = math.huge, minimum = 0 }: RemOptions = {}): n
 /**
  * Custom hook that provides a function for scaling values based on the rem
  * unit.
+ *
  * @param options - Optional configuration options for the rem function.
  * @returns A function that can be used to scale values based on the rem unit.
  */
@@ -44,7 +44,9 @@ export function useRem(options?: RemOptions): RemFunction {
 	const rem = useRemContext(options);
 
 	const remFunction: RemFunction = <T>(value: T, mode: RemScaleMode = "unit"): T => {
-		const scale = scaleFunctions[typeOf(value) as never] as ((value: T, rem: number) => T) | undefined;
+		const scale = scaleFunctions[typeOf(value) as never] as
+			| ((value: T, rem: number) => T)
+			| undefined;
 		if (scale) {
 			return mode === "unit" ? scale(value, rem) : scale(value, rem / DEFAULT_REM);
 		}

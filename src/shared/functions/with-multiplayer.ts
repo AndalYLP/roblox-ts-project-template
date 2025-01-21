@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable ts/no-unsafe-argument -- Not changing this file */
+/* eslint-disable ts/no-explicit-any -- Not changing this file */
 // https://gist.github.com/sasial-dev/561bbbefd40b75425f325850edfb2b1d
 
 import type { InferActions, InferState, Producer } from "@rbxts/reflex";
@@ -11,31 +12,32 @@ type ReplaceStateParameters<State, Actions> = {
 		: never;
 };
 
-type PlayerActions<State> = {
+interface PlayerActions<State> {
 	readonly removePlayer: (state: State, player: Player) => State;
-};
+}
 
-export const withMultiplayer = <
+export function withMultiplayer<
 	P extends Producer,
 	S extends InferState<P>,
-	A extends ReplaceStateParameters<Map<Player, S>, InferActions<P>> & PlayerActions<Map<Player, S>>
->(
-	producer: P
-): Producer<Map<Player, S>, A> => {
+	A extends PlayerActions<Map<Player, S>> &
+		ReplaceStateParameters<Map<Player, S>, InferActions<P>>,
+>(producer: P): Producer<Map<Player, S>, A> {
 	const actions = Object.map(
-		producer.getActions() as Record<string, (state: S, ...args: unknown[]) => S>,
-		(action) => {
-			return (combinedState: Map<Player, S>, player: Player, ...args: unknown[]) => {
+		producer.getActions() as Record<string, (state: S, ...args: Array<unknown>) => S>,
+		action => {
+			return (combinedState: Map<Player, S>, player: Player, ...args: Array<unknown>) => {
 				const nextState = table.clone(combinedState);
 
-				if (!nextState.has(player)) nextState.set(player, producer.getState());
+				if (!nextState.has(player)) {
+					nextState.set(player, producer.getState());
+				}
 
 				const producerState = nextState.get(player)!;
 				nextState.set(player, action(producerState, ...args));
 
 				return nextState;
 			};
-		}
+		},
 	) as never;
 
 	(actions as Writable<PlayerActions<Map<Player, S>>>).removePlayer = (state, player) => {
@@ -45,4 +47,4 @@ export const withMultiplayer = <
 	};
 
 	return createProducer(new Map(), actions);
-};
+}

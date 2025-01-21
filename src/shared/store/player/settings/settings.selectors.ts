@@ -1,7 +1,12 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { createSelector } from "@rbxts/reflex";
-import { selectPlayerData } from "../player.selectors";
 
-export function selectPlayerSettingsData(player: Player) {
-	return createSelector(selectPlayerData(player), (state) => state?.settings);
+import type { SharedState } from "shared/store";
+
+import { selectPlayerData } from "../player.selectors";
+import type { PlayerSettings } from "./settings.types";
+
+export function selectPlayerSettingsData(
+	player: Player,
+): (state: SharedState) => PlayerSettings | undefined {
+	return createSelector(selectPlayerData(player), state => state?.settings);
 }

@@ -1,5 +1,3 @@
-/* eslint-disable jsdoc/check-param-names */
-/* eslint-disable jsdoc/require-param */
 import React, { useEffect, useState } from "@rbxts/react";
 import { setTimeout } from "@rbxts/set-timeout";
 
@@ -23,6 +21,7 @@ interface DelayRenderProps extends React.PropsWithChildren {
  * This component can be useful for creating transitions or animations when
  * rendering or unmounting components, e.g, playing a fade-out animation before
  * unmounting a component.
+ *
  * @example
  *
  * ```tsx
@@ -30,6 +29,7 @@ interface DelayRenderProps extends React.PropsWithChildren {
  * 	<Text Text={"Hello World!"} />
  * </DelayRender>;
  * ```
+ *
  * @param delayRenderProps - The properties of delay-render props.
  * @returns - The rendered children component.
  * @component
@@ -38,7 +38,7 @@ export function DelayRender({
 	MountDelay = 0,
 	ShouldRender,
 	UnmountDelay = 0,
-	children
+	children,
 }: Readonly<DelayRenderProps>): React.ReactNode {
 	const [render, setRender] = useState(false);
 

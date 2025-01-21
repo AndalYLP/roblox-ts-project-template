@@ -4,16 +4,16 @@ import { GameId, getConfigValueForGame } from "shared/functions/game-config";
 export const gamePass = {
 	Example: getConfigValueForGame({
 		[GameId.Development]: "1",
-		[GameId.Production]: "2"
-	})
+		[GameId.Production]: "2",
+	}),
 } as const;
 
 // NOTE: define before use.
 export const product = {
 	Example: getConfigValueForGame({
 		[GameId.Development]: "1",
-		[GameId.Production]: "2"
-	})
+		[GameId.Production]: "2",
+	}),
 };
 
 export type GamePass = ValueOf<typeof gamePass>;

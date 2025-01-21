@@ -1,5 +1,3 @@
-/* eslint-disable jsdoc/check-param-names */
-/* eslint-disable jsdoc/require-param */
 import React from "@rbxts/react";
 
 import { useRem, useTheme } from "client/ui/hooks";
@@ -13,6 +11,7 @@ interface ScrollingFrameProps extends React.PropsWithChildren {
 
 /**
  * Renders a scrolling frame component.
+ *
  * @example
  *
  * ```tsx
@@ -33,12 +32,17 @@ interface ScrollingFrameProps extends React.PropsWithChildren {
  * 	/>
  * </ScrollingFrame>;
  * ```
+ *
  * @param props - The props for the scrolling frame.
  * @returns The rendered scrolling frame component.
  * @component
  * @see https://developer.roblox.com/en-us/api-reference/class/ScrollingFrame
  */
-export function ScrollingFrame({ CanvasSize, Native, children }: Readonly<ScrollingFrameProps>): React.ReactNode {
+export function ScrollingFrame({
+	CanvasSize,
+	Native,
+	children,
+}: Readonly<ScrollingFrameProps>): React.ReactNode {
 	const theme = useTheme();
 	const rem = useRem();
 
@@ -49,7 +53,7 @@ export function ScrollingFrame({ CanvasSize, Native, children }: Readonly<Scroll
 			BorderSizePixel={0}
 			CanvasSize={UDim2.fromOffset(
 				CanvasSize.X !== 0 ? CanvasSize.X + 5 : 0,
-				CanvasSize.Y !== 0 ? CanvasSize.Y + 5 : 0
+				CanvasSize.Y !== 0 ? CanvasSize.Y + 5 : 0,
 			)}
 			Position={new UDim2(0.5, 0, 0.5, 0)}
 			ScrollBarImageColor3={theme.colors.secondary}

@@ -1,4 +1,4 @@
-import { Badge } from "types/enum/badge";
+import type { Badge } from "types/enum/badge";
 
 export interface PlayerAchievements {
 	badges: Map<Badge, boolean>;

@@ -1,8 +1,10 @@
 import { Service } from "@flamework/core";
-import { Logger } from "@rbxts/log";
+import type { Logger } from "@rbxts/log";
+
 import { gamePass } from "types/enum/mtx";
+
 import { GamePassStatusChanged } from "../../decorators/mtx";
-import { PlayerEntity } from "../player/entity";
+import type { PlayerEntity } from "../player/entity";
 
 @Service()
 export class GamePassEventsService {

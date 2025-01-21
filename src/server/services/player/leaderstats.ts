@@ -1,10 +1,14 @@
-import { OnInit, Service } from "@flamework/core";
-import { Logger } from "@rbxts/log";
+import type { OnInit } from "@flamework/core";
+import { Service } from "@flamework/core";
+import type { Logger } from "@rbxts/log";
 import { t } from "@rbxts/t";
+
 import { store } from "server/store";
-import { PlayerData, selectPlayerData } from "shared/store/player";
-import { OnPlayerJoin, OnPlayerLeave } from ".";
-import { PlayerEntity } from "./entity";
+import type { PlayerData } from "shared/store/player";
+import { selectPlayerData } from "shared/store/player";
+
+import type { OnPlayerJoin, OnPlayerLeave } from ".";
+import type { PlayerEntity } from "./entity";
 
 interface LeaderstatValueTypes {
 	IntValue: number;
@@ -49,30 +53,41 @@ export class LeaderstatsService implements OnInit, OnPlayerJoin, OnPlayerLeave {
 	 * Returns a given stat object for a player. This can be used to update the
 	 * leaderboard values for a given player if the stat object is not available
 	 * in the reflex store.
+	 *
 	 * @param player - The player to get the stat object for.
 	 * @param statName - The name of the stat to find.
 	 * @returns The stat object if it exists.
 	 */
 	public getStatObject(player: Player, statName: Leaderstats): LeaderstatValue | undefined {
 		const valueMap = this.playerToValueMap.get(player);
-		if (!valueMap) return;
+		if (!valueMap) {
+			return;
+		}
 
-		const entry = this.leaderstats.find((leaderstatsEntry) => leaderstatsEntry.Name === statName);
-		if (!entry) return;
+		const entry = this.leaderstats.find(leaderstatsEntry => leaderstatsEntry.Name === statName);
+		if (!entry) {
+			return;
+		}
 
 		return valueMap.get(entry.Name);
 	}
 
 	/**
 	 * Gets the value of a key from the player's data.
+	 *
 	 * @param playerData - The player data object.
 	 * @param nestedKey - The key to get the value of.
 	 * @returns The value of the nested key.
 	 */
-	private getPlayerData(playerData: PlayerData, nestedKey: NestedKeyOf<PlayerData>): ValueOf<LeaderstatValueTypes> {
+	private getPlayerData(
+		playerData: PlayerData,
+		nestedKey: NestedKeyOf<PlayerData>,
+	): ValueOf<LeaderstatValueTypes> {
 		const keys = nestedKey.split(".");
 		let value = playerData;
-		for (const key of keys) value = value[key as never];
+		for (const key of keys) {
+			value = value[key as never];
+		}
 
 		assert(t.number(value) || t.string(value), `Value is not a number or string: ${value}`);
 
@@ -81,6 +96,7 @@ export class LeaderstatsService implements OnInit, OnPlayerJoin, OnPlayerLeave {
 
 	/**
 	 * Registers a new stat to the leaderboard.
+	 *
 	 * @param statName - The name of the stat to register.
 	 * @param valueType - The type of value the stat will hold.
 	 * @param playerDataKey - An optional key for persistent data that binds to
@@ -89,17 +105,17 @@ export class LeaderstatsService implements OnInit, OnPlayerJoin, OnPlayerLeave {
 	private registerStat(
 		statName: Leaderstats,
 		valueType: keyof LeaderstatValueTypes,
-		playerDataKey?: NestedKeyOf<PlayerData>
+		playerDataKey?: NestedKeyOf<PlayerData>,
 	): void {
 		assert(
-			this.leaderstats.find((entry) => entry.Name === statName) === undefined,
-			`Stat provided already exists.`
+			this.leaderstats.find(entry => entry.Name === statName) === undefined,
+			`Stat provided already exists.`,
 		);
 
 		this.leaderstats.push({
 			Name: statName,
 			PlayerDataKey: playerDataKey,
-			ValueType: valueType
+			ValueType: valueType,
 		});
 
 		this.logger.Info(`Registered leaderboard stat ${statName}`);
@@ -107,25 +123,35 @@ export class LeaderstatsService implements OnInit, OnPlayerJoin, OnPlayerLeave {
 
 	/**
 	 * Subscribes to the player's data and updates the leaderstats accordingly.
+	 *
 	 * @param playerEntity - A reference to the player entity.
 	 * @param valueMap - The map of leaderstats to update.
 	 */
-	private subscribeToPlayerData(playerEntity: PlayerEntity, valueMap: Map<Leaderstats, LeaderstatValue>): void {
+	private subscribeToPlayerData(
+		playerEntity: PlayerEntity,
+		valueMap: Map<Leaderstats, LeaderstatValue>,
+	): void {
 		const { janitor, player } = playerEntity;
 
 		janitor.Add(
-			store.subscribe(selectPlayerData(player), (save) => {
-				if (!save) return;
+			store.subscribe(selectPlayerData(player), save => {
+				if (!save) {
+					return;
+				}
 
 				for (const entry of this.leaderstats) {
-					if (entry.PlayerDataKey === undefined) continue;
+					if (entry.PlayerDataKey === undefined) {
+						continue;
+					}
 
 					const stat = valueMap.get(entry.Name);
-					if (!stat) continue;
+					if (!stat) {
+						continue;
+					}
 
 					stat.Value = this.getPlayerData(save, entry.PlayerDataKey);
 				}
-			})
+			}),
 		);
 	}
 
@@ -175,7 +201,9 @@ export class LeaderstatsService implements OnInit, OnPlayerJoin, OnPlayerLeave {
 		this.playerToValueMap.delete(player);
 
 		const leaderstats = this.playerToLeaderstatsMap.get(player);
-		if (leaderstats !== undefined) leaderstats.Destroy();
+		if (leaderstats !== undefined) {
+			leaderstats.Destroy();
+		}
 
 		this.playerToLeaderstatsMap.delete(player);
 	}

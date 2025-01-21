@@ -1,5 +1,5 @@
 export const fonts = {
 	primary: {
-		regular: Enum.Font.SourceSans
-	}
+		regular: Enum.Font.SourceSans,
+	},
 };

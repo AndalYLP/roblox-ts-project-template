@@ -16,13 +16,19 @@ interface RenderInfo {
  * useful for development purposes, as it helps developers understand how a
  * component behaves in terms of rendering, and allows them to improve
  * performance and detect potential problems.
+ *
  * @param name - The name of the component you are monitoring.
- * @param logFunction - The function to use for logging. Defaults to `Log.Debug`.
+ * @param logFunction - The function to use for logging. Defaults to
+ *   `Log.Debug`.
  * @param logEnabled - Whether or not logging is enabled.
  * @returns The render information.
  * @see https://github.com/cool-organization/rbx-hooks/blob/main/src/debugging/use-render-info.ts
  */
-export function useRenderInfo(name = "Unknown", logFunction = Log.Debug, logEnabled = true): Readonly<RenderInfo> {
+export function useRenderInfo(
+	name = "Unknown",
+	logFunction = Log.Debug,
+	logEnabled = true,
+): Readonly<RenderInfo> {
 	const count = useRef(0);
 	const lastRender = useRef<number>();
 	const currentTime = os.clock();
@@ -38,7 +44,7 @@ export function useRenderInfo(name = "Unknown", logFunction = Log.Debug, logEnab
 		name,
 		renders: count.current,
 		sinceLastRender,
-		timestamp: currentTime
+		timestamp: currentTime,
 	};
 
 	if (logEnabled) {

@@ -1,15 +1,14 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import Log from "@rbxts/log";
 
-export const LogExecutionTime = <T extends object, P extends unknown[]>() => {
+export function LogExecutionTime<T extends object, P extends Array<unknown>>() {
 	return (
 		target: T,
 		propertyKey: string,
-		descriptor: TypedPropertyDescriptor<(this: T, ...args: unknown[]) => P>
+		descriptor: TypedPropertyDescriptor<(this: T, ...args: Array<unknown>) => P>,
 	) => {
 		const originalMethod = descriptor.value;
 
-		descriptor.value = function (this: T, ...args: unknown[]) {
+		descriptor.value = function (this: T, ...args: Array<unknown>) {
 			const startT = os.clock();
 			const result = originalMethod(this, ...args);
 			const endT = os.clock();
@@ -20,4 +19,4 @@ export const LogExecutionTime = <T extends object, P extends unknown[]>() => {
 
 		return descriptor;
 	};
-};
+}

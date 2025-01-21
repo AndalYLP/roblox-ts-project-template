@@ -1,9 +1,12 @@
-import { ProducerMiddleware } from "@rbxts/reflex";
+import type { ProducerMiddleware } from "@rbxts/reflex";
+
 import { IS_PROD } from "shared/constants/core";
 
 export const profilerMiddleware: ProducerMiddleware = () => {
 	return (dispatch, name) => {
-		if (IS_PROD) return dispatch;
+		if (IS_PROD) {
+			return dispatch;
+		}
 
 		return (...args) => {
 			debug.profilebegin(name);

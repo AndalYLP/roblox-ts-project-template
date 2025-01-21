@@ -1,6 +1,8 @@
 import React, { forwardRef } from "@rbxts/react";
+
 import type { BindingValue } from "types/utils/react";
 import type { AssetId } from "types/utils/roblox";
+
 import type { FrameProps } from "./frame";
 
 export interface ImageProps extends FrameProps<ImageLabel> {
@@ -10,6 +12,7 @@ export interface ImageProps extends FrameProps<ImageLabel> {
 
 /**
  * A component for displaying an image.
+ *
  * @example
  *
  * ```tsx
@@ -20,6 +23,7 @@ export interface ImageProps extends FrameProps<ImageLabel> {
  * 	}}
  * />;
  * ```
+ *
  * @component
  * @see https://developer.roblox.com/en-us/api-reference/class/ImageLabel
  */

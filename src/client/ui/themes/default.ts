@@ -12,9 +12,9 @@ export const defaultTheme: Theme = {
 		text: {
 			link: Color3.fromRGB(0, 0, 0),
 			primary: Color3.fromRGB(0, 0, 0),
-			secondary: Color3.fromRGB(0, 0, 0)
-		}
+			secondary: Color3.fromRGB(0, 0, 0),
+		},
 	},
 	fonts,
-	images
+	images,
 };

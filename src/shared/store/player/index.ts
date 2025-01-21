@@ -1,5 +1,7 @@
 import { combineProducers } from "@rbxts/reflex";
-import { withMultiplayer } from "shared/functions/withMultiplayer";
+
+import { withMultiplayer } from "shared/functions/with-multiplayer";
+
 import { achievementsSlice } from "./achievements/achievements.slice";
 import { balanceSlice } from "./balance/balance.slice";
 import { mtxSlice } from "./mtx/mtx.slice";
@@ -10,7 +12,7 @@ export * from "./player.types";
 
 export const playersSlices = combineProducers({
 	achievements: achievementsSlice,
-	settings: settingsSlices,
 	balance: balanceSlice,
-	mtx: mtxSlice
+	mtx: mtxSlice,
+	settings: settingsSlices,
 }).enhance(withMultiplayer);

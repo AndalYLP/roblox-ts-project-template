@@ -1,5 +1,5 @@
-import { SharedState } from "..";
+import type { SharedState } from "..";
 
-export const selectPlayerData = (player: Player) => {
+export function selectPlayerData(player: Player) {
 	return (state: SharedState) => state.players.get(player);
-};
+}
