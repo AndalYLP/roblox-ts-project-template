@@ -1,7 +1,9 @@
 import { createProducer } from "@rbxts/reflex";
-import { PlayerData } from "../../player.types";
-import { PlayerSettings } from "../settings.types";
-import { defaultPlayerAudioSettings, PlayerAudioSettings } from "./audio.types";
+
+import type { PlayerData } from "../../player.types";
+import type { PlayerSettings } from "../settings.types";
+import type { PlayerAudioSettings } from "./audio.types";
+import { defaultPlayerAudioSettings } from "./audio.types";
 
 export type AudioState = Readonly<PlayerAudioSettings>;
 
@@ -10,22 +12,25 @@ const initialState: AudioState = defaultPlayerAudioSettings;
 export const audioSlice = createProducer(initialState, {
 	/**
 	 * Updates a specific player's settings by modifying the given setting type.
-	 * @param state The current state
-	 * @param _settingCategory The setting category
-	 * @param settingType The setting type
-	 * @param value The new value
-	 * @returns The new state
+	 *
+	 * @param state - The current state.
+	 * @param _settingCategory - The setting category from the setting type.
+	 * @param settingType - The setting type to change.
+	 * @param value - The new value.
+	 * @returns The new state.
 	 */
 	changeSetting: (
 		state,
-		_settingCategory: keyof PlayerSettings, // Used to enable auto-completion for settingType based on the selected category
+		_settingCategory: keyof PlayerSettings,
 		settingType: keyof PlayerSettings[keyof PlayerSettings],
-		value: PlayerSettings[keyof PlayerSettings][keyof PlayerSettings[keyof PlayerSettings]]
-	): AudioState => ({
-		...state,
-		[settingType]: value
-	}),
+		value: PlayerSettings[keyof PlayerSettings][keyof PlayerSettings[keyof PlayerSettings]],
+	): AudioState => {
+		return {
+			...state,
+			[settingType]: value,
+		};
+	},
 
 	/** @ignore */
-	loadPlayerData: (_state, data: PlayerData): AudioState => data.settings.audio
+	loadPlayerData: (_state, data: PlayerData): AudioState => data.settings.audio,
 });

@@ -11,9 +11,11 @@ interface ChangeObject {
 
 /**
  * A simple hook that checks which prop caused the component to re-render.
+ *
  * @param name - The name of the component.
  * @param props - The props of the component.
- * @param logFunction - The function to use for logging. Defaults to `Log.Debug`.
+ * @param logFunction - The function to use for logging. Defaults to
+ *   `Log.Debug`.
  * @param logEnabled - Whether or not to log the changes.
  * @see https://github.com/cool-organization/rbx-hooks/blob/main/src/debugging/use-why-did-you-update.ts
  */
@@ -21,13 +23,12 @@ export function useWhyDidYouUpdate(
 	name: string,
 	props: Record<string, unknown>,
 	logFunction = Log.Debug,
-	logEnabled = true
+	logEnabled = true,
 ): void {
 	const previousProps = useRef<Record<string, unknown>>({});
 
 	useEffect(() => {
 		const previous = previousProps.current;
-
 		const allKeys = Object.keys({ ...previous, ...props });
 		const changesObject: Record<string, ChangeObject> = {};
 
@@ -36,8 +37,6 @@ export function useWhyDidYouUpdate(
 			let updatedValue = props[key];
 
 			if (previousValue !== updatedValue) {
-				// We need to remove the meta tables from the previous and new
-				// values to ensure we don't call any meta-methods on the props.
 				if (t.table(previousValue)) {
 					previousValue = setmetatable(table.clone(previousValue), undefined);
 				}
@@ -48,7 +47,7 @@ export function useWhyDidYouUpdate(
 
 				changesObject[key] = {
 					from: previousValue,
-					to: updatedValue
+					to: updatedValue,
 				};
 			}
 		}

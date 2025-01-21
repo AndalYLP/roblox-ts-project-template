@@ -3,9 +3,9 @@ import { ReflexProvider } from "@rbxts/react-reflex";
 import type { Root } from "@rbxts/react-roblox";
 import { createPortal, createRoot } from "@rbxts/react-roblox";
 
+import { PLAYER_GUI } from "client/constants/player";
 import { store } from "client/store";
 
-import { PLAYER_GUI } from "client/constants/player";
 import type { RemProviderProps } from "../providers/rem";
 import { RemProvider } from "../providers/rem";
 
@@ -16,6 +16,7 @@ interface MountProps extends RemProviderProps {
 
 /**
  * Mounts the UI component to the Roblox game client.
+ *
  * @param props - The options for mounting the UI component.
  * @param props.baseRem - The base rem value for the UI component.
  * @param props.key - The key for the UI component.
@@ -32,7 +33,7 @@ export function mount({ baseRem, key, remOverride, children }: MountProps): Root
 					{createPortal(children, PLAYER_GUI, key)}
 				</ReflexProvider>
 			</RemProvider>
-		</StrictMode>
+		</StrictMode>,
 	);
 
 	return root;

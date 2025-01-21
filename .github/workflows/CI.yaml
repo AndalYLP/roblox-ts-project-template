@@ -2,7 +2,7 @@ name: CI
 
 on:
   pull_request:
-    branches: 
+    branches:
       - main
   workflow_dispatch:
 
@@ -24,28 +24,28 @@ jobs:
         node-version: [22.x]
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Install pnpm
-      uses: pnpm/action-setup@v3
-    
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: pnpm
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
 
-    - name: Install dependencies
-      run: pnpm install
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
 
-    - name: Setup Rokit
-      uses: CompeyDev/setup-rokit@v0.1.2
+      - name: Install dependencies
+        run: pnpm install
 
-    - name: Lint
-      run: pnpm lint
+      - name: Setup Rokit
+        uses: CompeyDev/setup-rokit@v0.1.2
 
-    - name: Compile
-      run: pnpm prod:build
+      - name: Lint
+        run: pnpm lint
 
-    - name: Build project
-      run: rojo build ./build.project.json --output place.rbxlx
+      - name: Compile
+        run: pnpm prod:build
+
+      - name: Build project
+        run: rojo build ./build.project.json --output place.rbxlx

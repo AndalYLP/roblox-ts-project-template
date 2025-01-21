@@ -3,7 +3,7 @@ export interface PlayerBalance {
 }
 
 export const defaultPlayerBalance: PlayerBalance = {
-	currency: 0
+	currency: 0,
 };
 
 export type PlayerBalanceType = keyof PlayerBalance;

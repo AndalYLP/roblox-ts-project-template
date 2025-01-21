@@ -14,6 +14,7 @@ interface ErrorBoundaryState {
 /**
  * ErrorBoundary component that catches and handles errors in its child
  * components.
+ *
  * @example
  *
  * ```tsx
@@ -21,12 +22,16 @@ interface ErrorBoundaryState {
  * 	fallback={message => <ErrorPage message={tostring(message)} />}
  * />;
  * ```
+ *
  * @see https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary
  */
 @ReactComponent
-export default class ErrorBoundary extends React.Component<Readonly<ErrorBoundaryProps>, ErrorBoundaryState> {
+export default class ErrorBoundary extends React.Component<
+	Readonly<ErrorBoundaryProps>,
+	ErrorBoundaryState
+> {
 	public readonly state: ErrorBoundaryState = {
-		hasError: false
+		hasError: false,
 	};
 
 	public componentDidCatch(err: unknown, errorInfo: ErrorInfo): void {
@@ -34,7 +39,7 @@ export default class ErrorBoundary extends React.Component<Readonly<ErrorBoundar
 
 		this.setState({
 			hasError: true,
-			message: `${error} ${errorInfo.componentStack}`
+			message: `${error} ${errorInfo.componentStack}`,
 		});
 	}
 

@@ -1,4 +1,4 @@
-import { GamePass, GamePassData, Product, ProductData } from "types/enum/mtx";
+import type { GamePass, GamePassData, Product, ProductData } from "types/enum/mtx";
 
 export interface PlayerMtx {
 	gamePasses: Map<GamePass, GamePassData>;
@@ -9,7 +9,7 @@ export interface PlayerMtx {
 export const defaultPlayerMtx: PlayerMtx = {
 	gamePasses: new Map<GamePass, GamePassData>(),
 	products: new Map<Product, ProductData>(),
-	receiptHistory: []
+	receiptHistory: [],
 };
 
 export type PlayerMtxType = keyof PlayerMtx;

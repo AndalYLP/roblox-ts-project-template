@@ -1,10 +1,14 @@
-import { Controller, OnStart } from "@flamework/core";
-import { Logger } from "@rbxts/log";
+import type { OnStart } from "@flamework/core";
+import { Controller } from "@flamework/core";
+import type { Logger } from "@rbxts/log";
 import { setTimeout } from "@rbxts/set-timeout";
 import Signal from "@rbxts/signal";
 import { promiseTree } from "@rbxts/validate-tree";
-import { ListenerData, setupLifecycle } from "@utils/flamework";
-import { CHARACTER_LOAD_TIMEOUT, CharacterRig, characterSchema, onCharacterAdded } from "@utils/player";
+import type { ListenerData } from "@utils/flamework";
+import { setupLifecycle } from "@utils/flamework";
+import type { CharacterRig } from "@utils/player";
+import { CHARACTER_LOAD_TIMEOUT, characterSchema, onCharacterAdded } from "@utils/player";
+
 import { LocalPlayer } from "client/constants/player";
 
 export interface OnCharacterAdded {
@@ -27,10 +31,10 @@ export interface OnCharacterRemoved {
  */
 @Controller()
 export class CharacterController implements OnStart {
-	private currentCharacter?: CharacterRig;
-
 	private readonly characterAddedEvents = new Array<ListenerData<OnCharacterAdded>>();
+
 	private readonly characterRemovedEvents = new Array<ListenerData<OnCharacterRemoved>>();
+	private currentCharacter?: CharacterRig;
 	public readonly onCharacterAdded = new Signal<(character: CharacterRig) => void>();
 	public readonly onCharacterRemoving = new Signal();
 
@@ -39,6 +43,7 @@ export class CharacterController implements OnStart {
 	/**
 	 * Gets the current character for the local player. This is the character
 	 * that has been loaded and exists according to the character schema.
+	 *
 	 * @returns The current character rig if it exists.
 	 */
 	public getCurrentCharacter(): CharacterRig | undefined {
@@ -49,6 +54,7 @@ export class CharacterController implements OnStart {
 	 * Ensures that a character model is loaded and exists according to the
 	 * schema. If the character model is removed before it loads, or if it fails
 	 * to load within the timeout, the promise will reject.
+	 *
 	 * @param model - The model to load the character rig from.
 	 * @returns A promise that resolves when the character rig is loaded.
 	 */
@@ -60,7 +66,9 @@ export class CharacterController implements OnStart {
 		}, CHARACTER_LOAD_TIMEOUT);
 
 		const connection = model.AncestryChanged.Connect(() => {
-			if (model.IsDescendantOf(game)) return;
+			if (model.IsDescendantOf(game)) {
+				return;
+			}
 
 			promise.cancel();
 		});
@@ -69,7 +77,9 @@ export class CharacterController implements OnStart {
 		timeout();
 		connection.Disconnect();
 
-		if (!success) throw "Character failed to load.";
+		if (!success) {
+			throw "Character failed to load.";
+		}
 
 		this.listenForCharacterRemoving(model);
 		this.onRigLoaded(rig);
@@ -77,6 +87,7 @@ export class CharacterController implements OnStart {
 
 	/**
 	 * Listens for the character model to be removed from the game.
+	 *
 	 * @param character - The character model to listen for removal on.
 	 */
 	private listenForCharacterRemoving(character: Model): void {
@@ -95,6 +106,7 @@ export class CharacterController implements OnStart {
 
 	/**
 	 * Called when the character rig has been fully loaded.
+	 *
 	 * @param rig - The character rig that was loaded.
 	 */
 	private onRigLoaded(rig: CharacterRig): void {
@@ -104,8 +116,8 @@ export class CharacterController implements OnStart {
 		for (const { id, event } of this.characterAddedEvents) {
 			Promise.defer(() => {
 				event.onCharacterAdded(rig);
-			}).catch((e) => {
-				this.logger.Error(`Error in character lifecycle ${id}: ${e}`);
+			}).catch(err => {
+				this.logger.Error(`Error in character lifecycle ${id}: ${err}`);
 			});
 		}
 
@@ -118,8 +130,8 @@ export class CharacterController implements OnStart {
 		for (const { id, event } of this.characterRemovedEvents) {
 			Promise.defer(() => {
 				event.onCharacterRemoved();
-			}).catch((e) => {
-				this.logger.Error(`Error in character lifecycle ${id}: ${e}`);
+			}).catch(err => {
+				this.logger.Error(`Error in character lifecycle ${id}: ${err}`);
 			});
 		}
 	}
@@ -129,9 +141,9 @@ export class CharacterController implements OnStart {
 		setupLifecycle<OnCharacterAdded>(this.characterAddedEvents);
 		setupLifecycle<OnCharacterRemoved>(this.characterRemovedEvents);
 
-		onCharacterAdded(LocalPlayer, (character) => {
-			this.characterAdded(character).catch((e) => {
-				this.logger.Fatal(`Could not get character rig because:\n${e}`);
+		onCharacterAdded(LocalPlayer, character => {
+			this.characterAdded(character).catch(err => {
+				this.logger.Fatal(`Could not get character rig because:\n${err}`);
 			});
 		});
 	}

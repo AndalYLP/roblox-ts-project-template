@@ -1,8 +1,10 @@
 import { Dependency } from "@flamework/core";
 import Log from "@rbxts/log";
-import { ServerResponse } from "types/interfaces/network";
-import { PlayerService } from ".";
-import { PlayerEntity } from "./entity";
+
+import type { ServerResponse } from "types/interfaces/network";
+
+import type { PlayerService } from ".";
+import type { PlayerEntity } from "./entity";
 
 let playerService: PlayerService | undefined;
 
@@ -11,12 +13,13 @@ let playerService: PlayerService | undefined;
  * type `Player`) with that players `PlayerEntity` class. This is to be used
  * when responding to network events. If wrapping server-side events, you should
  * use `withPlayerEntity` from the `PlayerService` class.
+ *
  * @template T - The type of the arguments passed to the callback.
  * @param func - The callback to wrap.
  * @returns The server response.
  */
 export default function withPlayerEntity<T extends Array<unknown>>(
-	func: (playerEntity: PlayerEntity, ...args: T) => undefined | void
+	func: (playerEntity: PlayerEntity, ...args: T) => undefined | void,
 ): (player: Player, ...args: T) => ServerResponse {
 	if (!playerService) {
 		playerService = Dependency<PlayerService>();
@@ -27,17 +30,18 @@ export default function withPlayerEntity<T extends Array<unknown>>(
 		if (entity) {
 			return identity<ServerResponse>({
 				data: func(entity, ...args),
-				success: true
+				success: true,
 			});
 		}
 
 		Log.Error(
-			`Unable to find entity for player ${player}, unable to call callback. Stacktrace: \n` + debug.traceback()
+			`Unable to find entity for player ${player}, unable to call callback. Stacktrace: \n` +
+				debug.traceback(),
 		);
 
 		return identity<ServerResponse>({
 			error: "Internal error",
-			success: false
+			success: false,
 		});
 	};
 }

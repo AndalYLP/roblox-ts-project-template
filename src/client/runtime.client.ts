@@ -1,13 +1,16 @@
 import { Flamework, Modding } from "@flamework/core";
-import Log, { Logger } from "@rbxts/log";
+import type { Logger } from "@rbxts/log";
+import Log from "@rbxts/log";
+
 import { setupLogger } from "shared/functions/logger";
+
 import { createApp, reactConfig } from "./ui/app/config";
 
 function start(): void {
 	reactConfig();
 	setupLogger();
 
-	Modding.registerDependency<Logger>((ctor) => Log.ForContext(ctor));
+	Modding.registerDependency<Logger>(ctor => Log.ForContext(ctor));
 
 	Flamework.addPaths("src/client/controllers");
 

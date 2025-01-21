@@ -1,5 +1,3 @@
-/* eslint-disable jsdoc/check-param-names */
-/* eslint-disable jsdoc/require-param */
 import React from "@rbxts/react";
 
 import type { FrameProps } from "./frame";
@@ -27,6 +25,7 @@ export interface ButtonProps extends FrameProps<TextButton> {
 
 /**
  * Button component.
+ *
  * @example
  *
  * ```tsx
@@ -40,6 +39,7 @@ export interface ButtonProps extends FrameProps<TextButton> {
  * ```
  *
  * Button is released on the button.
+ *
  * @param buttonProps - The properties of the Button component.
  * @returns The rendered Button component.
  * @component
@@ -53,7 +53,7 @@ export function Button({
 	onMouseEnter,
 	onMouseLeave,
 	onMouseUp,
-	children
+	children,
 }: Readonly<ButtonProps>): React.ReactNode {
 	const event = {
 		Activated: () => {
@@ -71,7 +71,7 @@ export function Button({
 		MouseLeave: () => {
 			onMouseLeave?.();
 		},
-		...Native?.Event
+		...Native?.Event,
 	};
 
 	return (

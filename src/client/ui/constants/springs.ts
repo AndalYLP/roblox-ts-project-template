@@ -6,5 +6,5 @@ export const springs = {
 	bubbly: { friction: 14, tension: 400 },
 	gentle: { friction: 30, tension: 250 },
 	responsive: { tension: 400 },
-	world: { friction: 30, tension: 180 }
+	world: { friction: 30, tension: 180 },
 } satisfies Record<string, SpringOptions>;

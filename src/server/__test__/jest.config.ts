@@ -1,6 +1,6 @@
-import { Config } from "@rbxts/jest";
+import type { Config } from "@rbxts/jest";
 
 export default {
 	displayName: "🟢 SERVER",
-	testMatch: ["**/*.spec"]
+	testMatch: ["**/*.spec"],
 } satisfies Config;

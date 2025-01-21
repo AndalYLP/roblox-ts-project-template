@@ -4,8 +4,8 @@ import { GameId, getConfigValueForGame } from "shared/functions/game-config";
 export const badge = {
 	Welcome: getConfigValueForGame({
 		[GameId.Development]: "1",
-		[GameId.Production]: "2"
-	})
+		[GameId.Production]: "2",
+	}),
 } as const;
 
 export type Badge = ValueOf<typeof badge>;

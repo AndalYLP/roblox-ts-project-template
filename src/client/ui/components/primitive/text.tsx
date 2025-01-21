@@ -15,7 +15,12 @@ export interface TextLabelProps extends FrameProps<TextLabel> {
 	 * The default properties of a `TextLabel` component, minus the ones
 	 * specified in the TextProps.
 	 */
-	Native?: Partial<Omit<React.InstanceProps<TextLabel>, "Font" | "Text" | "TextColor" | "TextColor3" | "TextSize">>;
+	Native?: Partial<
+		Omit<
+			React.InstanceProps<TextLabel>,
+			"Font" | "Text" | "TextColor" | "TextColor3" | "TextSize"
+		>
+	>;
 	/** The text to display. */
 	Text: BindingValue<string>;
 	/** The color of the text. */
@@ -26,6 +31,7 @@ export interface TextLabelProps extends FrameProps<TextLabel> {
 
 /**
  * Renders a text label component.
+ *
  * @example
  *
  * ```tsx
@@ -34,31 +40,34 @@ export interface TextLabelProps extends FrameProps<TextLabel> {
  * 	Native={{ Size: new UDim2(0, 100, 0, 50) }}
  * />;
  * ```
+ *
  * @param textProps - The props for the TextLabel component.
  * @returns The rendered TextLabel component.
  * @component
  * @see https://create.roblox.com/docs/reference/engine/classes/TextLabel
  */
-export const TextLabel = forwardRef((props: Readonly<TextLabelProps>, ref: React.Ref<TextLabel>) => {
-	const { CornerRadius, Font, Native, Text, TextColor, TextSize, children } = props;
+export const TextLabel = forwardRef(
+	(props: Readonly<TextLabelProps>, ref: React.Ref<TextLabel>) => {
+		const { CornerRadius, Font, Native, Text, TextColor, TextSize, children } = props;
 
-	const rem = useRem();
-	const theme = useTheme();
+		const rem = useRem();
+		const theme = useTheme();
 
-	return (
-		<textlabel
-			ref={ref}
-			AnchorPoint={new Vector2(0.5, 0.5)}
-			BackgroundTransparency={1}
-			Font={Font ?? theme.fonts.primary.regular}
-			Position={new UDim2(0.5, 0, 0.5, 0)}
-			Text={Text}
-			TextColor3={TextColor}
-			TextSize={TextSize ?? rem(1)}
-			{...Native}
-		>
-			{children}
-			{CornerRadius ? <uicorner CornerRadius={CornerRadius} /> : undefined}
-		</textlabel>
-	);
-});
+		return (
+			<textlabel
+				ref={ref}
+				AnchorPoint={new Vector2(0.5, 0.5)}
+				BackgroundTransparency={1}
+				Font={Font ?? theme.fonts.primary.regular}
+				Position={new UDim2(0.5, 0, 0.5, 0)}
+				Text={Text}
+				TextColor3={TextColor}
+				TextSize={TextSize ?? rem(1)}
+				{...Native}
+			>
+				{children}
+				{CornerRadius ? <uicorner CornerRadius={CornerRadius} /> : undefined}
+			</textlabel>
+		);
+	},
+);

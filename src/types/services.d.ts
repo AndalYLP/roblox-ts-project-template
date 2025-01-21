@@ -1,128 +1,128 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 interface ReplicatedStorage {
-	TS: Folder & {
-		constants: Folder & {
+	rbxts_include: {
+		Promise: ModuleScript;
+		RuntimeLib: ModuleScript;
+	} & Folder;
+	TS: {
+		constants: {
 			core: ModuleScript;
 			player: ModuleScript;
-		};
-		functions: Folder & {
+		} & Folder;
+		functions: {
 			"game-config": ModuleScript;
 			logger: ModuleScript;
 			withMultiplayer: ModuleScript;
-		};
-		modules: Folder & {
+		} & Folder;
+		modules: {
 			"3dSound": ModuleScript;
-		};
-		network: ModuleScript & {
+		} & Folder;
+		network: {
 			mtx: ModuleScript;
 			store: ModuleScript;
-		};
-		store: ModuleScript & {
-			middleware: Folder & {
+		} & ModuleScript;
+		store: {
+			middleware: {
 				profiler: ModuleScript;
-			};
-			player: ModuleScript & {
-				achievements: ModuleScript & {
+			} & Folder;
+			player: {
+				achievements: {
 					"achievements.selectors": ModuleScript;
 					"achievements.slice": ModuleScript;
 					"achievements.types": ModuleScript;
-				};
-				balance: ModuleScript & {
+				} & ModuleScript;
+				balance: {
 					"balance.selectors": ModuleScript;
 					"balance.slice": ModuleScript;
 					"balance.types": ModuleScript;
-				};
-				mtx: ModuleScript & {
+				} & ModuleScript;
+				mtx: {
 					"mtx.selectors": ModuleScript;
 					"mtx.slice": ModuleScript;
 					"mtx.types": ModuleScript;
-				};
+				} & ModuleScript;
 				"player.selectors": ModuleScript;
 				"player.types": ModuleScript;
-				settings: ModuleScript & {
-					audio: ModuleScript & {
+				settings: {
+					audio: {
 						"audio.selectors": ModuleScript;
 						"audio.slice": ModuleScript;
 						"audio.types": ModuleScript;
-					};
+					} & ModuleScript;
 					"settings.selectors": ModuleScript;
 					"settings.types": ModuleScript;
-				};
-			};
-		};
-	};
-	"TS-types": Folder & {
-		enum: Folder & {
+				} & ModuleScript;
+			} & ModuleScript;
+		} & ModuleScript;
+	} & Folder;
+	"TS-types": {
+		enum: {
 			badge: ModuleScript;
 			mtx: ModuleScript;
-		};
+		} & Folder;
 		interfaces: Folder;
-	};
-	rbxts_include: Folder & {
-		Promise: ModuleScript;
-		RuntimeLib: ModuleScript;
-	};
-	utils: Folder & {
+	} & Folder;
+	utils: {
 		"core-call": ModuleScript;
 		flamework: ModuleScript;
 		"no-yield": ModuleScript;
 		physics: ModuleScript;
 		player: ModuleScript;
-	};
+	} & Folder;
 }
 
 interface ServerScriptService {
-	TS: Folder & {
-		__test__: Folder & {
+	TS: {
+		__test__: {
 			"example.spec": ModuleScript;
 			"jest.config": ModuleScript;
-		};
-		decorators: Folder & {
-			debugging: ModuleScript & {
+		} & Folder;
+		decorators: {
+			debugging: {
 				"log-execution-time": ModuleScript;
 				"test-method": ModuleScript;
-			};
+			} & ModuleScript;
 			mtx: ModuleScript;
-		};
+		} & Folder;
 		network: ModuleScript;
 		runtime: Script;
-		services: Folder & {
-			mtx: ModuleScript & {
+		services: {
+			mtx: {
 				GamePassEvents: ModuleScript;
 				ProductEvents: ModuleScript;
-			};
-			player: ModuleScript & {
+			} & ModuleScript;
+			player: {
 				badge: ModuleScript;
 				character: ModuleScript;
-				data: ModuleScript & {
+				data: {
 					validate: ModuleScript;
-				};
+				} & ModuleScript;
 				entity: ModuleScript;
 				leaderstats: ModuleScript;
 				removal: ModuleScript;
 				"with-player-entity": ModuleScript;
-			};
-		};
-		store: ModuleScript & {
-			middleware: Folder & {
+			} & ModuleScript;
+		} & Folder;
+		store: {
+			middleware: {
 				broadcaster: ModuleScript;
-			};
-		};
-	};
+			} & Folder;
+		} & ModuleScript;
+	} & Folder;
 	utils: Folder;
 }
 
 interface TestService {
-	TS: Folder & {
+	TS: {
 		"jest.config": ModuleScript;
 		runtime: Script;
-	};
+	} & Folder;
 }
 
 interface Workspace {
 	Baseplate: Part;
 }
 
+// eslint-disable-next-line ts/naming-convention -- Required for Roblox global override.
 interface _G {
 	/** Enable React dev mode. */
 	__DEV__: boolean;

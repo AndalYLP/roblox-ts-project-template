@@ -1,26 +1,32 @@
-import { BroadcastAction, createBroadcaster, ProducerMiddleware } from "@rbxts/reflex";
+import type { BroadcastAction, ProducerMiddleware } from "@rbxts/reflex";
+import { createBroadcaster } from "@rbxts/reflex";
+
 import { events } from "server/network";
 import { IS_DEV, IS_EDIT } from "shared/constants/core";
-import { SerializedSharedState, SharedState, slices, stateSerDes } from "shared/store";
+import type { SerializedSharedState, SharedState } from "shared/store";
+import { slices, stateSerDes } from "shared/store";
 
 /**
  * A middleware that listens for actions dispatched from the server and
  * dispatches them to the client.
+ *
  * @returns The middleware function.
  */
 export function broadcasterMiddleware(): ProducerMiddleware {
 	// Storybook support
-	if (IS_DEV && IS_EDIT) return () => (innerDispatch) => innerDispatch;
+	if (IS_DEV && IS_EDIT) {
+		return () => innerDispatch => innerDispatch;
+	}
 
 	const broadcaster = createBroadcaster({
-		producers: slices,
+		beforeDispatch,
+		beforeHydrate,
 		dispatch,
 		hydrate,
-		beforeHydrate,
-		beforeDispatch
+		producers: slices,
 	});
 
-	events.store.start.connect((player) => {
+	events.store.start.connect(player => {
 		broadcaster.start(player);
 	});
 
@@ -28,17 +34,22 @@ export function broadcasterMiddleware(): ProducerMiddleware {
 }
 
 function beforeHydrate(player: Player, state: SharedState): SharedState {
-	const newState = {
+	const playerState = {
 		...state,
-		players: new Map([[player, state.players.get(player)!]])
+		players: new Map([[player, state.players.get(player)!]]),
 	} satisfies SharedState;
 
-	return stateSerDes.serialize(newState) as unknown as SharedState;
+	return stateSerDes.serialize(playerState) as unknown as SharedState;
 }
 
 function beforeDispatch(player: Player, action: BroadcastAction): BroadcastAction | undefined {
-	if (action.name === "removePlayer") return;
-	if (action.arguments[0] !== player) return;
+	if (action.name === "removePlayer") {
+		return;
+	}
+
+	if (action.arguments[0] !== player) {
+		return;
+	}
 
 	return action;
 }

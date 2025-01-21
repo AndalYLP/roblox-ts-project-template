@@ -1,4 +1,4 @@
-import { GamePass } from "types/enum/mtx";
+import type { GamePass } from "types/enum/mtx";
 
 export interface MtxClientEvents {
 	/**
@@ -6,6 +6,7 @@ export interface MtxClientEvents {
 	 * game pass is "on" for a player. E.g. If a player has a game pass for
 	 * toggling increased walk speed, this would be used to turn that on or
 	 * off.
+	 *
 	 * @param gamePass - The game pass to set the active state of.
 	 * @param active - The active state to set the game pass to.
 	 */
