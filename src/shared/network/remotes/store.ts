@@ -2,12 +2,12 @@ import type { BroadcastAction } from "@rbxts/reflex";
 
 import type { SerializedSharedState } from "shared/store";
 
-export interface StoreClientEvents {
+export interface StoreClientToServerEvents {
 	/** Called by the client when they are ready to receive data from the server. */
 	start: () => void;
 }
 
-export interface StoreServerEvents {
+export interface StoreServerToClientEvents {
 	/**
 	 * Sends state updates to the client.
 	 *

@@ -6,9 +6,15 @@ import Log from "@rbxts/log";
 import { setupAbbreviator } from "shared/functions/abbreviator";
 import { setupLogger } from "shared/functions/logger";
 
+import { middleWares, store } from "./store";
+import { broadcasterMiddleware } from "./store/middleware/broadcaster";
+
 function start(): void {
-	const abbreviator = setupAbbreviator();
 	setupLogger();
+	const abbreviator = setupAbbreviator();
+
+	Log.Info("Applying store middlewares...");
+	store.applyMiddleware(broadcasterMiddleware(), ...middleWares);
 
 	Modding.registerDependency<Logger>(ctor => Log.ForContext(ctor));
 	Modding.registerDependency<Abbreviator>(() => abbreviator);

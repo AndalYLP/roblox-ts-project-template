@@ -9,9 +9,9 @@ import { setupLogger } from "shared/functions/logger";
 import { createApp, reactConfig } from "./ui/app/config";
 
 function start(): void {
+	setupLogger();
 	reactConfig();
 	const abbreviator = setupAbbreviator();
-	setupLogger();
 
 	Modding.registerDependency<Logger>(ctor => Log.ForContext(ctor));
 	Modding.registerDependency<Abbreviator>(() => abbreviator);

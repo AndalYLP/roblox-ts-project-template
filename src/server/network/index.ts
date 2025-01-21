@@ -3,10 +3,10 @@ import Log from "@rbxts/log";
 import { IS_DEV } from "shared/constants/core";
 import { globalEvents, globalFunctions } from "shared/network";
 
-export const events = globalEvents.createClient({
+export const events = globalEvents.createServer({
 	warnOnInvalidGuards: IS_DEV,
 });
-export const functions = globalFunctions.createClient({
+export const functions = globalFunctions.createServer({
 	warnOnInvalidGuards: IS_DEV,
 });
 
