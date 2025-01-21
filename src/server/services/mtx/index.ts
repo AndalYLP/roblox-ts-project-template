@@ -5,7 +5,6 @@ import Object from "@rbxts/object-utils";
 import { MarketplaceService, Players } from "@rbxts/services";
 import Sift from "@rbxts/sift";
 import Signal from "@rbxts/signal";
-import { noYield } from "@utils/no-yield";
 
 import { events } from "server/network";
 import { store } from "server/store";
@@ -14,6 +13,7 @@ import { selectPlayerData } from "shared/store/player";
 import { selectPlayerMtx } from "shared/store/player/mtx/mtx.selectors";
 import type { GamePass, Product } from "types/enum/mtx";
 import { gamePass, product } from "types/enum/mtx";
+import { noYield } from "utils/no-yield";
 
 import type { OnPlayerJoin, PlayerService } from "../player";
 import type { PlayerEntity } from "../player/entity";

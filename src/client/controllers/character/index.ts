@@ -4,12 +4,12 @@ import type { Logger } from "@rbxts/log";
 import { setTimeout } from "@rbxts/set-timeout";
 import Signal from "@rbxts/signal";
 import { promiseTree } from "@rbxts/validate-tree";
-import type { ListenerData } from "@utils/flamework";
-import { setupLifecycle } from "@utils/flamework";
-import type { CharacterRig } from "@utils/player";
-import { CHARACTER_LOAD_TIMEOUT, characterSchema, onCharacterAdded } from "@utils/player";
 
 import { LocalPlayer } from "client/constants/player";
+import type { ListenerData } from "utils/flamework";
+import { setupLifecycle } from "utils/flamework";
+import type { CharacterRig } from "utils/player";
+import { CHARACTER_LOAD_TIMEOUT, characterSchema, onCharacterAdded } from "utils/player";
 
 export interface OnCharacterAdded {
 	/** Fires when the character is added to the game. */

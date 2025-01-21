@@ -7,9 +7,6 @@
 			"$className": "ServerScriptService",
 			"TS": {
 				"$path": "dist/server"
-			},
-			"utils": {
-				"$path": "dist/utils/server"
 			}
 		},
 		"ReplicatedStorage": {
@@ -33,7 +30,7 @@
 				"$path": "dist/types"
 			},
 			"utils": {
-				"$path": "dist/utils/shared"
+				"$path": "dist/utils"
 			}
 		},
 		"StarterPlayer": {

@@ -14,14 +14,6 @@
 		"rootDir": "src",
 		"module": "commonjs",
 		"moduleResolution": "Node",
-		"paths": {
-			"@utils/*": [
-				"utils/shared/*"
-			],
-			"@utils-server/*": [
-				"utils/server/*"
-			]
-		},
 		"resolveJsonModule": true,
 		"typeRoots": [
 			"node_modules/@rbxts",

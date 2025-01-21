@@ -3,19 +3,19 @@ import { Service } from "@flamework/core";
 import type { Logger } from "@rbxts/log";
 import { setTimeout } from "@rbxts/set-timeout";
 import { promiseTree } from "@rbxts/validate-tree";
-import type { ListenerData } from "@utils/flamework";
-import { setupLifecycle } from "@utils/flamework";
-import { addToCollisionGroup } from "@utils/physics";
-import type { CharacterRig } from "@utils/player";
+
+import { CollisionGroup } from "types/enum/collision-group";
+import { Tag } from "types/enum/tag";
+import type { ListenerData } from "utils/flamework";
+import { setupLifecycle } from "utils/flamework";
+import { addToCollisionGroup } from "utils/physics";
+import type { CharacterRig } from "utils/player";
 import {
 	CHARACTER_LOAD_TIMEOUT,
 	characterSchema,
 	loadCharacter,
 	onCharacterAdded,
-} from "@utils/player";
-
-import { CollisionGroup } from "types/enum/collision-group";
-import { Tag } from "types/enum/tag";
+} from "utils/player";
 
 import type { OnPlayerJoin } from "..";
 import type { PlayerEntity } from "../entity";

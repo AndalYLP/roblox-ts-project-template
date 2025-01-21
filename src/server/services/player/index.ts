@@ -6,13 +6,13 @@ import type { Logger } from "@rbxts/log";
 import Object from "@rbxts/object-utils";
 import { Players } from "@rbxts/services";
 import Signal from "@rbxts/signal";
-import type { ListenerData } from "@utils/flamework";
-import { setupLifecycle } from "@utils/flamework";
-import { onPlayerAdded, promisePlayerDisconnected } from "@utils/player";
 
 import { IS_DEV } from "shared/constants/core";
 import type { PlayerData } from "shared/store/player";
 import { KickCode } from "types/enum/kick-reason";
+import type { ListenerData } from "utils/flamework";
+import { setupLifecycle } from "utils/flamework";
+import { onPlayerAdded, promisePlayerDisconnected } from "utils/player";
 
 import type { PlayerDataService } from "./data";
 import { PlayerEntity } from "./entity";
