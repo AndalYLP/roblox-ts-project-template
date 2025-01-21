@@ -42,7 +42,7 @@
 		"@rbxts/janitor": "1.17.0-ts.1",
 		"@rbxts/jest": "0.1.0",
 		"@rbxts/jest-globals": "0.1.0",
-		"@rbxts/lapis": "0.3.6",
+		"@rbxts/lapis": "0.3.7",
 		"@rbxts/lapis-mockdatastore": "0.3.7",
 		"@rbxts/log": "0.6.3",
 		"@rbxts/make": "1.0.6",
