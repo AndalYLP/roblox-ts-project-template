@@ -98,7 +98,7 @@
 		}
 	},
 	"rbxts-build": {
-		"syncLocation": "src/types/services.d.ts",
+		"syncLocation": "src/types/interfaces/services.d.ts",
 		"names": {
 			"build": "dev:build",
 			"compile": "dev:compile",
