@@ -17,6 +17,8 @@ function start(): void {
 	Modding.registerDependency<Abbreviator>(() => abbreviator);
 
 	Flamework.addPaths("src/client/controllers");
+	Flamework.addPaths("src/client/components");
+	Flamework.addPaths("src/shared/components");
 
 	Log.Info("Starting Flamework...");
 	Flamework.ignite();
