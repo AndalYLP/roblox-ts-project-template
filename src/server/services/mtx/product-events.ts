@@ -1,13 +1,12 @@
-import { Service } from "@flamework/core";
 import type { Logger } from "@rbxts/log";
 
-import { RegisterProductHandler } from "server/decorators/mtx";
 import type { Product } from "types/enum/mtx";
 import { product } from "types/enum/mtx";
 
 import type { PlayerEntity } from "../player/entity";
+import { MtxEvents, RegisterProductHandler } from ".";
 
-@Service()
+@MtxEvents()
 export class ProductEventsService {
 	constructor(private readonly logger: Logger) {}
 

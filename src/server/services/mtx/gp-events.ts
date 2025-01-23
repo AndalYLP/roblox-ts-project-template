@@ -1,14 +1,13 @@
-import { Service } from "@flamework/core";
 import type { Logger } from "@rbxts/log";
 
 import { gamePass } from "types/enum/mtx";
 
-import { GamePassStatusChanged } from "../../decorators/mtx";
 import type { PlayerEntity } from "../player/entity";
+import { GamePassStatusChanged, MtxEvents } from ".";
 
-@Service()
+@MtxEvents()
 export class GamePassEventsService {
-	constructor(public readonly logger: Logger) {}
+	constructor(private readonly logger: Logger) {}
 
 	@GamePassStatusChanged(gamePass.Example)
 	public exampleGamePass(playerEntity: PlayerEntity, isActive: boolean): void {

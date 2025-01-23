@@ -1,5 +1,6 @@
+/* eslint-disable max-lines -- Decorators can't be moved, or other methods. */
 import type { OnInit, OnStart } from "@flamework/core";
-import { Service } from "@flamework/core";
+import { Modding, Service } from "@flamework/core";
 import type { Logger } from "@rbxts/log";
 import Object from "@rbxts/object-utils";
 import { MarketplaceService, Players } from "@rbxts/services";
@@ -18,10 +19,61 @@ import { noYield } from "utils/no-yield";
 import type { OnPlayerJoin, PlayerService } from "../player";
 import type { PlayerEntity } from "../player/entity";
 
-const NETWORK_RETRY_DELAY = 2;
 const NETWORK_RETRY_ATTEMPTS = 10;
+const NETWORK_RETRY_DELAY = 2;
 
 type ProductInfo = DeveloperProductInfo | GamePassProductInfo;
+
+/** @metadata flamework:implements flamework:parameters injectable */
+export const MtxEvents = Modding.createMetaDecorator("Class");
+
+/**
+ * Register a method to be called when a game pass status changes.
+ *
+ * The method will be called with the `PlayerEntity`, and whether the game pass
+ * is active.
+ *
+ * @example (method) (playerEntity: PlayerEntity, isActive: boolean): void
+ *
+ * @param gamePass - The game pass to listen for.
+ */
+export const GamePassStatusChanged = Modding.createMetaDecorator<[gamePass: GamePass]>("Method");
+
+/**
+ * Registers a `method` as a handler for a specific product. The handler will be
+ * called when a player purchases the developer product.
+ *
+ * The handler should return true if the product was successfully processed, or
+ * false if there was an error. The handler will also return false if there is
+ * an error processing the product.
+ *
+ * @example (method) (playerEntity: PlayerEntity, product: Product): boolean
+ *
+ * @param product - The ID of the product to register the handler for.
+ * @note Handlers should be registered before the player purchases the
+ *  product, and should never yield.
+ */
+export const RegisterProductHandler = Modding.createMetaDecorator<[product: Product]>("Method");
+
+/**
+ * Registers a `method` as a handler for specific developer products. The
+ * handler will be invoked when a player purchases one of the registered
+ * products.
+ *
+ * The handler should return `true` if the product was successfully processed,
+ * or `false` if there was an error. Attempting to register a handler for a
+ * product that already has one will result in an error being logged.
+ *
+ * @example (method) (playerEntity: PlayerEntity, product: Product, key: string
+ *
+ * | number): boolean
+ *
+ * @param products - A record mapping a key to their associated ID.
+ * @note Handlers must be registered before the player attempts to purchase a product.
+ *       Handlers should not yield or perform any asynchronous operations.
+ */
+export const RegisterHandlerForEachProduct =
+	Modding.createMetaDecorator<[products: Record<number | string, Product>]>("Method");
 
 /**
  * A service for managing game passes and processing receipts.
@@ -58,21 +110,25 @@ type ProductInfo = DeveloperProductInfo | GamePassProductInfo;
  */
 @Service()
 export class MtxService implements OnInit, OnStart, OnPlayerJoin {
+	private readonly gamePassHandlers = new Map<
+		GamePass,
+		Array<(playerEntity: PlayerEntity, gamePassId: GamePass, isActive: boolean) => void>
+	>();
+
 	private readonly productHandlers = new Map<
 		Product,
 		{
 			args: Array<unknown>;
 			handler: (
-				object: Record<string, Callback>,
 				playerEntity: PlayerEntity,
 				productId: Product,
 				...args: Array<unknown>
 			) => boolean;
-			object: Record<string, Callback>;
 		}
 	>();
 
 	private readonly productInfoCache = new Map<number, ProductInfo>();
+
 	private readonly purchaseIdLog = 50;
 
 	/** @ignore */
@@ -85,24 +141,9 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 		private readonly playerService: PlayerService,
 	) {}
 
-	/**
-	 * Used internally by the `RegisterProductHandler` decorator to register a
-	 * handler for a specific product.
-	 *
-	 * @ignore
-	 * @param object - The method's (handler) object.
-	 * @param productId - The ID of the product to register the handler for.
-	 * @param handler - The handler to call when the player purchases the
-	 *   product.
-	 */
 	public registerProductHandler(
-		object: Record<string, Callback>,
 		productId: Product,
-		handler: (
-			object: Record<string, Callback>,
-			playerEntity: PlayerEntity,
-			productId: Product,
-		) => boolean,
+		handler: (playerEntity: PlayerEntity, productId: Product) => boolean,
 		...args: Array<unknown>
 	): void {
 		if (this.productHandlers.has(productId)) {
@@ -111,7 +152,53 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 		}
 
 		this.logger.Debug(`Registered handler for product ${productId}`);
-		this.productHandlers.set(productId, { args, handler, object });
+		this.productHandlers.set(productId, { args, handler });
+	}
+
+	private async loadDecorator<T extends "GamePass" | "Product">(
+		object: Record<string, Callback>,
+		handler: string,
+		productType: T,
+		args: T extends "Product" ? [Product] : [GamePass],
+	): Promise<void> {
+		const [productId] = args;
+
+		const withContextHandler = function (...handlerArgs: Array<unknown>): boolean {
+			return object[handler](object, ...handlerArgs) as boolean;
+		};
+
+		if (productType === "Product") {
+			this.registerProductHandler(productId, withContextHandler);
+		} else {
+			this.gamePassHandlers.get(productId)?.push(withContextHandler);
+		}
+	}
+
+	private async initRegister(): Promise<void> {
+		const mtxEvents = Modding.getDecorators<typeof MtxEvents>();
+
+		for (const { constructor, object } of mtxEvents) {
+			const singleton = Modding.resolveSingleton(constructor!) as Record<string, Callback>;
+			const registerProduct =
+				Modding.getPropertyDecorators<typeof RegisterProductHandler>(object);
+			const registerForEachProduct =
+				Modding.getPropertyDecorators<typeof RegisterHandlerForEachProduct>(object);
+
+			const productDecorators = Sift.Dictionary.merge(
+				registerProduct,
+				registerForEachProduct,
+			);
+
+			for (const [handler, { arguments: args }] of productDecorators) {
+				void this.loadDecorator(singleton, handler, "Product", args);
+			}
+
+			for (const [handler, { arguments: args }] of Modding.getPropertyDecorators<
+				typeof GamePassStatusChanged
+			>(object)) {
+				void this.loadDecorator(singleton, handler, "GamePass", args);
+			}
+		}
 	}
 
 	/**
@@ -200,7 +287,7 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 		}
 
 		const [success, result] = pcall(() =>
-			noYield(data.handler, data.object, playerEntity, productIds, ...data.args),
+			noYield(data.handler, playerEntity, productIds, ...data.args),
 		);
 		if (!success || !result) {
 			this.logger.Error(`Failed to process product ${productIds}`);
@@ -234,10 +321,18 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 
 	private notifyProductActive(
 		playerEntity: PlayerEntity,
-		productId: GamePass,
+		gamePassId: GamePass,
 		isActive: boolean,
 	): void {
-		this.gamePassStatusChanged.Fire(playerEntity, productId, isActive);
+		task.defer(() => {
+			const handlers = this.gamePassHandlers.get(gamePassId);
+			if (handlers) {
+				for (const handler of handlers) {
+					handler(playerEntity, gamePassId, isActive);
+				}
+			}
+		});
+		this.gamePassStatusChanged.Fire(playerEntity, gamePassId, isActive);
 	}
 
 	private grantGamePass(playerEntity: PlayerEntity, gamePassId: number): void {
@@ -340,6 +435,8 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 			this.logger.Info(`ProcessReceipt result: ${result}`);
 			return result;
 		};
+
+		void this.initRegister();
 	}
 
 	/** @ignore */
