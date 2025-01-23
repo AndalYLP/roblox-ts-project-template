@@ -1,11 +1,11 @@
 /** @see https://github.com/boatbomber/3D-Sound-Emulation/blob/master/README.md */
-export declare namespace SoundSystem {
+declare namespace SoundSystem {
 	/**
 	 * Attaches a sound to the sound system.
 	 *
 	 * @param soundObject - The sound instance.
 	 */
-	export function attach(soundObject: Sound): void;
+	export function Attach(soundObject: Sound): void;
 
 	/**
 	 * Creates a new Attachment that holds a Sound, positioned at the specified
@@ -30,9 +30,11 @@ export declare namespace SoundSystem {
 	 *   - `Sound`: The sound instance that has been created.
 	 *   - `Attachment`: The created attachment object.
 	 */
-	export function create(
+	export function Create(
 		id: string,
 		target: CFrame | Instance | Vector3,
 		looped?: boolean,
 	): { Sound: Sound } & Attachment;
 }
+
+export = SoundSystem;
