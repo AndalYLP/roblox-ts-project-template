@@ -76,6 +76,12 @@
 				"ExecuteWithStudioRun": true
 			},
 			"$path": "test"
+		},
+		"TextChatService": {
+			"$className": "TextChatService",
+			"$properties": {
+				"ChatVersion": "TextChatService"
+			}
 		}
 	}
 }
