@@ -28,7 +28,12 @@ export function mount({ baseRem, key, remOverride, children }: MountProps): Root
 	const root = createRoot(new Instance("Folder"));
 	root.render(
 		<StrictMode>
-			<RemProvider key="rem-provider" baseRem={baseRem} remOverride={remOverride}>
+			<RemProvider
+				key="rem-provider"
+				baseRem={baseRem}
+				minimumRem={0}
+				remOverride={remOverride}
+			>
 				<ReflexProvider key="reflex-provider" producer={store}>
 					{createPortal(children, PLAYER_GUI, key)}
 				</ReflexProvider>
