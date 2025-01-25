@@ -8,7 +8,7 @@ import { Players } from "@rbxts/services";
 import Signal from "@rbxts/signal";
 
 import { IS_DEV } from "shared/constants/core";
-import type { PlayerData } from "shared/store/player";
+import type { PlayerData } from "shared/store/slices/player";
 import { KickCode } from "types/enum/kick-reason";
 import type { ListenerData } from "utils/flamework";
 import { setupLifecycle } from "utils/flamework";

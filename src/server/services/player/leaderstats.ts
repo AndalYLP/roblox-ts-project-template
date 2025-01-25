@@ -4,8 +4,8 @@ import type { Logger } from "@rbxts/log";
 import { t } from "@rbxts/t";
 
 import { store } from "server/store";
-import type { PlayerData } from "shared/store/player";
-import { selectPlayerData } from "shared/store/player";
+import type { PlayerData } from "shared/store/slices/player";
+import { selectPlayerData } from "shared/store/slices/player";
 
 import type { OnPlayerJoin, OnPlayerLeave } from ".";
 import type { PlayerEntity } from "./entity";

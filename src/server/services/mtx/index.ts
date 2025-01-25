@@ -9,9 +9,9 @@ import Signal from "@rbxts/signal";
 
 import { events } from "server/network";
 import { store } from "server/store";
-import type { PlayerData } from "shared/store/player";
-import { selectPlayerData } from "shared/store/player";
-import { selectPlayerMtx } from "shared/store/player/mtx/mtx.selectors";
+import type { PlayerData } from "shared/store/slices/player";
+import { selectPlayerData } from "shared/store/slices/player";
+import { selectPlayerMtx } from "shared/store/slices/player/mtx/mtx.selectors";
 import type { GamePass, Product } from "types/enum/mtx";
 import { gamePass, product } from "types/enum/mtx";
 import { noYield } from "utils/no-yield";

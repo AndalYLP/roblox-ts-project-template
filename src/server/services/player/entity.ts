@@ -1,7 +1,7 @@
 import type { Janitor } from "@rbxts/janitor";
 import type { Document } from "@rbxts/lapis";
 
-import type { PlayerData } from "shared/store/player";
+import type { PlayerData } from "shared/store/slices/player";
 
 export class PlayerEntity {
 	/** The player's username. */

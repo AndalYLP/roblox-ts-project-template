@@ -8,8 +8,8 @@ import { SoundService, TweenService } from "@rbxts/services";
 import { LocalPlayer } from "client/constants/player";
 import { store } from "client/store";
 import SoundSystem from "shared/modules/3dSound";
-import type { PlayerSettings } from "shared/store/player/settings";
-import { selectPlayerSettingsData } from "shared/store/player/settings";
+import type { PlayerSettings } from "shared/store/slices/player/settings";
+import { selectPlayerSettingsData } from "shared/store/slices/player/settings";
 
 export const enum SoundType {
 	Music = "Music",

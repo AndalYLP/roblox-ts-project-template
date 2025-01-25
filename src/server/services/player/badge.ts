@@ -3,7 +3,7 @@ import type { Logger } from "@rbxts/log";
 import { BadgeService } from "@rbxts/services";
 
 import { store } from "server/store";
-import { selectPlayerAchievements } from "shared/store/player/achievements/achievements.selectors";
+import { selectPlayerAchievements } from "shared/store/slices/player/achievements/achievements.selectors";
 import type { Badge } from "types/enum/badge";
 import { badge as enumBadge } from "types/enum/badge";
 

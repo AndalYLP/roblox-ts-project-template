@@ -7,8 +7,8 @@ import { Players } from "@rbxts/services";
 
 import { store } from "server/store";
 import { IS_DEV, IS_STUDIO } from "shared/constants/core";
-import type { PlayerData } from "shared/store/player";
-import { defaultPlayerData, selectPlayerData } from "shared/store/player";
+import type { PlayerData } from "shared/store/slices/player";
+import { defaultPlayerData, selectPlayerData } from "shared/store/slices/player";
 import { KickCode } from "types/enum/kick-reason";
 
 import type { PlayerRemovalService } from "../removal";
