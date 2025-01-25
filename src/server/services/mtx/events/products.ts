@@ -3,8 +3,8 @@ import type { Logger } from "@rbxts/log";
 import type { Product } from "types/enum/mtx";
 import { product } from "types/enum/mtx";
 
-import type { PlayerEntity } from "../player/entity";
-import { MtxEvents, RegisterProductHandler } from ".";
+import type { PlayerEntity } from "../../player/entity";
+import { MtxEvents, RegisterProductHandler } from "..";
 
 @MtxEvents()
 export class ProductEventsService {
