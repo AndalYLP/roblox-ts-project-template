@@ -3,12 +3,13 @@ import type Abbreviator from "@rbxts/abbreviate";
 import type { Logger } from "@rbxts/log";
 import Log from "@rbxts/log";
 
+import { FLAMEWORK_IGNITED } from "shared/constants/core";
 import { setupAbbreviator } from "shared/functions/abbreviator";
 import { setupLogger } from "shared/functions/logger";
 
 import { createApp, reactConfig } from "./ui/app/config";
 
-function start(): void {
+async function start(): Promise<void> {
 	setupLogger();
 	reactConfig();
 	const abbreviator = setupAbbreviator();
@@ -28,4 +29,10 @@ function start(): void {
 	});
 }
 
-start();
+start()
+	.then(() => {
+		FLAMEWORK_IGNITED.Fire();
+	})
+	.catch(err => {
+		Log.Fatal(`Error while running client: ${err}`);
+	});
