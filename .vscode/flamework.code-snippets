@@ -1,6 +1,9 @@
 {
 	"Flamework Controller": {
-		"prefix": ["controller", "flameworkcontroller"],
+		"prefix": [
+			"controller",
+			"flameworkcontroller"
+		],
 		"description": "Create a Flamework controller",
 		"body": [
 			"import type { OnStart } from \"@flamework/core\";",
@@ -20,7 +23,10 @@
 		]
 	},
 	"Flamework Service": {
-		"prefix": ["service", "flameworkservice"],
+		"prefix": [
+			"service",
+			"flameworkservice"
+		],
 		"description": "Create a Flamework service",
 		"body": [
 			"import type { OnStart } from \"@flamework/core\";",
@@ -40,25 +46,24 @@
 		]
 	},
 	"Flamework Component": {
-		"prefix": ["component", "flameworkcomponent"],
+		"prefix": [
+			"component",
+			"flameworkcomponent"
+		],
 		"description": "Create a Flamework component",
 		"body": [
-			"import { BaseComponent, Component } from \"@flamework/components\";",
+			"import { Component } from \"@flamework/components\";",
 			"import type { OnStart } from \"@flamework/core\";",
-			"import { Janitor } from \"@rbxts/janitor\";",
 			"import type { Logger } from \"@rbxts/log\";",
 			"",
-			"import { $$NODE_ENV } from \"rbxts-transform-env\";",
+			"import { DestroyableComponent } from \"shared/components/abstract/destroyable\";",
 			"import Tag from \"types/enum/tag\";",
-			"import type { ${TM_FILENAME_BASE/(.*)-component.*/${1:/pascalcase}/}Attributes, ${TM_FILENAME_BASE/(.*)-component.*/${1:/pascalcase}/}Model } from \"types/interfaces/components/${TM_FILENAME_BASE/(.*)-component/$1/}\";",
+			"import type { ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Attributes, ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Model } from \"types/interfaces/components/${TM_FILENAME_BASE/(.*)-component/$1/}\";",
 			"",
 			"@Component({",
-			"\trefreshAttributes: $$NODE_ENV === \"development\",",
-			"\ttag: Tag.${TM_FILENAME_BASE/(.*)-component.*/${1:/pascalcase}/},",
+			"\ttag: Tag.${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g},",
 			"})",
-			"export class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Component extends BaseComponent<${TM_FILENAME_BASE/(.*)-component.*/${1:/pascalcase}/}Attributes, ${TM_FILENAME_BASE/(.*)-component.*/${1:/pascalcase}/}Model> implements OnStart {",
-			"\tprivate readonly janitor = new Janitor();",
-			"",
+			"export class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Component extends DestroyableComponent<${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Attributes, ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Model> implements OnStart {",
 			"\tconstructor(private readonly logger: Logger) {",
 			"\t\tsuper();",
 			"\t}",
@@ -67,18 +72,14 @@
 			"\tpublic onStart(): void {",
 			"\t\tthrow \"Method not implemented.\";",
 			"\t}",
-			"",
-			"\t/** @ignore */",
-			"\tpublic destroy(): void {",
-			"\t\tthis.logger.Verbose(`${TM_FILENAME_BASE/(.*)-component.*/${1:/pascalcase}/} ${this.instance.GetFullName()} has been destroyed.`);",
-			"\t\tthis.janitor.Destroy();",
-			"\t\tsuper.destroy();",
-			"\t}",
 			"}"
 		]
 	},
 	"Flamework Component Types": {
-		"prefix": ["componenttypes", "flameworkcomponenttypes"],
+		"prefix": [
+			"componenttypes",
+			"flameworkcomponenttypes"
+		],
 		"description": "Create attribute and model interfaces for a Flamework component",
 		"body": [
 			"export interface ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Attributes {}",
