@@ -1,8 +1,41 @@
 {
+	// TypeScript Configuration
 	"typescript.tsdk": "node_modules/typescript/lib",
+
+	// File Endings and Package Manager
 	"files.eol": "\n",
 	"npm.packageManager": "pnpm",
-	// ESlint Configuration
+
+	// Auto fix & Organize Imports
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit",
+		"source.organizeImports": "never"
+	},
+
+	// File Explorer Settings
+	"explorer.fileNesting.patterns": {
+		"package.json": ".darklua.json, .gitattributes, .gitignore, .npmrc, asphalt.toml, commitlint.config.ts, cspell.config.yaml, eslint.config.ts, flamework.build, pnpm-lock.yaml, renovate.json, rokit.toml",
+		"README.md": "LICENSE",
+		"*.rbxl": "*.rbxl.lock"
+	},
+
+	// File Exclusion
+	"files.exclude": {
+		"patches": true,
+		".husky": true,
+		".github": true,
+		"include": true
+	},
+
+	// Custom Labels for Index Files
+	"workbench.editor.customLabels.patterns": {
+		"**/index.ts": "${dirname}.ts"
+	},
+
+	// Editor Settings
+	"workbench.editor.enablePreview": false,
+
+	// ESLint Configuration
 	"eslint.run": "onType",
 	"eslint.format.enable": true,
 	"eslint.useFlatConfig": true,
@@ -67,23 +100,5 @@
 		"yaml",
 		"toml",
 		"luau"
-	],
-	// Auto fix & Organize Imports
-	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": "explicit",
-		"source.organizeImports": "never"
-	},
-	// File Explorer Settings
-	"explorer.fileNesting.patterns": {
-		"package.json": ".darklua.json, .gitattributes, .gitignore, .npmrc, asphalt.toml, commitlint.config.ts, cspell.config.yaml, eslint.config.ts, flamework.build, pnpm-lock.yaml, renovate.json, rokit.toml",
-		"README.md": "LICENSE",
-		"*.rbxl": "*.rbxl.lock"
-	},
-	// File Exclusion
-	"files.exclude": {
-		"patches": true,
-		".husky": true,
-		".github": true,
-		"include": true
-	}
+	]
 }
