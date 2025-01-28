@@ -48,9 +48,7 @@ export class PlayerBadgeService implements OnPlayerJoin {
 		return Promise.try(() => BadgeService.GetBadgeInfoAsync(tonumber(badge)!));
 	}
 
-	private async giveBadge(playerEntity: PlayerEntity, badge: Badge): Promise<void> {
-		const { player, UserId } = playerEntity;
-
+	private async giveBadge({ player, UserId }: PlayerEntity, badge: Badge): Promise<void> {
 		const badgeInfo = await this.getBadgeInfo(badge);
 		if (!badgeInfo.IsEnabled) {
 			this.logger.Warn(`Badge ${badge} is not enabled.`);

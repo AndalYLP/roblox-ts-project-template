@@ -85,7 +85,7 @@ export const RegisterHandlerForEachProduct =
  * @example
  *
  * ```
- * ⁣@Service()
+ * ⁣@MtxEvents()
  * export class MtxEventsService {
  * 	⁣@gamePassStatusChanged()
  * 	public exampleGamePass(playerEntity: PlayerEntity, isActive: boolean) {
