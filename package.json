@@ -4,7 +4,7 @@
 	"description": "",
 	"keywords": [],
 	"license": "MIT",
-	"author": "",
+	"author": "AndalYLP",
 	"type": "module",
 	"main": "index.js",
 	"scripts": {
