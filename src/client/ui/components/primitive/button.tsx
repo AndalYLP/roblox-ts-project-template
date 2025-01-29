@@ -55,24 +55,27 @@ export function Button({
 	onMouseUp,
 	children,
 }: Readonly<ButtonProps>): React.ReactNode {
-	const event = {
-		Activated: () => {
-			onClick?.();
-		},
-		MouseButton1Down: () => {
-			onMouseDown?.();
-		},
-		MouseButton1Up: () => {
-			onMouseUp?.();
-		},
-		MouseEnter: () => {
-			onMouseEnter?.();
-		},
-		MouseLeave: () => {
-			onMouseLeave?.();
-		},
-		...Native?.Event,
-	};
+	const event: Record<string, () => void> = {};
+
+	if (onClick) {
+		event.Activated = onClick;
+	}
+
+	if (onMouseDown) {
+		event.MouseButton1Down = onMouseDown;
+	}
+
+	if (onMouseUp) {
+		event.MouseButton1Up = onMouseUp;
+	}
+
+	if (onMouseEnter) {
+		event.MouseEnter = onMouseEnter;
+	}
+
+	if (onMouseLeave) {
+		event.MouseLeave = onMouseLeave;
+	}
 
 	return (
 		<textbutton

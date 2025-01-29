@@ -33,6 +33,7 @@ export const Frame = forwardRef(
 			<frame
 				ref={ref}
 				AnchorPoint={new Vector2(0.5, 0.5)}
+				BorderSizePixel={0}
 				Position={new UDim2(0.5, 0, 0.5, 0)}
 				Size={new UDim2(1, 0, 1, 0)}
 				{...Native}

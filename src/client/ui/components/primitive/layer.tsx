@@ -7,6 +7,7 @@ import { Group } from "./group";
 export interface LayerProps extends React.PropsWithChildren {
 	/** The display order of the layer. */
 	DisplayOrder?: number;
+	enabled?: boolean;
 }
 
 /**
@@ -33,7 +34,11 @@ export interface LayerProps extends React.PropsWithChildren {
  * @component
  * @see https://developer.roblox.com/en-us/api-reference/class/ScreenGui
  */
-export function Layer({ DisplayOrder, children }: Readonly<LayerProps>): React.ReactNode {
+export function Layer({
+	DisplayOrder,
+	enabled = true,
+	children,
+}: Readonly<LayerProps>): React.ReactNode {
 	return IS_DEV && IS_EDIT ? (
 		<Group
 			Native={{
@@ -45,6 +50,7 @@ export function Layer({ DisplayOrder, children }: Readonly<LayerProps>): React.R
 	) : (
 		<screengui
 			DisplayOrder={DisplayOrder}
+			Enabled={enabled}
 			IgnoreGuiInset={true}
 			ResetOnSpawn={false}
 			ZIndexBehavior="Sibling"

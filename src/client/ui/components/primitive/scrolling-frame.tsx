@@ -58,6 +58,7 @@ export function ScrollingFrame({
 			Position={new UDim2(0.5, 0, 0.5, 0)}
 			ScrollBarImageColor3={theme.colors.secondary}
 			ScrollBarThickness={rem(0.5)}
+			Size={new UDim2(0.975, 0, 0.9, 0)}
 			{...Native}
 		>
 			{children}
