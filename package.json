@@ -84,7 +84,7 @@
 		"git-pull-run": "1.4.0",
 		"husky": "9.1.7",
 		"jiti": "2.4.2",
-		"lint-staged": "15.4.1",
+		"lint-staged": "15.4.3",
 		"prettier": "3.4.2",
 		"rbxts-build": "2.4.0",
 		"rbxts-transformer-flamework": "1.2.3",
