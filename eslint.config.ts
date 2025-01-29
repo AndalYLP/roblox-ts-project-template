@@ -15,6 +15,7 @@ export default style(
 		},
 		react: true,
 		rules: {
+			"antfu/consistent-list-newline": "off",
 			"perfectionist/sort-objects": [
 				"warn",
 				{
