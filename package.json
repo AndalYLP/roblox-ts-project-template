@@ -32,7 +32,8 @@
 		]
 	},
 	"resolutions": {
-		"@rbxts/compiler-types": "3.0.0-types.0"
+		"@rbxts/compiler-types": "3.0.0-types.0",
+		"minimist": "1.2.6"
 	},
 	"dependencies": {
 		"@flamework/components": "1.2.3",
