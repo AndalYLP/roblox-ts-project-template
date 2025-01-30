@@ -14,8 +14,11 @@
 
 	// File Explorer Settings
 	"explorer.fileNesting.patterns": {
-		"package.json": ".darklua.json, .gitattributes, .gitignore, .npmrc, asphalt.toml, commitlint.config.ts, cspell.config.yaml, eslint.config.ts, flamework.build, pnpm-lock.yaml, renovate.json, rokit.toml",
+		"package.json": ".darklua.json, .gitattributes, .gitignore, .npmrc, asphalt.toml, flamework.build, pnpm-lock.yaml, rokit.toml, .env",
 		"README.md": "LICENSE",
+		"asphalt.toml": "asphalt.lock.toml",
+		"eslint.config.ts": "commitlint.config.ts, cspell.config.yaml, renovate.json",
+		"default.project.json": "game.rbxl",
 		"*.rbxl": "*.rbxl.lock"
 	},
 
@@ -24,6 +27,8 @@
 		"patches": true,
 		".husky": true,
 		".github": true,
+		".gitattributes": true,
+		"pnpm-lock.yaml": true,
 		"include": true
 	},
 
