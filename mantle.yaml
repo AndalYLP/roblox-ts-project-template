@@ -1,1 +1,57 @@
 owner: personal
+
+environments:
+  - label: development
+    targetNamePrefix: environmentLabel
+    targetAccess: private
+    targetOverrides:
+
+  - label: production
+    branches:
+      - main
+    targetAccess: public
+
+target:
+  experience:
+    icon: assets/marketing/example-icon.png
+
+    configuration:
+      playableDevices: [computer, console, phone, tablet]
+      privateServers:
+        price: 0
+      enableStudioAccessToApis: true
+      avatarType: playerChoice
+      avatarAnimationType: playerChoice
+
+    spatialVoice:
+      enabled: true
+
+    places:
+      start:
+        file: place.rbxlx
+
+        configuration:
+          name: Roblox-ts Template
+          description: A project template for roblox-ts.
+          maxPlayerCount: 10
+
+    badges:
+      1-example:
+        name: Welcome Example Badge
+        description: This is an example badge.
+        icon: assets/badges/example-badge.png
+        enabled: true
+
+    products:
+      1-example:
+        name: Example Product
+        description: This is an example product.
+        price: 5
+        icon: assets/marketing/example-icon.png
+
+    passes:
+      1-example:
+        name: Example Pass
+        description: This is an example pass.
+        price: 5
+        icon: assets/marketing/example-icon.png
