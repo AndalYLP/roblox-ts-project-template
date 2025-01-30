@@ -159,10 +159,8 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 		object: Record<string, Callback>,
 		handler: string,
 		productType: T,
-		args: T extends "Product" ? [Product] : [GamePass],
+		productId: T extends "Product" ? Product : GamePass,
 	): Promise<void> {
-		const [productId] = args;
-
 		const withContextHandler = function (...handlerArgs: Array<unknown>): boolean {
 			return object[handler](object, ...handlerArgs) as boolean;
 		};
@@ -190,13 +188,13 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 			);
 
 			for (const [handler, { arguments: args }] of productDecorators) {
-				void this.loadDecorator(singleton, handler, "Product", args);
+				void this.loadDecorator(singleton, handler, "Product", args[0]);
 			}
 
 			for (const [handler, { arguments: args }] of Modding.getPropertyDecorators<
 				typeof GamePassStatusChanged
 			>(object)) {
-				void this.loadDecorator(singleton, handler, "GamePass", args);
+				void this.loadDecorator(singleton, handler, "GamePass", args[0]);
 			}
 		}
 	}
