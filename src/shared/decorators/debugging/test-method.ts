@@ -1,5 +1,6 @@
 import Log from "@rbxts/log";
-import { TableToString } from "@rbxts/rbx-debug";
+
+import { IS_DEV } from "shared/constants/core";
 
 export function TestMethod<T extends object, P extends Array<unknown>>(...args: P) {
 	return (
@@ -7,10 +8,14 @@ export function TestMethod<T extends object, P extends Array<unknown>>(...args: 
 		propertyKey: string,
 		descriptor: TypedPropertyDescriptor<(this: T, ...args: P) => unknown>,
 	) => {
-		Log.Debug(`running ${target}.${propertyKey} with arguments: ${TableToString(args)}`);
+		if (!IS_DEV) {
+			return;
+		}
+
+		Log.Debug(`running ${target}.${propertyKey} with arguments: {args}`, args);
 
 		const returnValue = descriptor.value(target, ...args);
 
-		Log.Debug(`${target}.${propertyKey} returned: ${returnValue}`);
+		Log.Debug(`${target}.${propertyKey} returned: {returnValue}`, returnValue);
 	};
 }
