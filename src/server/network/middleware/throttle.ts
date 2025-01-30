@@ -8,10 +8,13 @@ import { setTimeout } from "@rbxts/set-timeout";
  * article](https://css-tricks.com/debouncing-throttling-explained-examples/)
  * for details over the differences between `throttle` and `debounce`.
  *
+ * @template I - Input type from the remote event (ignored).
  * @param time - The function to throttle.
  * @returns The event middleware.
  */
-export function throttleMiddleware(time: number): Networking.EventMiddleware {
+export function throttleMiddleware<I extends Array<unknown>>(
+	time: number,
+): Networking.EventMiddleware<I> {
 	const throttle = new Set<Player>();
 
 	return processNext => {
