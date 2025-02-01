@@ -1,0 +1,69 @@
+{
+    "Reflex Slice": {
+        "prefix": [
+            "rslice",
+            "reflex slice"
+        ],
+        "description": "Create a Reflex slice",
+        "body": [
+            "import { createProducer } from \"@rbxts/reflex\";",
+            "",
+            "import type { ${TM_DIRECTORY/^.+[\\/\\\\]+(.+)[\\/\\\\].+$/${1:/pascalcase}/}${TM_FILENAME_BASE/(.*)\\.slice/${1:/pascalcase}/} } from \"./${TM_FILENAME_BASE/(.*)\\.slice/$1/}.types\";",
+            "import { default${TM_DIRECTORY/^.+[\\/\\\\]+(.+)[\\/\\\\].+$/${1:/pascalcase}/}${TM_FILENAME_BASE/(.*)\\.slice/${1:/pascalcase}/} } from \"./${TM_FILENAME_BASE/(.*)\\.slice/$1/}.types\";",
+            "",
+            "export type ${TM_FILENAME_BASE/(.*)\\.slice/${1:/pascalcase}/}State = Readonly<${TM_DIRECTORY/^.+[\\/\\\\]+(.+)[\\/\\\\].+$/${1:/pascalcase}/}${TM_FILENAME_BASE/(.*)\\.slice/${1:/pascalcase}/}>;",
+            "",
+            "const initialState: ${TM_FILENAME_BASE/(.*)\\.slice/${1:/pascalcase}/}State = default${TM_DIRECTORY/^.+[\\/\\\\]+(.+)[\\/\\\\].+$/${1:/pascalcase}/}${TM_FILENAME_BASE/(.*)\\.slice/${1:/pascalcase}/}",
+            "",
+            "export const ${TM_FILENAME_BASE/(.*)\\.slice/$1/}Slice = createProducer(initialState, {",
+            "\t$1",
+            "});"
+        ]
+    },
+    "Reflex Selectors": {
+        "prefix": [
+            "rselectors",
+            "reflex selectors"
+        ],
+        "description": "Create Reflex selectors",
+        "body": [
+            "import { createSelector } from \"@rbxts/reflex\";",
+            "",
+            "import type { SharedState } from \"shared/store\";",
+            "",
+            "import type { ${TM_FILENAME_BASE/(.*)\\.selectors/${1:/pascalcase}/}State } from \"./${TM_FILENAME_BASE/(.*)\\.selectors/$1/}.slice\";",
+            "",
+            "export function select${TM_DIRECTORY/^.+[\\/\\\\]+(.+)[\\/\\\\].+$/${1:/pascalcase}/}${TM_FILENAME_BASE/(.*)\\.selectors/${1:/pascalcase}/}(): (state: SharedState) => ${TM_FILENAME_BASE/(.*)\\.selectors/${1:/pascalcase}/}State | undefined {",
+            "\t return createSelector($1);",
+            "}"
+        ]
+    },
+    "Reflex Types": {
+        "prefix": [
+            "rtypes",
+            "reflex types"
+        ],
+        "description": "Create Reflex types",
+        "body": [
+            "export interface ${TM_DIRECTORY/^.+[\\/\\\\]+(.+)[\\/\\\\].+$/${1:/pascalcase}/}${TM_FILENAME_BASE/(.*)\\.types/${1:/pascalcase}/} {",
+            "\t$1: $2;",
+            "}",
+            "",
+            "export const default${TM_DIRECTORY/^.+[\\/\\\\]+(.+)[\\/\\\\].+$/${1:/pascalcase}/}${TM_FILENAME_BASE/(.*)\\.types/${1:/pascalcase}/}: ${TM_DIRECTORY/^.+[\\/\\\\]+(.+)[\\/\\\\].+$/${1:/pascalcase}/}${TM_FILENAME_BASE/(.*)\\.types/${1:/pascalcase}/} = {",
+            "\t$1: $3,",
+            "};",
+            "export type ${TM_DIRECTORY/^.+[\\/\\\\]+(.+)[\\/\\\\].+$/${1:/pascalcase}/}${TM_FILENAME_BASE/(.*)\\.types/${1:/pascalcase}/}Type = keyof ${TM_DIRECTORY/^.+[\\/\\\\]+(.+)[\\/\\\\].+$/${1:/pascalcase}/}${TM_FILENAME_BASE/(.*)\\.types/${1:/pascalcase}/}"
+        ]
+    },
+    "Reflex Load Data": {
+        "prefix": [
+            "rload data",
+            "reflex load data"
+        ],
+        "description": "Add load data action",
+        "body": [
+            "/** @ignore */",
+            "load${TM_DIRECTORY/^.+[\\/\\\\]+(.+)[\\/\\\\].+$/${1:/pascalcase}/}Data: (_state, data: ${1:${TM_DIRECTORY/^.+[\\/\\\\]+(.+)[\\/\\\\].+$/${1:/pascalcase}/}Data}): ${TM_FILENAME_BASE/(.*)\\.slice/${1:/pascalcase}/}State => data.${TM_FILENAME_BASE/(.*)\\.slice/$1/},"
+        ]
+    }
+}
