@@ -5,6 +5,6 @@ export interface PlayerSettings {
 	readonly audio: PlayerAudioSettings;
 }
 
-export const defaultPlayerSettings: PlayerSettings = {
+export const defaultPlayerSettings: Readonly<PlayerSettings> = {
 	audio: defaultPlayerAudioSettings,
 };

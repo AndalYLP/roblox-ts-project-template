@@ -2,7 +2,7 @@ export interface PlayerBalance {
 	currency: number;
 }
 
-export const defaultPlayerBalance: PlayerBalance = {
+export const defaultPlayerBalance: Readonly<PlayerBalance> = {
 	currency: 0,
 };
 

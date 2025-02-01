@@ -14,7 +14,7 @@ export interface PlayerData {
 	readonly settings: PlayerSettings;
 }
 
-export const defaultPlayerData: PlayerData = {
+export const defaultPlayerData: Readonly<PlayerData> = {
 	achievements: defaultPlayerAchievements,
 	balance: defaultPlayerBalance,
 	mtx: defaultPlayerMtx,

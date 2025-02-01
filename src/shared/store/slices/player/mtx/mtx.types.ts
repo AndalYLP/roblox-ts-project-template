@@ -6,7 +6,7 @@ export interface PlayerMtx {
 	receiptHistory: Array<string>;
 }
 
-export const defaultPlayerMtx: PlayerMtx = {
+export const defaultPlayerMtx: Readonly<PlayerMtx> = {
 	gamePasses: new Map<GamePass, GamePassData>(),
 	products: new Map<Product, ProductData>(),
 	receiptHistory: [],
