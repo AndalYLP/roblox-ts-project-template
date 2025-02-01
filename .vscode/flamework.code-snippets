@@ -2,7 +2,7 @@
 	"Flamework Controller": {
 		"prefix": [
 			"controller",
-			"flameworkcontroller"
+			"flamework controller"
 		],
 		"description": "Create a Flamework controller",
 		"body": [
@@ -25,7 +25,7 @@
 	"Flamework Service": {
 		"prefix": [
 			"service",
-			"flameworkservice"
+			"flamework service"
 		],
 		"description": "Create a Flamework service",
 		"body": [
@@ -48,7 +48,7 @@
 	"Flamework Component": {
 		"prefix": [
 			"component",
-			"flameworkcomponent"
+			"flamework component"
 		],
 		"description": "Create a Flamework component",
 		"body": [
@@ -77,8 +77,8 @@
 	},
 	"Flamework Component Types": {
 		"prefix": [
-			"componenttypes",
-			"flameworkcomponenttypes"
+			"component types",
+			"flamework component types"
 		],
 		"description": "Create attribute and model interfaces for a Flamework component",
 		"body": [
