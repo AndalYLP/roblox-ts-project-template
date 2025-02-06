@@ -10,7 +10,7 @@ overrides:
 
 patchedDependencies:
   rbxts-transform-env:
-    hash: zgtlalrbsezgz577pqo74i3gry
+    hash: 6fa8e9a34eae0fb588fbf82f244cb9b90f344c9f01b060424c5056fee8802daf
     path: patches/rbxts-transform-env.patch
 
 importers:
@@ -109,10 +109,10 @@ importers:
         version: 3.2.0
       rbxts-transform-debug:
         specifier: github:roblox-aurora/rbxts-transform-debug
-        version: git+https://github.com/roblox-aurora/rbxts-transform-debug.git#9cc03b58fe9eb29a24d94d0290abab3ea5950562
+        version: https://codeload.github.com/roblox-aurora/rbxts-transform-debug/tar.gz/9cc03b58fe9eb29a24d94d0290abab3ea5950562
       rbxts-transform-env:
         specifier: 3.0.0
-        version: 3.0.0(patch_hash=zgtlalrbsezgz577pqo74i3gry)
+        version: 3.0.0(patch_hash=6fa8e9a34eae0fb588fbf82f244cb9b90f344c9f01b060424c5056fee8802daf)
       rimraf:
         specifier: 6.0.1
         version: 6.0.1
@@ -3786,8 +3786,8 @@ packages:
     resolution: {integrity: sha512-aiXkxr6GoY3DjscTUNRvmRaApQzo5WqVtOIX+geGnV0YLh3kks9an57zjpCK5hGeDmEa5i7/mvLCR16s61MS0g==}
     hasBin: true
 
-  rbxts-transform-debug@git+https://github.com/roblox-aurora/rbxts-transform-debug.git#9cc03b58fe9eb29a24d94d0290abab3ea5950562:
-    resolution: {commit: 9cc03b58fe9eb29a24d94d0290abab3ea5950562, repo: https://github.com/roblox-aurora/rbxts-transform-debug.git, type: git}
+  rbxts-transform-debug@https://codeload.github.com/roblox-aurora/rbxts-transform-debug/tar.gz/9cc03b58fe9eb29a24d94d0290abab3ea5950562:
+    resolution: {tarball: https://codeload.github.com/roblox-aurora/rbxts-transform-debug/tar.gz/9cc03b58fe9eb29a24d94d0290abab3ea5950562}
     version: 2.2.0
 
   rbxts-transform-env@3.0.0:
@@ -8945,7 +8945,7 @@ snapshots:
       yargs: 17.7.2
       zod: 3.24.1
 
-  rbxts-transform-debug@git+https://github.com/roblox-aurora/rbxts-transform-debug.git#9cc03b58fe9eb29a24d94d0290abab3ea5950562:
+  rbxts-transform-debug@https://codeload.github.com/roblox-aurora/rbxts-transform-debug/tar.gz/9cc03b58fe9eb29a24d94d0290abab3ea5950562:
     dependencies:
       chalk: 4.1.2
       colors: 1.4.0
@@ -8955,7 +8955,7 @@ snapshots:
       types-package-json: 2.0.39
       typescript: 5.5.3
 
-  rbxts-transform-env@3.0.0(patch_hash=zgtlalrbsezgz577pqo74i3gry):
+  rbxts-transform-env@3.0.0(patch_hash=6fa8e9a34eae0fb588fbf82f244cb9b90f344c9f01b060424c5056fee8802daf):
     dependencies:
       chalk: 4.1.2
       colors: 1.4.0
