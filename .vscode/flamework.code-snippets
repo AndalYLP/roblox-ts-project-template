@@ -57,7 +57,7 @@
 			"import type { Logger } from \"@rbxts/log\";",
 			"",
 			"import { DestroyableComponent } from \"shared/components/abstract/destroyable\";",
-			"import Tag from \"types/enum/tag\";",
+			"import { Tag } from \"types/enum/tag\";",
 			"import type { ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Attributes, ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Model } from \"types/interfaces/components/${TM_FILENAME_BASE/(.*)-component/$1/}\";",
 			"",
 			"@Component({",
