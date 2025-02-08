@@ -1,5 +1,6 @@
-export const fonts = {
+export interface ThemeFonts {
 	primary: {
-		regular: Enum.Font.SourceSans,
-	},
-};
+		bold: Enum.Font;
+		regular: Enum.Font;
+	};
+}

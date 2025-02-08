@@ -1,6 +1,4 @@
-import { fonts } from "./fonts";
-import { images } from "./images";
-import type { Theme } from "./theme";
+import type { Theme } from "..";
 
 export const defaultTheme: Theme = {
 	colors: {
@@ -15,6 +13,15 @@ export const defaultTheme: Theme = {
 			secondary: Color3.fromRGB(0, 0, 0),
 		},
 	},
-	fonts,
-	images,
+	fonts: {
+		primary: {
+			bold: Enum.Font.SourceSansBold,
+			regular: Enum.Font.SourceSans,
+		},
+	},
+	images: {
+		resources: {
+			blur: "rbxassetid://14120516187",
+		},
+	},
 };
