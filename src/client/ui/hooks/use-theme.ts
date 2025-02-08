@@ -1,6 +1,6 @@
 import { useSelector } from "@rbxts/react-reflex";
 
-import { selectPlayerTheme } from "client/store/theme";
+import { selectPlayerTheme } from "client/store/slices/theme/theme.selectors";
 
 import type { Theme } from "../themes/theme";
 
