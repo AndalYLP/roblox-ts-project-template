@@ -52,6 +52,7 @@
             "export const default${TM_DIRECTORY/^.+[\\/\\\\]+(.+)[\\/\\\\].+$/${1:/pascalcase}/}${TM_FILENAME_BASE/(.*)\\.types/${1:/pascalcase}/}: Readonly<${TM_DIRECTORY/^.+[\\/\\\\]+(.+)[\\/\\\\].+$/${1:/pascalcase}/}${TM_FILENAME_BASE/(.*)\\.types/${1:/pascalcase}/}> = {",
             "\t$1: $3,",
             "};",
+            "",
             "export type ${TM_DIRECTORY/^.+[\\/\\\\]+(.+)[\\/\\\\].+$/${1:/pascalcase}/}${TM_FILENAME_BASE/(.*)\\.types/${1:/pascalcase}/}Type = keyof ${TM_DIRECTORY/^.+[\\/\\\\]+(.+)[\\/\\\\].+$/${1:/pascalcase}/}${TM_FILENAME_BASE/(.*)\\.types/${1:/pascalcase}/}"
         ]
     },
