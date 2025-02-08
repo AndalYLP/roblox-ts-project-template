@@ -34,7 +34,7 @@
 
 	// Custom Labels for Index Files
 	"workbench.editor.customLabels.patterns": {
-		"**/index.ts": "${dirname}.ts"
+		"**/index.*": "${dirname}.${extname}"
 	},
 
 	// Editor Settings
