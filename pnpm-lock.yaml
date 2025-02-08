@@ -109,7 +109,7 @@ importers:
         version: 3.2.0
       rbxts-transform-debug:
         specifier: github:roblox-aurora/rbxts-transform-debug
-        version: git+https://github.com/roblox-aurora/rbxts-transform-debug.git#9cc03b58fe9eb29a24d94d0290abab3ea5950562
+        version: https://codeload.github.com/roblox-aurora/rbxts-transform-debug/tar.gz/9cc03b58fe9eb29a24d94d0290abab3ea5950562
       rbxts-transform-env:
         specifier: 3.0.0
         version: 3.0.0(patch_hash=zgtlalrbsezgz577pqo74i3gry)
@@ -118,11 +118,11 @@ importers:
         version: 6.0.1
     devDependencies:
       '@commitlint/cli':
-        specifier: 19.6.1
-        version: 19.6.1(@types/node@22.10.2)(typescript@5.7.3)
+        specifier: 19.7.1
+        version: 19.7.1(@types/node@22.10.2)(typescript@5.7.3)
       '@commitlint/config-conventional':
-        specifier: 19.6.0
-        version: 19.6.0
+        specifier: 19.7.1
+        version: 19.7.1
       '@commitlint/types':
         specifier: 19.5.0
         version: 19.5.0
@@ -827,13 +827,13 @@ packages:
     bundledDependencies:
       - is-unicode-supported
 
-  '@commitlint/cli@19.6.1':
-    resolution: {integrity: sha512-8hcyA6ZoHwWXC76BoC8qVOSr8xHy00LZhZpauiD0iO0VYbVhMnED0da85lTfIULxl7Lj4c6vZgF0Wu/ed1+jlQ==}
+  '@commitlint/cli@19.7.1':
+    resolution: {integrity: sha512-iObGjR1tE/PfDtDTEfd+tnRkB3/HJzpQqRTyofS2MPPkDn1mp3DBC8SoPDayokfAy+xKhF8+bwRCJO25Nea0YQ==}
     engines: {node: '>=v18'}
     hasBin: true
 
-  '@commitlint/config-conventional@19.6.0':
-    resolution: {integrity: sha512-DJT40iMnTYtBtUfw9ApbsLZFke1zKh6llITVJ+x9mtpHD08gsNXaIRqHTmwTZL3dNX5+WoyK7pCN/5zswvkBCQ==}
+  '@commitlint/config-conventional@19.7.1':
+    resolution: {integrity: sha512-fsEIF8zgiI/FIWSnykdQNj/0JE4av08MudLTyYHm4FlLWemKoQvPNUYU2M/3tktWcCEyq7aOkDDgtjrmgWFbvg==}
     engines: {node: '>=v18'}
 
   '@commitlint/config-validator@19.5.0':
@@ -852,12 +852,12 @@ packages:
     resolution: {integrity: sha512-yNy088miE52stCI3dhG/vvxFo9e4jFkU1Mj3xECfzp/bIS/JUay4491huAlVcffOoMK1cd296q0W92NlER6r3A==}
     engines: {node: '>=v18'}
 
-  '@commitlint/is-ignored@19.6.0':
-    resolution: {integrity: sha512-Ov6iBgxJQFR9koOupDPHvcHU9keFupDgtB3lObdEZDroiG4jj1rzky60fbQozFKVYRTUdrBGICHG0YVmRuAJmw==}
+  '@commitlint/is-ignored@19.7.1':
+    resolution: {integrity: sha512-3IaOc6HVg2hAoGleRK3r9vL9zZ3XY0rf1RsUf6jdQLuaD46ZHnXBiOPTyQ004C4IvYjSWqJwlh0/u2P73aIE3g==}
     engines: {node: '>=v18'}
 
-  '@commitlint/lint@19.6.0':
-    resolution: {integrity: sha512-LRo7zDkXtcIrpco9RnfhOKeg8PAnE3oDDoalnrVU/EVaKHYBWYL1DlRR7+3AWn0JiBqD8yKOfetVxJGdEtZ0tg==}
+  '@commitlint/lint@19.7.1':
+    resolution: {integrity: sha512-LhcPfVjcOcOZA7LEuBBeO00o3MeZa+tWrX9Xyl1r9PMd5FWsEoZI9IgnGqTKZ0lZt5pO3ZlstgnRyY1CJJc9Xg==}
     engines: {node: '>=v18'}
 
   '@commitlint/load@19.6.1':
@@ -3786,8 +3786,8 @@ packages:
     resolution: {integrity: sha512-aiXkxr6GoY3DjscTUNRvmRaApQzo5WqVtOIX+geGnV0YLh3kks9an57zjpCK5hGeDmEa5i7/mvLCR16s61MS0g==}
     hasBin: true
 
-  rbxts-transform-debug@git+https://github.com/roblox-aurora/rbxts-transform-debug.git#9cc03b58fe9eb29a24d94d0290abab3ea5950562:
-    resolution: {commit: 9cc03b58fe9eb29a24d94d0290abab3ea5950562, repo: https://github.com/roblox-aurora/rbxts-transform-debug.git, type: git}
+  rbxts-transform-debug@https://codeload.github.com/roblox-aurora/rbxts-transform-debug/tar.gz/9cc03b58fe9eb29a24d94d0290abab3ea5950562:
+    resolution: {tarball: https://codeload.github.com/roblox-aurora/rbxts-transform-debug/tar.gz/9cc03b58fe9eb29a24d94d0290abab3ea5950562}
     version: 2.2.0
 
   rbxts-transform-env@3.0.0:
@@ -5256,10 +5256,10 @@ snapshots:
       picocolors: 1.1.1
       sisteransi: 1.0.5
 
-  '@commitlint/cli@19.6.1(@types/node@22.10.2)(typescript@5.7.3)':
+  '@commitlint/cli@19.7.1(@types/node@22.10.2)(typescript@5.7.3)':
     dependencies:
       '@commitlint/format': 19.5.0
-      '@commitlint/lint': 19.6.0
+      '@commitlint/lint': 19.7.1
       '@commitlint/load': 19.6.1(@types/node@22.10.2)(typescript@5.7.3)
       '@commitlint/read': 19.5.0
       '@commitlint/types': 19.5.0
@@ -5269,7 +5269,7 @@ snapshots:
       - '@types/node'
       - typescript
 
-  '@commitlint/config-conventional@19.6.0':
+  '@commitlint/config-conventional@19.7.1':
     dependencies:
       '@commitlint/types': 19.5.0
       conventional-changelog-conventionalcommits: 7.0.2
@@ -5295,14 +5295,14 @@ snapshots:
       '@commitlint/types': 19.5.0
       chalk: 5.4.1
 
-  '@commitlint/is-ignored@19.6.0':
+  '@commitlint/is-ignored@19.7.1':
     dependencies:
       '@commitlint/types': 19.5.0
       semver: 7.6.3
 
-  '@commitlint/lint@19.6.0':
+  '@commitlint/lint@19.7.1':
     dependencies:
-      '@commitlint/is-ignored': 19.6.0
+      '@commitlint/is-ignored': 19.7.1
       '@commitlint/parse': 19.5.0
       '@commitlint/rules': 19.6.0
       '@commitlint/types': 19.5.0
@@ -8945,7 +8945,7 @@ snapshots:
       yargs: 17.7.2
       zod: 3.24.1
 
-  rbxts-transform-debug@git+https://github.com/roblox-aurora/rbxts-transform-debug.git#9cc03b58fe9eb29a24d94d0290abab3ea5950562:
+  rbxts-transform-debug@https://codeload.github.com/roblox-aurora/rbxts-transform-debug/tar.gz/9cc03b58fe9eb29a24d94d0290abab3ea5950562:
     dependencies:
       chalk: 4.1.2
       colors: 1.4.0
