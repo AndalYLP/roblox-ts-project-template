@@ -11,8 +11,8 @@ export const gamePass = {
 // NOTE: define before use.
 export const product = {
 	Example: getConfigValueForGame({
-		[GameId.Development]: "1",
-		[GameId.Production]: "2",
+		[GameId.Development]: "3",
+		[GameId.Production]: "4",
 	}),
 };
 

@@ -166,9 +166,9 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 		};
 
 		if (productType === "Product") {
-			this.registerProductHandler(productId, withContextHandler);
+			this.registerProductHandler(productId as Product, withContextHandler);
 		} else {
-			this.gamePassHandlers.get(productId)?.push(withContextHandler);
+			this.gamePassHandlers.get(productId as GamePass)?.push(withContextHandler);
 		}
 	}
 
