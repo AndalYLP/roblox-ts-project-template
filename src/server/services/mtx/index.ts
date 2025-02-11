@@ -113,7 +113,7 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 	private readonly gamePassHandlers = new Map<
 		GamePass,
 		Array<(playerEntity: PlayerEntity, gamePassId: GamePass, isActive: boolean) => void>
-	>();
+	>(Object.values(gamePass).map(gamePassId => [gamePassId, []]));
 
 	private readonly productHandlers = new Map<
 		Product,
@@ -326,7 +326,9 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 			const handlers = this.gamePassHandlers.get(gamePassId);
 			if (handlers) {
 				for (const handler of handlers) {
-					handler(playerEntity, gamePassId, isActive);
+					task.defer(() => {
+						handler(playerEntity, gamePassId, isActive);
+					});
 				}
 			}
 		});
