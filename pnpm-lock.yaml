@@ -57,8 +57,8 @@ importers:
         specifier: 1.0.4
         version: 1.0.4
       '@rbxts/pretty-react-hooks':
-        specifier: 0.6.1
-        version: 0.6.1
+        specifier: 0.6.2
+        version: 0.6.2
       '@rbxts/promise-child':
         specifier: 1.2.1
         version: 1.2.1
@@ -1345,8 +1345,8 @@ packages:
   '@rbxts/pretty-format@0.1.0':
     resolution: {integrity: sha512-ZEZM6wd2kWXhXYcr+Q6Vey2wcre6JP6LDRX4u6PnLOEHmSy5XiLCmed1sicYFQfFYgkG5bRk+sGCySSWFEbqoA==}
 
-  '@rbxts/pretty-react-hooks@0.6.1':
-    resolution: {integrity: sha512-dnHS1z2Emq2ZC1dqKtcYmuhu04xkFgN25J/rnWYL4UnX9LuGXGrG4qF3kBlNRyTQXjGf+pXVlX6mLQmwfsSxOQ==}
+  '@rbxts/pretty-react-hooks@0.6.2':
+    resolution: {integrity: sha512-r2qG31eWldcreg1nLzITE9L9fwTEB1wgXk0lpLfRj2FPxMlsGxy+ck5exXCV0UuGnI+ZZdmvHPETiQRpX5yfSw==}
 
   '@rbxts/promise-child@1.2.1':
     resolution: {integrity: sha512-z1Qiim2l59fM2MSi3oi7mQyyxg74YjlSeSrDzBAb9Kd7SLe+bm2V00LOexuUtydZlxxzkrozzaCOlLPwoXwcaQ==}
@@ -5959,7 +5959,7 @@ snapshots:
     dependencies:
       '@rbxts/jest-vendor': 0.1.0
 
-  '@rbxts/pretty-react-hooks@0.6.1':
+  '@rbxts/pretty-react-hooks@0.6.2':
     dependencies:
       '@rbxts/react': 17.2.3
       '@rbxts/react-roblox': 17.2.3
