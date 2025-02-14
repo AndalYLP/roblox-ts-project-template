@@ -10,7 +10,7 @@ overrides:
 
 patchedDependencies:
   rbxts-transform-env:
-    hash: zgtlalrbsezgz577pqo74i3gry
+    hash: 6fa8e9a34eae0fb588fbf82f244cb9b90f344c9f01b060424c5056fee8802daf
     path: patches/rbxts-transform-env.patch
 
 importers:
@@ -164,7 +164,7 @@ importers:
         version: https://codeload.github.com/roblox-aurora/rbxts-transform-debug/tar.gz/9cc03b58fe9eb29a24d94d0290abab3ea5950562
       rbxts-transform-env:
         specifier: 3.0.0
-        version: 3.0.0(patch_hash=zgtlalrbsezgz577pqo74i3gry)
+        version: 3.0.0(patch_hash=6fa8e9a34eae0fb588fbf82f244cb9b90f344c9f01b060424c5056fee8802daf)
       rbxts-transformer-flamework:
         specifier: 1.2.3
         version: 1.2.3(typescript@5.7.3)
@@ -9031,7 +9031,7 @@ snapshots:
       types-package-json: 2.0.39
       typescript: 5.5.3
 
-  rbxts-transform-env@3.0.0(patch_hash=zgtlalrbsezgz577pqo74i3gry):
+  rbxts-transform-env@3.0.0(patch_hash=6fa8e9a34eae0fb588fbf82f244cb9b90f344c9f01b060424c5056fee8802daf):
     dependencies:
       chalk: 4.1.2
       colors: 1.4.0
