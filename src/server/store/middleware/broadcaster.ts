@@ -5,6 +5,9 @@ import { events } from "server/network";
 import { IS_DEV, IS_EDIT } from "shared/constants/core";
 import type { SerializedSharedState, SharedState } from "shared/store";
 import { slices, stateSerDes } from "shared/store";
+import { playersSlices } from "shared/store/slices/player";
+
+const PLAYER_SLICE_ACTIONS = playersSlices.getActions();
 
 /**
  * A middleware that listens for actions dispatched from the server and
@@ -47,7 +50,7 @@ function beforeDispatch(player: Player, action: BroadcastAction): BroadcastActio
 		return;
 	}
 
-	if (action.arguments[0] !== player) {
+	if (action.name in PLAYER_SLICE_ACTIONS && action.arguments[0] !== player) {
 		return;
 	}
 
