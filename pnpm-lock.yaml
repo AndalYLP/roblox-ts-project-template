@@ -99,8 +99,8 @@ importers:
         specifier: 3.1.1
         version: 3.1.1
       '@rbxts/ui-labs':
-        specifier: 2.3.5
-        version: 2.3.5
+        specifier: 2.3.7
+        version: 2.3.7
       '@rbxts/validate-tree':
         specifier: 2.0.2
         version: 2.0.2
@@ -1399,8 +1399,8 @@ packages:
   '@rbxts/types@1.0.836':
     resolution: {integrity: sha512-4+wKPaO+krgCcCc49PaDd0GIDK7DbtA0K0VQLv5RZufdXEJZCeD+zYjldtn1Rg4uO4UHiF82vzbGzJjp/rxPig==}
 
-  '@rbxts/ui-labs@2.3.5':
-    resolution: {integrity: sha512-qCabbRK96EQFolp0NFLPTwn9INygTCC9Mfj5yjsJkFt2WIIHEbNYQvo7BVQQlKPKcQjmHVLMtE+F/qKQCuP6qg==}
+  '@rbxts/ui-labs@2.3.7':
+    resolution: {integrity: sha512-LCcMWUO3ZABVxqpjM34/Eh45f3o5JHLbZcwgQ/OCVBVO+qBnJ51gCBu4zusjXLAHfPtLl5GRffs4LTBzhvv8wQ==}
 
   '@rbxts/validate-tree@2.0.2':
     resolution: {integrity: sha512-OA0E9ZjEeOpPa3XeV5/oC51aro2QFcL5dItufbagYZW8TOsX8C+FDXLx+A/ulMwcF42WcFNcQybxzcWSS/QSrA==}
@@ -6009,7 +6009,7 @@ snapshots:
 
   '@rbxts/types@1.0.836': {}
 
-  '@rbxts/ui-labs@2.3.5': {}
+  '@rbxts/ui-labs@2.3.7': {}
 
   '@rbxts/validate-tree@2.0.2': {}
 
