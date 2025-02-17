@@ -15,6 +15,7 @@
 		"dev:build": "rbxts-build build",
 		"dev:compile": "rbxts-build compile",
 		"dev:open": "rbxts-build open",
+		"dev:reopen": "pnpm dev:stop && pnpm dev:open",
 		"dev:restart": "pnpm dev:stop && pnpm dev:start",
 		"dev:start": "rbxts-build start",
 		"dev:stop": "rbxts-build stop",
