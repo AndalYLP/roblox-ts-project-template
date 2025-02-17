@@ -9,11 +9,13 @@
 		"moduleDetection": "force",
 		"noLib": true,
 		"experimentalDecorators": true,
-		"baseUrl": "src",
-		// configurable
-		"rootDir": "src",
+		"baseUrl": "./",
+		"rootDirs": ["src", "test"],
 		"module": "commonjs",
 		"moduleResolution": "Node",
+		"paths": {
+			"*": ["src/*", "test"]
+		},
 		"resolveJsonModule": true,
 		"typeRoots": [
 			"node_modules/@rbxts",
@@ -41,6 +43,7 @@
 			}
 		]
 	},
+	"include": ["test", "src"],
 	"exclude": [
 		"node_modules",
 		"include",

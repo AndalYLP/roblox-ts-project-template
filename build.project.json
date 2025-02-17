@@ -1,12 +1,15 @@
 {
 	"name": "roblox-ts-template-build",
-	"globIgnorePaths": ["**/package.json", "**/tsconfig.json"],
+	"globIgnorePaths": [
+		"**/package.json",
+		"**/tsconfig.json"
+	],
 	"tree": {
 		"$className": "DataModel",
 		"ServerScriptService": {
 			"$className": "ServerScriptService",
 			"TS": {
-				"$path": "dist/server"
+				"$path": "dist/src/server"
 			}
 		},
 		"ReplicatedStorage": {
@@ -24,13 +27,13 @@
 				}
 			},
 			"TS": {
-				"$path": "dist/shared"
+				"$path": "dist/src/shared"
 			},
 			"TS-types": {
-				"$path": "dist/types"
+				"$path": "dist/src/types"
 			},
 			"utils": {
-				"$path": "dist/utils"
+				"$path": "dist/src/utils"
 			}
 		},
 		"StarterPlayer": {
@@ -38,7 +41,7 @@
 			"StarterPlayerScripts": {
 				"$className": "StarterPlayerScripts",
 				"TS": {
-					"$path": "dist/client"
+					"$path": "dist/src/client"
 				}
 			}
 		},
