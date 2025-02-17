@@ -14,7 +14,8 @@
 		"module": "commonjs",
 		"moduleResolution": "Node",
 		"paths": {
-			"*": ["src/*", "test"]
+			"*": ["src/*"],
+			"test/*": ["test/*"]
 		},
 		"resolveJsonModule": true,
 		"typeRoots": [
