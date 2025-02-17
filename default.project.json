@@ -9,7 +9,10 @@
 		"ServerScriptService": {
 			"$className": "ServerScriptService",
 			"TS": {
-				"$path": "out/src/server"
+				"$path": "out/src/server",
+				"__test__": {
+					"$path": "out/test/tests/server"
+				}
 			}
 		},
 		"ReplicatedStorage": {
@@ -27,7 +30,10 @@
 				}
 			},
 			"TS": {
-				"$path": "out/src/shared"
+				"$path": "out/src/shared",
+				"__test__": {
+					"$path": "out/test/tests/shared"
+				}
 			},
 			"TS-types": {
 				"$path": "out/src/types"
