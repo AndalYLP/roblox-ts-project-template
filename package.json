@@ -19,7 +19,7 @@
 		"dev:start": "rbxts-build start",
 		"dev:stop": "rbxts-build stop",
 		"dev:sync": "rbxts-build sync",
-		"dev:test": "pnpm dev:build && run-in-roblox --place game.rbxl --script test/runtime.server.luau",
+		"dev:test": "pnpm dev:build && run-in-roblox --place game.rbxl --script out/test/runtime.server.luau",
 		"dev:watch": "rbxts-build watch",
 		"lint": "eslint src",
 		"prepare": "node .husky/install.js && cp patches/jest-lua.rbxm node_modules/@rbxts/jest-vendor",
