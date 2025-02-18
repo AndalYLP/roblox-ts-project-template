@@ -24,8 +24,8 @@ importers:
         specifier: 1.2.3
         version: 1.2.3
       '@flamework/networking':
-        specifier: 1.2.3
-        version: 1.2.3(@flamework/core@1.2.3)
+        specifier: 1.2.4
+        version: 1.2.4(@flamework/core@1.2.3)
       '@rbxts/abbreviate':
         specifier: 3.0.4
         version: 3.0.4
@@ -1201,8 +1201,8 @@ packages:
   '@flamework/core@1.2.3':
     resolution: {integrity: sha512-WgK/xe+++KxCASa+wwIxDyzVMjJ/lRJkhUTywqAItul3lbTZPessK0Tv6VmXrqg2xbKi6aZZmHb7sZVh2pViUA==}
 
-  '@flamework/networking@1.2.3':
-    resolution: {integrity: sha512-ZC799XY1HzrMqU25qzq1u61UJYJzQXIJHzvHXOovPKnoN3Covf9eby5qTZAQGnoqyDbcXjP5JVDMa+BoV4xDHw==}
+  '@flamework/networking@1.2.4':
+    resolution: {integrity: sha512-ujXQ7FnW1L5TdwrSxZpQ31KK9Dp5JmZHhD1328rKiGAPb/aw/SQ4ia2/V+pq/DStaCPkgEL8tDjfdLtOtwYf9A==}
     peerDependencies:
       '@flamework/core': '*'
 
@@ -5766,7 +5766,7 @@ snapshots:
       '@rbxts/signal': 1.1.1
       '@rbxts/t': 3.1.1
 
-  '@flamework/networking@1.2.3(@flamework/core@1.2.3)':
+  '@flamework/networking@1.2.4(@flamework/core@1.2.3)':
     dependencies:
       '@flamework/core': 1.2.3
       '@rbxts/object-utils': 1.0.4
