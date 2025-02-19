@@ -1,6 +1,6 @@
-import type { Config } from "@rbxts/jest";
+import type { Argv } from "@rbxts/jest/src/config";
 
-export const config: Config = {
+export const config = {
 	testMatch: ["**/*.spec"],
 	verbose: true,
-};
+} satisfies Argv;
