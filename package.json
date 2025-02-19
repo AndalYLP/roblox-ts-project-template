@@ -36,7 +36,7 @@
 		"minimist": "1.2.8"
 	},
 	"dependencies": {
-		"@flamework/components": "1.2.3",
+		"@flamework/components": "1.2.4",
 		"@flamework/core": "1.2.3",
 		"@flamework/networking": "1.2.3",
 		"@rbxts/abbreviate": "3.0.4",
