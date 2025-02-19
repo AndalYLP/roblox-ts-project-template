@@ -18,20 +18,20 @@ importers:
   .:
     dependencies:
       '@flamework/components':
-        specifier: 1.2.3
-        version: 1.2.3(@flamework/core@1.2.3)
+        specifier: 1.2.4
+        version: 1.2.4(@flamework/core@1.2.4)
       '@flamework/core':
-        specifier: 1.2.3
-        version: 1.2.3
+        specifier: 1.2.4
+        version: 1.2.4
       '@flamework/networking':
-        specifier: 1.2.3
-        version: 1.2.3(@flamework/core@1.2.3)
+        specifier: 1.2.4
+        version: 1.2.4(@flamework/core@1.2.4)
       '@rbxts/abbreviate':
         specifier: 3.0.4
         version: 3.0.4
       '@rbxts/flamework-binary-serializer':
         specifier: 0.6.0
-        version: 0.6.0(@flamework/core@1.2.3)(rbxts-transformer-flamework@1.2.3(typescript@5.7.3))
+        version: 0.6.0(@flamework/core@1.2.4)(rbxts-transformer-flamework@1.2.4(typescript@5.7.3))
       '@rbxts/janitor':
         specifier: 1.17.0-ts.1
         version: 1.17.0-ts.1
@@ -166,8 +166,8 @@ importers:
         specifier: 3.0.0
         version: 3.0.0(patch_hash=zgtlalrbsezgz577pqo74i3gry)
       rbxts-transformer-flamework:
-        specifier: 1.2.3
-        version: 1.2.3(typescript@5.7.3)
+        specifier: 1.2.4
+        version: 1.2.4(typescript@5.7.3)
       rimraf:
         specifier: 6.0.1
         version: 6.0.1
@@ -1193,16 +1193,16 @@ packages:
     resolution: {integrity: sha512-lB05FkqEdUg2AA0xEbUz0SnkXT1LcCTa438W4IWTUh4hdOnVbQyOJ81OrDXsJk/LSiJHubgGEFoR5EHq1NsH1A==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@flamework/components@1.2.3':
-    resolution: {integrity: sha512-j+u9+qKcCuUE7I+sMDgGCpTe8epf/AirTfU8QkHsnB3RHEOeMfwXmaMJam0a5mSH6olKBuuk8CkX+62B1DZb2A==}
+  '@flamework/components@1.2.4':
+    resolution: {integrity: sha512-V+yWVX83UljSBAZQse+xbmkh//U8un+SpO4oiru/zhzVd91c+0N149+d576/RDMTBpfSjbN3ywiicj6kda5aQw==}
     peerDependencies:
       '@flamework/core': '*'
 
-  '@flamework/core@1.2.3':
-    resolution: {integrity: sha512-WgK/xe+++KxCASa+wwIxDyzVMjJ/lRJkhUTywqAItul3lbTZPessK0Tv6VmXrqg2xbKi6aZZmHb7sZVh2pViUA==}
+  '@flamework/core@1.2.4':
+    resolution: {integrity: sha512-ND3RxRqDkX1diA7oTQI3Z7Dw1xQQP5wgWoK8X/ppav0KT/jcdqFx1Lwrn06nX2AYdvw1vUoZv834lc4xQUOgyA==}
 
-  '@flamework/networking@1.2.3':
-    resolution: {integrity: sha512-ZC799XY1HzrMqU25qzq1u61UJYJzQXIJHzvHXOovPKnoN3Covf9eby5qTZAQGnoqyDbcXjP5JVDMa+BoV4xDHw==}
+  '@flamework/networking@1.2.4':
+    resolution: {integrity: sha512-ujXQ7FnW1L5TdwrSxZpQ31KK9Dp5JmZHhD1328rKiGAPb/aw/SQ4ia2/V+pq/DStaCPkgEL8tDjfdLtOtwYf9A==}
     peerDependencies:
       '@flamework/core': '*'
 
@@ -3822,8 +3822,8 @@ packages:
   rbxts-transform-env@3.0.0:
     resolution: {integrity: sha512-ExKQm90lEPDceCq2GsbROqJzkQ0kAr1ibT+iy4vjobhjTTcW4ywI/3X7/D0gbZBkcdX/vA4jaWBfKgsDj/gnnQ==}
 
-  rbxts-transformer-flamework@1.2.3:
-    resolution: {integrity: sha512-QuveQ/sgxMMOE3Kov3TeKKht8b/ZwWJcghPhILPaluWYzHTm3AfUnkG9+9FrkfuEvKL44ug9iLTtMiMJVKg8iw==}
+  rbxts-transformer-flamework@1.2.4:
+    resolution: {integrity: sha512-D+yEEqNETRI0ob9hlMjmPCwZ2V4V1sawquc2SMS4iI9uoVZKJqiuE8SBuwatemqc47mfI/8l1hTet0d2BuwYfw==}
     peerDependencies:
       typescript: '*'
 
@@ -5750,15 +5750,15 @@ snapshots:
       '@eslint/core': 0.10.0
       levn: 0.4.1
 
-  '@flamework/components@1.2.3(@flamework/core@1.2.3)':
+  '@flamework/components@1.2.4(@flamework/core@1.2.4)':
     dependencies:
-      '@flamework/core': 1.2.3
+      '@flamework/core': 1.2.4
       '@rbxts/maid': 1.1.0
       '@rbxts/services': 1.5.5
       '@rbxts/signal': 1.1.1
       '@rbxts/t': 2.2.1
 
-  '@flamework/core@1.2.3':
+  '@flamework/core@1.2.4':
     dependencies:
       '@rbxts/maid': 1.1.0
       '@rbxts/object-utils': 1.0.4
@@ -5766,9 +5766,9 @@ snapshots:
       '@rbxts/signal': 1.1.1
       '@rbxts/t': 3.1.1
 
-  '@flamework/networking@1.2.3(@flamework/core@1.2.3)':
+  '@flamework/networking@1.2.4(@flamework/core@1.2.4)':
     dependencies:
-      '@flamework/core': 1.2.3
+      '@flamework/core': 1.2.4
       '@rbxts/object-utils': 1.0.4
       '@rbxts/services': 1.5.5
       '@rbxts/signal': 1.1.1
@@ -5906,10 +5906,10 @@ snapshots:
 
   '@rbxts/compiler-types@3.0.0-types.0': {}
 
-  '@rbxts/flamework-binary-serializer@0.6.0(@flamework/core@1.2.3)(rbxts-transformer-flamework@1.2.3(typescript@5.7.3))':
+  '@rbxts/flamework-binary-serializer@0.6.0(@flamework/core@1.2.4)(rbxts-transformer-flamework@1.2.4(typescript@5.7.3))':
     dependencies:
-      '@flamework/core': 1.2.3
-      rbxts-transformer-flamework: 1.2.3(typescript@5.7.3)
+      '@flamework/core': 1.2.4
+      rbxts-transformer-flamework: 1.2.4(typescript@5.7.3)
 
   '@rbxts/janitor@1.17.0-ts.1': {}
 
@@ -9039,7 +9039,7 @@ snapshots:
       ts-expose-internals: 5.2.2
       typescript: 5.5.3
 
-  rbxts-transformer-flamework@1.2.3(typescript@5.7.3):
+  rbxts-transformer-flamework@1.2.4(typescript@5.7.3):
     dependencies:
       '@roblox-ts/rojo-resolver': 1.1.0
       ajv: 8.17.1
