@@ -96,7 +96,12 @@
 			"$properties": {
 				"ExecuteWithStudioRun": true
 			},
-			"$path": "out/test"
+			"jest.config": {
+				"$path": "out/test/jest.config.luau"
+			},
+			"runtime": {
+				"$path": "out/test/runtime.server.luau"
+			}
 		},
 		"TextChatService": {
 			"$className": "TextChatService",
