@@ -87,10 +87,9 @@ async function createTask(apiKey, script, universeId, placeId, placeVersion) {
         'x-api-key': apiKey
     };
     const data = { script };
-    let url = `https://apis.roblox.com/cloud/v2/universes/${universeId}/places/${placeId}/luau-execution-session-tasks`;
-    if (placeVersion) {
-        url = `https://apis.roblox.com/cloud/v2/universes/${universeId}/places/${placeId}/versions/${placeVersion}/luau-execution-session-tasks`;
-    }
+
+    let url = `https://apis.roblox.com/cloud/v2/universes/${universeId}/places/${placeId}${placeVersion ? `/versions/${placeVersion}` : ''}/luau-execution-session-tasks`;
+
     const response = await makeRequest(url, headers, data);
     return response.data;
 }
@@ -211,8 +210,3 @@ module.exports = {
     pollForTaskCompletion,
     getTaskLogs
 }
-
-main().catch(err => {
-    console.error(err.message);
-    process.exit(1);
-});
