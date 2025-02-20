@@ -42,7 +42,7 @@ function makeRequest(url, headers, body = null) {
                 throw error;
             }
             attempts++;
-            console.log(`Retrying, error: ${error.message} ${JSON.stringify(error.response?.data) || ''}`);
+            console.log(`Retrying ${url}, error: ${error.message} ${JSON.stringify(error.response?.data) || ''}`);
             await new Promise(resolve => setTimeout(resolve, 1000));
             return makeRequestWithRetry();
         }
