@@ -6,6 +6,8 @@ const ROBLOX_API_KEY = process.env.ROBLOX_OC_API_KEY;
 const ROBLOX_UNIVERSE_ID = process.env.ROBLOX_UNIVERSE_ID;
 const ROBLOX_PLACE_ID = process.env.ROBLOX_PLACE_ID;
 
+console.log(`Running for universe Id: ${ROBLOX_UNIVERSE_ID}, place Id: ${ROBLOX_PLACE_ID}`);
+
 function readFile(filePath) {
     return fs.readFileSync(filePath);
 }
