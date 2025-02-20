@@ -168,7 +168,7 @@ async function main() {
     let prevScriptHash = null;
     let waitingMsgPrinted = false;
     while (true) {
-        const script = readFileExitOnFailure(args.scriptFile, 'script');
+        const script = readFileExitOnFailure(args.f, 'script');
         const scriptHash = crypto.createHash('sha256').update(script).digest('hex');
 
         if (prevScriptHash && scriptHash === prevScriptHash) {
