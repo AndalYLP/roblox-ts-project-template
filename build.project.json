@@ -2,7 +2,8 @@
 	"name": "roblox-ts-template-build",
 	"globIgnorePaths": [
 		"**/package.json",
-		"**/tsconfig.json"
+		"**/tsconfig.json",
+		"**/*.story.luau"
 	],
 	"tree": {
 		"$className": "DataModel",
