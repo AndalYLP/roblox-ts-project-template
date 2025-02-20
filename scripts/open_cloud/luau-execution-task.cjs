@@ -81,7 +81,7 @@ function loadAPIKey(apiKeyArg) {
     }
 }
 
-export async function createTask(apiKey, script, universeId, placeId, placeVersion) {
+async function createTask(apiKey, script, universeId, placeId, placeVersion) {
     const headers = {
         'Content-Type': 'application/json',
         'x-api-key': apiKey
@@ -95,7 +95,7 @@ export async function createTask(apiKey, script, universeId, placeId, placeVersi
     return response.data;
 }
 
-export async function pollForTaskCompletion(apiKey, taskPath) {
+async function pollForTaskCompletion(apiKey, taskPath) {
     const headers = { 'x-api-key': apiKey };
     const url = `https://apis.roblox.com/cloud/v2/${taskPath}`;
     console.log("Waiting for task to finish...");
@@ -118,7 +118,7 @@ export async function pollForTaskCompletion(apiKey, taskPath) {
     }
 }
 
-export async function getTaskLogs(apiKey, taskPath) {
+async function getTaskLogs(apiKey, taskPath) {
     const headers = { 'x-api-key': apiKey };
     const url = `https://apis.roblox.com/cloud/v2/${taskPath}/logs`;
 
@@ -204,6 +204,12 @@ async function main() {
             break;
         }
     }
+}
+
+module.exports = {
+    createTask,
+    pollForTaskCompletion,
+    getTaskLogs
 }
 
 main().catch(err => {
