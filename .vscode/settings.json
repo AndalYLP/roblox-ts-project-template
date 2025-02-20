@@ -29,16 +29,14 @@
 		".github": true,
 		".gitattributes": true,
 		"pnpm-lock.yaml": true,
-		"include": true
+		"include": true,
+		"scripts": true
 	},
 
 	// Custom Labels for Index Files
 	"workbench.editor.customLabels.patterns": {
 		"**/index.*": "${dirname}.${extname}"
 	},
-
-	// Editor Settings
-	"workbench.editor.enablePreview": false,
 
 	// ESLint Configuration
 	"eslint.run": "onType",
