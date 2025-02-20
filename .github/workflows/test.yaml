@@ -41,7 +41,7 @@ jobs:
         uses: CompeyDev/setup-rokit@d49be92bd9502180218c3f43e7988faa945217b0 # v0.1.2
 
       - name: Compile
-        run: pnpm dev:build
+        run: pnpm dev:compile
 
       - name: Run tests
         run: node ./scripts/open_cloud/upload-and-run-task.js default.project.json $TEST_TASK_FILE
