@@ -65,7 +65,7 @@ function loadAPIKey(apiKeyArg) {
     if (apiKeyArg) {
         apiKey = readFileExitOnFailure(apiKeyArg, 'API key').trim();
     } else {
-        apiKey = process.env[API_KEY_ENV]?.trim();
+        apiKey = API_KEY_ENV?.trim();
         if (!apiKey) {
             console.error('API key needed. Either provide the --api-key option or set the RBLX_OC_API_KEY environment variable.');
             process.exit(1);
