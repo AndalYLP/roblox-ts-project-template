@@ -1,0 +1,9 @@
+roots = [
+  "ReplicatedStorage/TS/__test__",
+  "ServerScriptService/TS/__test__"
+]
+
+[extraOptions]
+jest = "ReplicatedStorage/rbxts_include/node_modules/@rbxts/jest/src"
+module = "TestService/jest.config"
+tsCompatibility = true
