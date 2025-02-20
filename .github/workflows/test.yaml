@@ -49,7 +49,7 @@ jobs:
       - name: Run tests
         run: node ./scripts/open_cloud/upload-and-run-task.cjs default.project.json $TEST_TASK_FILE
         env:
-          ROBLOX_API_KEY: ${{ secrets.JEST_TEST_API_KEY }}
+          RBLX_OC_API_KEY: ${{ secrets.JEST_TEST_API_KEY}}
           ROBLOX_UNIVERSE_ID: ${{ vars.ROBLOX_TEST_UNIVERSE_ID }}
           ROBLOX_PLACE_ID: ${{ vars.ROBLOX_TEST_PLACE_ID }}
           TEST_TASK_FILE: dist/test/runtime.server.luau
