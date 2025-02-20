@@ -2,7 +2,7 @@ const fs = require('fs');
 const https = require('https');
 const { createTask, pollForTaskCompletion, getTaskLogs } = require('./luau-execution-task.cjs');
 
-const ROBLOX_API_KEY = process.env.ROBLOX_API_KEY;
+const ROBLOX_API_KEY = process.env.ROBLOX_OC_API_KEY;
 const ROBLOX_UNIVERSE_ID = process.env.ROBLOX_UNIVERSE_ID;
 const ROBLOX_PLACE_ID = process.env.ROBLOX_PLACE_ID;
 

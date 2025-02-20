@@ -3,7 +3,7 @@ const fs = require('fs');
 const crypto = require('crypto');
 const process = require('process');
 
-const API_KEY_ENV = process.env["RBLX_OC_API_KEY"];
+const API_KEY_ENV = process.env.ROBLOX_OC_API_KEY;
 const MAX_RETRIES = 3;
 
 function parseArgs() {
@@ -163,12 +163,12 @@ function handleFailure(task) {
 async function main() {
     const args = parseArgs();
 
-    const apiKey = loadAPIKey(args.apiKey);
+    const apiKey = loadAPIKey(args["api-key"]);
 
     let prevScriptHash = null;
     let waitingMsgPrinted = false;
     while (true) {
-        const script = readFileExitOnFailure(args.f, 'script');
+        const script = readFileExitOnFailure(args["_"][1], 'script');
         const scriptHash = crypto.createHash('sha256').update(script).digest('hex');
 
         if (prevScriptHash && scriptHash === prevScriptHash) {

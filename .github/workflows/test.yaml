@@ -47,9 +47,9 @@ jobs:
         run: pnpm prod:build
 
       - name: Run tests
-        run: node ./scripts/open_cloud/upload-and-run-task.cjs -f $TEST_TASK_FILE
+        run: node ./scripts/open_cloud/upload-and-run-task.cjs default.project.json $TEST_TASK_FILE
         env:
-          RBLX_OC_API_KEY: ${{ secrets.JEST_TEST_API_KEY}}
+          ROBLOX_OC_API_KEY: ${{ secrets.JEST_TEST_API_KEY}}
           ROBLOX_UNIVERSE_ID: ${{ vars.ROBLOX_TEST_UNIVERSE_ID }}
           ROBLOX_PLACE_ID: ${{ vars.ROBLOX_TEST_PLACE_ID }}
           TEST_TASK_FILE: dist/test/runtime.server.luau
