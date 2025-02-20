@@ -9,7 +9,7 @@
 	"main": "index.js",
 	"scripts": {
 		"assets:syncback": "lune run syncback",
-		"assets:upload": "asphalt sync",
+		"assets:upload": "asphalt sync && eslint src/shared/assets.d.ts --fix",
 		"clean": "rimraf out/ && rimraf dist && rimraf flamework.build",
 		"darklua": "darklua process out dist --verbose",
 		"dev:build": "rbxts-build build",
@@ -18,7 +18,7 @@
 		"dev:restart": "pnpm dev:stop && pnpm dev:start",
 		"dev:start": "rbxts-build start",
 		"dev:stop": "rbxts-build stop",
-		"dev:sync": "rbxts-build sync",
+		"dev:sync": "rbxts-build sync && eslint src/types/interfaces/services.d.ts --fix",
 		"dev:test": "pnpm dev:build && run-in-roblox --place game.rbxl --script out/test/runtime.server.luau",
 		"dev:watch": "rbxts-build watch",
 		"lint": "eslint src",
