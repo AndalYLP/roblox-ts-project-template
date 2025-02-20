@@ -44,7 +44,7 @@ jobs:
         run: pnpm dev:compile
 
       - name: Run tests
-        run: node ./scripts/open_cloud/upload-and-run-task.js default.project.json $TEST_TASK_FILE
+        run: node ./scripts/open_cloud/upload-and-run-task.cjs default.project.json $TEST_TASK_FILE
         env:
           ROBLOX_API_KEY: ${{ secrets.JEST_TEST_API_KEY }}
           ROBLOX_UNIVERSE_ID: ${{ vars.ROBLOX_TEST_UNIVERSE_ID }}
