@@ -8,6 +8,7 @@
 		"yoavbls.pretty-ts-errors",
 		"roblox-ts.vscode-roblox-ts",
 		"evaera.vscode-rojo",
-		"gruntfuggly.todo-tree"
+		"gruntfuggly.todo-tree",
+		"tacheometrist.testez-companion"
 	]
 }
