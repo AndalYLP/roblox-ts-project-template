@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://mantledeploy.vercel.app/schemas/v0.11.16/schema.json
+
 owner: personal
 
 environments:
@@ -5,6 +7,7 @@ environments:
     targetNamePrefix: environmentLabel
     targetAccess: private
     targetOverrides:
+      icon: assets/marketing/example-icon.png
 
   - label: production
     branches:
@@ -28,7 +31,7 @@ target:
 
     places:
       start:
-        file: place.rbxlx
+        file: place.rbxl
 
         configuration:
           name: Roblox-ts Template
@@ -47,11 +50,11 @@ target:
         name: Example Product
         description: This is an example product.
         price: 5
-        icon: assets/marketing/example-icon.png
+        icon: assets/products/example-product.png
 
     passes:
       1-example:
         name: Example Pass
         description: This is an example pass.
         price: 5
-        icon: assets/marketing/example-icon.png
+        icon: assets/passes/example-pass.png
