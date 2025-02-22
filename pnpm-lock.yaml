@@ -43,7 +43,7 @@ importers:
         version: 0.1.0
       '@rbxts/lapis':
         specifier: 0.3.8
-        version: 0.3.8(@rbxts/t@3.1.1)
+        version: 0.3.8(@rbxts/t@3.2.1)
       '@rbxts/lapis-mockdatastore':
         specifier: 0.3.7
         version: 0.3.7
@@ -96,8 +96,8 @@ importers:
         specifier: 1.0.3
         version: 1.0.3
       '@rbxts/t':
-        specifier: 3.1.1
-        version: 3.1.1
+        specifier: 3.2.1
+        version: 3.2.1
       '@rbxts/ui-labs':
         specifier: 2.3.8
         version: 2.3.8
@@ -1396,8 +1396,8 @@ packages:
   '@rbxts/t@2.2.1':
     resolution: {integrity: sha512-MoFLHRQdm1tpAviAVxgkQj/ktxtnGBund2HXQj5xRqgYUWuC3kYuLkctuxXiJHUd1o1JzfU/HvVHtZfpqp61tg==}
 
-  '@rbxts/t@3.1.1':
-    resolution: {integrity: sha512-r+IvHHGLt9ZM8+cJAs5Q7ZyGaSlsbkXTaeat85FxRmjjozykHLbQ24rY/5utJbp63a5uCy3Wyl1fGv/Gk/GnIw==}
+  '@rbxts/t@3.2.1':
+    resolution: {integrity: sha512-/fnf2QSx+TI3HSJ6QW2ikvGQk0mlx/63UXo60pLAKGqbxXiAuTJh88bpKpHw6aCzfFLJAwrVIcgCUOokLMPcag==}
 
   '@rbxts/types@1.0.837':
     resolution: {integrity: sha512-3Wy6YAkD/57RmlIGWCQ5n+nfSjMM4rraaXwBuM/2iQjDryuQMxEfP2gSnrFEbZy+j+1DZ2JhlGV7KkrPtnn8oQ==}
@@ -5747,7 +5747,7 @@ snapshots:
       '@rbxts/object-utils': 1.0.4
       '@rbxts/services': 1.5.5
       '@rbxts/signal': 1.1.1
-      '@rbxts/t': 3.1.1
+      '@rbxts/t': 3.2.1
 
   '@flamework/networking@1.2.4(@flamework/core@1.2.4)':
     dependencies:
@@ -5755,7 +5755,7 @@ snapshots:
       '@rbxts/object-utils': 1.0.4
       '@rbxts/services': 1.5.5
       '@rbxts/signal': 1.1.1
-      '@rbxts/t': 3.1.1
+      '@rbxts/t': 3.2.1
 
   '@humanfs/core@0.19.1': {}
 
@@ -5919,9 +5919,9 @@ snapshots:
 
   '@rbxts/lapis-mockdatastore@0.3.7': {}
 
-  '@rbxts/lapis@0.3.8(@rbxts/t@3.1.1)':
+  '@rbxts/lapis@0.3.8(@rbxts/t@3.2.1)':
     dependencies:
-      '@rbxts/t': 3.1.1
+      '@rbxts/t': 3.2.1
 
   '@rbxts/log@0.6.3':
     dependencies:
@@ -5988,7 +5988,7 @@ snapshots:
 
   '@rbxts/t@2.2.1': {}
 
-  '@rbxts/t@3.1.1': {}
+  '@rbxts/t@3.2.1': {}
 
   '@rbxts/types@1.0.837': {}
 
