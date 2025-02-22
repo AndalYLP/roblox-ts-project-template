@@ -17,7 +17,7 @@ export function enoughBalance<I extends [number, ...Array<unknown>]>(
 
 			const [amount] = args;
 			const balance = store.getState(selector(player));
-			print(balance);
+
 			if (balance! < amount) {
 				return;
 			}
