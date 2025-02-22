@@ -29,6 +29,7 @@
 		".github": true,
 		".gitattributes": true,
 		"pnpm-lock.yaml": true,
+		"flamework.build": true,
 		"include": true,
 		"scripts": true
 	},
