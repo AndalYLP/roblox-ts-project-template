@@ -49,4 +49,10 @@ export default style(
 			"max-lines-per-function": "off",
 		},
 	},
+	{
+		files: ["test/runtime.server.ts"],
+		rules: {
+			"import/no-namespace": "off",
+		},
+	},
 );
