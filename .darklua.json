@@ -1,10 +1,15 @@
 {
-	"generator": { "name": "dense", "column_span": 50 },
+	"generator": {
+		"name": "readable",
+		"column_span": 100
+	},
 	"rules": [
 		"remove_spaces",
 		{
 			"rule": "remove_comments",
-			"except": ["^--!"]
+			"except": [
+				"^--!"
+			]
 		},
 		"remove_assertions",
 		"compute_expression",

@@ -1,12 +1,18 @@
 {
 	"name": "roblox-ts-template",
-	"globIgnorePaths": ["**/package.json", "**/tsconfig.json"],
+	"globIgnorePaths": [
+		"**/package.json",
+		"**/tsconfig.json"
+	],
 	"tree": {
 		"$className": "DataModel",
 		"ServerScriptService": {
 			"$className": "ServerScriptService",
 			"TS": {
-				"$path": "out/server"
+				"$path": "out/src/server",
+				"__test__": {
+					"$path": "out/test/tests/server"
+				}
 			}
 		},
 		"ReplicatedStorage": {
@@ -24,13 +30,16 @@
 				}
 			},
 			"TS": {
-				"$path": "out/shared"
+				"$path": "out/src/shared",
+				"__test__": {
+					"$path": "out/test/tests/shared"
+				}
 			},
 			"TS-types": {
-				"$path": "out/types"
+				"$path": "out/src/types"
 			},
 			"utils": {
-				"$path": "out/utils"
+				"$path": "out/src/utils"
 			}
 		},
 		"StarterPlayer": {
@@ -38,7 +47,7 @@
 			"StarterPlayerScripts": {
 				"$className": "StarterPlayerScripts",
 				"TS": {
-					"$path": "out/client"
+					"$path": "out/src/client"
 				}
 			}
 		},
@@ -51,10 +60,22 @@
 				"$className": "Part",
 				"$properties": {
 					"Anchored": true,
-					"Color": [0.38823, 0.37254, 0.38823],
+					"Color": [
+						0.38823,
+						0.37254,
+						0.38823
+					],
 					"Locked": true,
-					"Position": [0, 0, 0],
-					"Size": [50, 2, 50]
+					"Position": [
+						0,
+						0,
+						0
+					],
+					"Size": [
+						50,
+						2,
+						50
+					]
 				}
 			}
 		},
@@ -75,7 +96,12 @@
 			"$properties": {
 				"ExecuteWithStudioRun": true
 			},
-			"$path": "test"
+			"jest.config": {
+				"$path": "out/test/jest.config.luau"
+			},
+			"runtime": {
+				"$path": "out/test/runtime.server.luau"
+			}
 		},
 		"TextChatService": {
 			"$className": "TextChatService",

@@ -14,7 +14,7 @@
 
 	// File Explorer Settings
 	"explorer.fileNesting.patterns": {
-		"package.json": ".darklua.json, .gitattributes, .gitignore, .npmrc, asphalt.toml, flamework.build, pnpm-lock.yaml, rokit.toml, .env",
+		"package.json": ".darklua.json, .gitattributes, .gitignore, .npmrc, asphalt.toml, flamework.build, pnpm-lock.yaml, rokit.toml, .env, testez-companion.toml",
 		"README.md": "LICENSE",
 		"asphalt.toml": "asphalt.lock.toml",
 		"eslint.config.ts": "commitlint.config.ts, cspell.config.yaml, renovate.json",
@@ -29,16 +29,15 @@
 		".github": true,
 		".gitattributes": true,
 		"pnpm-lock.yaml": true,
-		"include": true
+		"flamework.build": true,
+		"include": true,
+		"scripts": true
 	},
 
 	// Custom Labels for Index Files
 	"workbench.editor.customLabels.patterns": {
 		"**/index.*": "${dirname}.${extname}"
 	},
-
-	// Editor Settings
-	"workbench.editor.enablePreview": false,
 
 	// ESLint Configuration
 	"eslint.run": "onType",

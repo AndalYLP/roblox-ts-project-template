@@ -9,7 +9,7 @@
 	"main": "index.js",
 	"scripts": {
 		"assets:syncback": "lune run syncback",
-		"assets:upload": "asphalt sync",
+		"assets:upload": "asphalt sync && eslint src/shared/assets.d.ts --fix",
 		"clean": "rimraf out/ && rimraf dist && rimraf flamework.build",
 		"darklua": "darklua process out dist --verbose",
 		"dev:build": "rbxts-build build",
@@ -18,13 +18,14 @@
 		"dev:restart": "pnpm dev:stop && pnpm dev:start",
 		"dev:start": "rbxts-build start",
 		"dev:stop": "rbxts-build stop",
-		"dev:sync": "rbxts-build sync",
-		"dev:test": "pnpm dev:build && run-in-roblox --place game.rbxl --script test/runtime.server.luau",
+		"dev:sync": "rbxts-build sync && eslint src/types/interfaces/services.d.ts --fix",
+		"dev:test": "pnpm dev:build && run-in-roblox --place game.rbxl --script out/test/runtime.server.luau",
 		"dev:watch": "rbxts-build watch",
 		"lint": "eslint src",
-		"prepare": "node .husky/install.js",
+		"prepare": "node .husky/install.js && cp patches/jest-lua.rbxm node_modules/@rbxts/jest-vendor",
 		"prod:build": "pnpm clean && NODE_ENV=production && rbxtsc --verbose && pnpm darklua",
-		"prod:sync": "rojo serve ./build.project.json"
+		"prod:sync": "rojo serve ./build.project.json",
+		"testez:install": "cp patches/TestEZ_Companion.rbxm $LOCALAPPDATA/Roblox/Plugins"
 	},
 	"lint-staged": {
 		"*.{js,ts,tsx}": [
@@ -36,9 +37,9 @@
 		"minimist": "1.2.8"
 	},
 	"dependencies": {
-		"@flamework/components": "1.2.3",
-		"@flamework/core": "1.2.3",
-		"@flamework/networking": "1.2.3",
+		"@flamework/components": "1.2.4",
+		"@flamework/core": "1.2.4",
+		"@flamework/networking": "1.2.4",
 		"@rbxts/abbreviate": "3.0.4",
 		"@rbxts/flamework-binary-serializer": "0.6.0",
 		"@rbxts/janitor": "1.17.0-ts.1",
@@ -62,8 +63,8 @@
 		"@rbxts/sift": "0.0.9",
 		"@rbxts/signal": "1.1.1",
 		"@rbxts/string-utils": "1.0.3",
-		"@rbxts/t": "3.1.1",
-		"@rbxts/ui-labs": "2.3.5",
+		"@rbxts/t": "3.2.1",
+		"@rbxts/ui-labs": "2.3.8",
 		"@rbxts/validate-tree": "2.0.2",
 		"@rbxts/zone-plus": "3.2.0"
 	},
@@ -71,28 +72,28 @@
 		"@commitlint/cli": "19.7.1",
 		"@commitlint/config-conventional": "19.7.1",
 		"@commitlint/types": "19.5.0",
-		"@eslint-react/eslint-plugin": "1.26.2",
+		"@eslint-react/eslint-plugin": "1.27.0",
 		"@isentinel/dict-rbxts": "1.0.1",
 		"@isentinel/dict-roblox": "1.0.3",
 		"@isentinel/eslint-config": "0.9.0",
 		"@rbxts/compiler-types": "3.0.0-types.0",
-		"@rbxts/types": "1.0.836",
+		"@rbxts/types": "1.0.837",
 		"eslint": "9.20.1",
 		"eslint-plugin-react-roblox-hooks": "5.1.0-rbx.1",
 		"git-pull-run": "1.4.0",
 		"husky": "9.1.7",
 		"jiti": "2.4.2",
 		"lint-staged": "15.4.3",
-		"prettier": "3.5.0",
+		"prettier": "3.5.1",
 		"rbxts-build": "2.4.0",
 		"rbxts-transform-debug": "github:roblox-aurora/rbxts-transform-debug",
 		"rbxts-transform-env": "3.0.0",
-		"rbxts-transformer-flamework": "1.2.3",
+		"rbxts-transformer-flamework": "1.2.4",
 		"rimraf": "6.0.1",
 		"roblox-ts": "3.0.0",
 		"typescript": "5.7.3"
 	},
-	"packageManager": "pnpm@9.15.4",
+	"packageManager": "pnpm@10.4.1",
 	"pnpm": {
 		"patchedDependencies": {
 			"rbxts-transform-env": "patches/rbxts-transform-env.patch"
