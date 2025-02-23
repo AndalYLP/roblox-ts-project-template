@@ -6,9 +6,10 @@ import type * as ConfigModule from "./jest.config";
 
 const ReplicatedStorage = game.GetService("ReplicatedStorage");
 const ServerScriptService = game.GetService("ServerScriptService");
+const TestService = game.GetService("TestService");
 
 const { config } = require(
-	script.Parent!.FindFirstChild("jest.config") as ModuleScript,
+	TestService.FindFirstChild("jest.config") as ModuleScript,
 ) as typeof ConfigModule;
 
 const jestLua = ReplicatedStorage.WaitForChild("rbxts_include")
