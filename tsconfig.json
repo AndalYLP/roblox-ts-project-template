@@ -9,13 +9,12 @@
 		"moduleDetection": "force",
 		"noLib": true,
 		"experimentalDecorators": true,
-		"baseUrl": "./",
+		"baseUrl": "src",
 		"rootDirs": ["src", "test"],
 		"module": "commonjs",
 		"moduleResolution": "Node",
 		"paths": {
-			"*": ["src/*"],
-			"test/*": ["test/*"]
+			"test/*": ["../test/*"]
 		},
 		"resolveJsonModule": true,
 		"typeRoots": [
