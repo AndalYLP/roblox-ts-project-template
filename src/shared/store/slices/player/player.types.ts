@@ -1,11 +1,11 @@
-import type { PlayerAchievements } from "./achievements/achievements.types";
-import { defaultPlayerAchievements } from "./achievements/achievements.types";
-import type { PlayerBalance } from "./balance/balance.types";
-import { defaultPlayerBalance } from "./balance/balance.types";
-import type { PlayerMtx } from "./mtx/mtx.types";
-import { defaultPlayerMtx } from "./mtx/mtx.types";
-import type { PlayerSettings } from "./settings";
-import { defaultPlayerSettings } from "./settings";
+import type { PlayerAchievements } from "shared/store/slices/player/achievements/achievements.types";
+import { defaultPlayerAchievements } from "shared/store/slices/player/achievements/achievements.types";
+import type { PlayerBalance } from "shared/store/slices/player/balance/balance.types";
+import { defaultPlayerBalance } from "shared/store/slices/player/balance/balance.types";
+import type { PlayerMtx } from "shared/store/slices/player/mtx/mtx.types";
+import { defaultPlayerMtx } from "shared/store/slices/player/mtx/mtx.types";
+import type { PlayerSettings } from "shared/store/slices/player/settings";
+import { defaultPlayerSettings } from "shared/store/slices/player/settings";
 
 export interface PlayerData {
 	readonly achievements: PlayerAchievements;

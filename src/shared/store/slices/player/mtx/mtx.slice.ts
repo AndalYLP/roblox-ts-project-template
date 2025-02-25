@@ -1,10 +1,9 @@
 import { createProducer } from "@rbxts/reflex";
 
+import type { PlayerMtx } from "shared/store/slices/player/mtx/mtx.types";
+import { defaultPlayerMtx } from "shared/store/slices/player/mtx/mtx.types";
+import type { PlayerData } from "shared/store/slices/player/player.types";
 import type { GamePass, Product } from "types/enum/mtx";
-
-import type { PlayerData } from "../player.types";
-import type { PlayerMtx } from "./mtx.types";
-import { defaultPlayerMtx } from "./mtx.types";
 
 export type MtxState = Readonly<PlayerMtx>;
 

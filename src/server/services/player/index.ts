@@ -7,16 +7,15 @@ import Object from "@rbxts/object-utils";
 import { Players } from "@rbxts/services";
 import Signal from "@rbxts/signal";
 
+import type { PlayerDataService } from "server/services/player/data";
+import { PlayerEntity } from "server/services/player/entity";
+import type { PlayerRemovalService } from "server/services/player/removal";
 import { IS_DEV } from "shared/constants/core";
 import type { PlayerData } from "shared/store/slices/player";
 import { KickCode } from "types/enum/kick-reason";
 import type { ListenerData } from "utils/flamework";
 import { setupLifecycle } from "utils/flamework";
 import { onPlayerAdded, promisePlayerDisconnected } from "utils/player";
-
-import type { PlayerDataService } from "./data";
-import { PlayerEntity } from "./entity";
-import type { PlayerRemovalService } from "./removal";
 
 export interface OnPlayerJoin {
 	/**

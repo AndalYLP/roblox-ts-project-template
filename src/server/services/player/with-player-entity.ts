@@ -1,10 +1,9 @@
 import { Dependency } from "@flamework/core";
 import Log from "@rbxts/log";
 
+import type { PlayerService } from "server/services/player";
+import type { PlayerEntity } from "server/services/player/entity";
 import type { ServerResponse } from "types/interfaces/network";
-
-import type { PlayerService } from ".";
-import type { PlayerEntity } from "./entity";
 
 let playerService: PlayerService | undefined;
 

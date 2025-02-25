@@ -1,9 +1,8 @@
 import React, { forwardRef } from "@rbxts/react";
 
+import type { FrameProps } from "client/ui/components/primitive/frame";
 import type { BindingValue } from "types/utils/react";
 import type { AssetId } from "types/utils/roblox";
-
-import type { FrameProps } from "./frame";
 
 export interface ImageProps extends FrameProps<ImageLabel> {
 	/** The image to display. */

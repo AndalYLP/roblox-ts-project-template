@@ -1,9 +1,9 @@
 import { combineProducers } from "@rbxts/reflex";
 
-import { audioSlice } from "./audio/audio.slice";
+import { audioSlice } from "shared/store/slices/player/settings/audio/audio.slice";
 
-export * from "./settings.selectors";
-export * from "./settings.types";
+export * from "shared/store/slices/player/settings/settings.selectors";
+export * from "shared/store/slices/player/settings/settings.types";
 
 export const settingsSlices = combineProducers({
 	audio: audioSlice,

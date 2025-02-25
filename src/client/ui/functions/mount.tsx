@@ -3,9 +3,8 @@ import type { Root } from "@rbxts/react-roblox";
 import { createPortal, createRoot } from "@rbxts/react-roblox";
 
 import { PLAYER_GUI } from "client/constants/player";
-
-import type { MountProps } from "../providers/root";
-import { RootProvider } from "../providers/root";
+import type { MountProps } from "client/ui/providers/root";
+import { RootProvider } from "client/ui/providers/root";
 
 /**
  * Mounts the UI component to the Roblox game client.

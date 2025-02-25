@@ -3,12 +3,11 @@ import type Abbreviator from "@rbxts/abbreviate";
 import type { Logger } from "@rbxts/log";
 import Log from "@rbxts/log";
 
+import { middleWares, store } from "server/store";
+import { broadcasterMiddleware } from "server/store/middleware/broadcaster";
 import { FLAMEWORK_IGNITED } from "shared/constants/core";
 import { setupAbbreviator } from "shared/functions/abbreviator";
 import { setupLogger } from "shared/functions/logger";
-
-import { middleWares, store } from "./store";
-import { broadcasterMiddleware } from "./store/middleware/broadcaster";
 
 async function start(): Promise<void> {
 	setupLogger();

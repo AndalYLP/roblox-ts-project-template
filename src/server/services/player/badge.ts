@@ -2,13 +2,12 @@ import { Service } from "@flamework/core";
 import type { Logger } from "@rbxts/log";
 import { BadgeService } from "@rbxts/services";
 
+import type { OnPlayerJoin } from "server/services/player";
+import type { PlayerEntity } from "server/services/player/entity";
 import { store } from "server/store";
 import { selectPlayerAchievements } from "shared/store/slices/player/achievements/achievements.selectors";
 import type { Badge } from "types/enum/badge";
 import { badge as enumBadge } from "types/enum/badge";
-
-import type { OnPlayerJoin } from ".";
-import type { PlayerEntity } from "./entity";
 
 @Service()
 export class PlayerBadgeService implements OnPlayerJoin {

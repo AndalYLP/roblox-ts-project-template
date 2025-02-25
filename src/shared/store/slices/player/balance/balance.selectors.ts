@@ -1,9 +1,8 @@
 import { createSelector } from "@rbxts/reflex";
 
 import type { SharedState } from "shared/store";
-
-import { selectPlayerData } from "../player.selectors";
-import type { BalanceState } from "./balance.slice";
+import type { BalanceState } from "shared/store/slices/player/balance/balance.slice";
+import { selectPlayerData } from "shared/store/slices/player/player.selectors";
 
 export function selectPlayerBalance(
 	player: Player,

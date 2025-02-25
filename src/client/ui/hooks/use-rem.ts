@@ -1,6 +1,6 @@
 import { useCallback, useContext } from "@rbxts/react";
 
-import { DEFAULT_REM, RemContext } from "../providers/rem";
+import { DEFAULT_REM, RemContext } from "client/ui/providers/rem";
 
 export interface RemOptions {
 	maximum?: number;

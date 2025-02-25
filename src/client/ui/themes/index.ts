@@ -1,23 +1,13 @@
-import type { ThemeFonts } from "./fonts";
-import type { ThemeImages } from "./images";
+import type { ThemeColors } from "client/ui/themes/colors";
+import type { ThemeFonts } from "client/ui/themes/fonts";
+import type { ThemeImages } from "client/ui/themes/images";
 
-export * from "./configs";
-export * from "./fonts";
-export * from "./images";
+export * from "client/ui/themes/configs";
+export * from "client/ui/themes/fonts";
+export * from "client/ui/themes/images";
 
 export interface Theme {
-	colors: {
-		background: Color3;
-		border: Color3;
-		card: Color3;
-		primary: Color3;
-		secondary: Color3;
-		text: {
-			link: Color3;
-			primary: Color3;
-			secondary: Color3;
-		};
-	};
+	colors: ThemeColors;
 	fonts: ThemeFonts;
 	images: ThemeImages;
 }

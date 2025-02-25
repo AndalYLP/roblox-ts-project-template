@@ -1,9 +1,8 @@
 import type { Logger } from "@rbxts/log";
 
+import { GamePassStatusChanged, MtxEvents } from "server/services/mtx";
+import type { PlayerEntity } from "server/services/player/entity";
 import { gamePass } from "types/enum/mtx";
-
-import type { PlayerEntity } from "../../player/entity";
-import { GamePassStatusChanged, MtxEvents } from "..";
 
 @MtxEvents()
 export class GamePassEventsService {

@@ -1,6 +1,6 @@
 import React, { forwardRef } from "@rbxts/react";
 
-import type { FrameProps } from "./frame";
+import type { FrameProps } from "client/ui/components/primitive/frame";
 
 export type CanvasGroupProps = FrameProps<CanvasGroup>;
 

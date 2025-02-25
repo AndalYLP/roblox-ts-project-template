@@ -1,9 +1,8 @@
 import React, { forwardRef } from "@rbxts/react";
 
+import type { FrameProps } from "client/ui/components/primitive/frame";
 import { useRem, useTheme } from "client/ui/hooks";
 import type { BindingValue } from "types/utils/react";
-
-import type { FrameProps } from "./frame";
 
 export interface TextLabelProps extends FrameProps<TextLabel> {
 	/**

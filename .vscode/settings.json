@@ -39,6 +39,10 @@
 		"**/index.*": "${dirname}.${extname}"
 	},
 
+	// Typescript configuration
+	"typescript.preferences.importModuleSpecifier": "non-relative",
+
+
 	// ESLint Configuration
 	"eslint.run": "onType",
 	"eslint.format.enable": true,

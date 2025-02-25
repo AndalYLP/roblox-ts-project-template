@@ -1,10 +1,9 @@
 import { createProducer } from "@rbxts/reflex";
 
+import type { PlayerAchievements } from "shared/store/slices/player/achievements/achievements.types";
+import { defaultPlayerAchievements } from "shared/store/slices/player/achievements/achievements.types";
+import type { PlayerData } from "shared/store/slices/player/player.types";
 import type { Badge } from "types/enum/badge";
-
-import type { PlayerData } from "../player.types";
-import type { PlayerAchievements } from "./achievements.types";
-import { defaultPlayerAchievements } from "./achievements.types";
 
 export type AchievementState = Readonly<PlayerAchievements>;
 

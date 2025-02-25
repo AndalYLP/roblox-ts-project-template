@@ -3,11 +3,10 @@ import type Abbreviator from "@rbxts/abbreviate";
 import type { Logger } from "@rbxts/log";
 import Log from "@rbxts/log";
 
+import { createApp, reactConfig } from "client/ui/app/config";
 import { FLAMEWORK_IGNITED } from "shared/constants/core";
 import { setupAbbreviator } from "shared/functions/abbreviator";
 import { setupLogger } from "shared/functions/logger";
-
-import { createApp, reactConfig } from "./ui/app/config";
 
 async function start(): Promise<void> {
 	setupLogger();

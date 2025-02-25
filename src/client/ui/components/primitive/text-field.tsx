@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "@rbxts/react";
 
+import type { FrameProps } from "client/ui/components/primitive/frame";
 import { useRem, useTheme } from "client/ui/hooks";
 import type { BindingValue } from "types/utils/react";
-
-import type { FrameProps } from "./frame";
 
 interface TextFieldProps extends FrameProps<TextBox> {
 	readonly clearTextOnFocus?: boolean | React.Binding<boolean>;

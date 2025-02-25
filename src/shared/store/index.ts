@@ -1,7 +1,7 @@
 import { createBinarySerializer } from "@rbxts/flamework-binary-serializer";
 import type { CombineStates } from "@rbxts/reflex";
 
-import { playersSlices } from "./slices/player";
+import { playersSlices } from "shared/store/slices/player";
 
 export type SharedState = CombineStates<typeof slices>;
 

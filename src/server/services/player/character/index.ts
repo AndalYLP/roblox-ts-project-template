@@ -4,6 +4,8 @@ import type { Logger } from "@rbxts/log";
 import { setTimeout } from "@rbxts/set-timeout";
 import { promiseTree } from "@rbxts/validate-tree";
 
+import type { OnPlayerJoin } from "server/services/player";
+import type { PlayerEntity } from "server/services/player/entity";
 import { CollisionGroup } from "types/enum/collision-group";
 import { Tag } from "types/enum/tag";
 import type { ListenerData } from "utils/flamework";
@@ -16,9 +18,6 @@ import {
 	loadCharacter,
 	onCharacterAdded,
 } from "utils/player";
-
-import type { OnPlayerJoin } from "..";
-import type { PlayerEntity } from "../entity";
 
 export interface OnCharacterAdded {
 	/** Fires when a character is added to the game. */

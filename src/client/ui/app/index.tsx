@@ -1,9 +1,8 @@
 import React from "@rbxts/react";
 
+import { Layer, TextLabel } from "client/ui/components/primitive";
+import { useRem } from "client/ui/hooks";
 import { $compileTime } from "rbxts-transform-debug";
-
-import { Layer, TextLabel } from "../components/primitive";
-import { useRem } from "../hooks";
 
 export function App(): React.ReactNode {
 	const rem = useRem();

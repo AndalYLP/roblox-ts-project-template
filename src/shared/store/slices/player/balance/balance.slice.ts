@@ -1,8 +1,8 @@
 import { createProducer } from "@rbxts/reflex";
 
-import type { PlayerData } from "..";
-import type { PlayerBalance } from "./balance.types";
-import { defaultPlayerBalance } from "./balance.types";
+import type { PlayerBalance } from "shared/store/slices/player/balance/balance.types";
+import { defaultPlayerBalance } from "shared/store/slices/player/balance/balance.types";
+import type { PlayerData } from "shared/store/slices/player/player.types";
 
 export type BalanceState = Readonly<PlayerBalance>;
 

@@ -1,6 +1,6 @@
 import React from "@rbxts/react";
 
-import type { FrameProps } from "./frame";
+import type { FrameProps } from "client/ui/components/primitive/frame";
 
 export interface ButtonProps extends FrameProps<TextButton> {
 	/** The default properties of a `TextButton` component. */

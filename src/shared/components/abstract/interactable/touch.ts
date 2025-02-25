@@ -1,6 +1,6 @@
 import { Zone } from "@rbxts/zone-plus";
 
-import { DestroyableComponent } from "../destroyable";
+import { DestroyableComponent } from "shared/components/abstract/destroyable";
 
 export type ZoneOptions = Partial<{
 	accuracy: 1 | 2 | 3 | 4;
