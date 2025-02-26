@@ -133,8 +133,8 @@ importers:
         specifier: 3.0.0-types.0
         version: 3.0.0-types.0
       '@rbxts/types':
-        specifier: 1.0.837
-        version: 1.0.837
+        specifier: 1.0.838
+        version: 1.0.838
       eslint:
         specifier: 9.21.0
         version: 9.21.0(jiti@2.4.2)
@@ -1395,8 +1395,8 @@ packages:
   '@rbxts/t@3.2.1':
     resolution: {integrity: sha512-/fnf2QSx+TI3HSJ6QW2ikvGQk0mlx/63UXo60pLAKGqbxXiAuTJh88bpKpHw6aCzfFLJAwrVIcgCUOokLMPcag==}
 
-  '@rbxts/types@1.0.837':
-    resolution: {integrity: sha512-3Wy6YAkD/57RmlIGWCQ5n+nfSjMM4rraaXwBuM/2iQjDryuQMxEfP2gSnrFEbZy+j+1DZ2JhlGV7KkrPtnn8oQ==}
+  '@rbxts/types@1.0.838':
+    resolution: {integrity: sha512-TwYsnHidIH6v8MXf+/e4M7tNiyEBZVi+6H5M+4Cmvs7qSx46SIhwQjzCFWFHmOYBM8hbavrp9WpM6ILyeXpZWw==}
 
   '@rbxts/ui-labs@2.3.8':
     resolution: {integrity: sha512-W9HpPG80GXbCs3kOngA8oL3y4HlR7P5QteoLw7vBqZIG/QpRgPfWGnmaYDn8QBtmhe0w0vs8AeoYEwNMl/SAJA==}
@@ -5924,7 +5924,7 @@ snapshots:
   '@rbxts/make@1.0.6':
     dependencies:
       '@rbxts/compiler-types': 3.0.0-types.0
-      '@rbxts/types': 1.0.837
+      '@rbxts/types': 1.0.838
 
   '@rbxts/message-templates@0.3.2': {}
 
@@ -5982,7 +5982,7 @@ snapshots:
 
   '@rbxts/t@3.2.1': {}
 
-  '@rbxts/types@1.0.837': {}
+  '@rbxts/types@1.0.838': {}
 
   '@rbxts/ui-labs@2.3.8': {}
 
