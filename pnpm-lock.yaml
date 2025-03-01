@@ -87,8 +87,8 @@ importers:
         specifier: 1.1.2
         version: 1.1.2
       '@rbxts/sift':
-        specifier: 0.0.9
-        version: 0.0.9
+        specifier: 0.0.11
+        version: 0.0.11
       '@rbxts/signal':
         specifier: 1.1.1
         version: 1.1.1
@@ -1380,8 +1380,8 @@ packages:
   '@rbxts/set-timeout@1.1.2':
     resolution: {integrity: sha512-P/A0IiH9wuZdSJYr4Us0MDFm61nvIFR0acfKFHLkcOsgvIgELC90Up9ugiSsaMEHRIcIcO5UjE39LuS3xTzQHw==}
 
-  '@rbxts/sift@0.0.9':
-    resolution: {integrity: sha512-5Ycw3mSuUYbPT36Zcs6DtsikdlRcBOo2eG7gvM+HW+2L+VD7bU6+txWELZif6nX6DjjXQtYk19do/frTilfbKw==}
+  '@rbxts/sift@0.0.11':
+    resolution: {integrity: sha512-JT1WTLWKkoBdDaokPz/hEjC64kessP/MPe0OW2rHGtkpQkgnnvOx4wQXzqQs1XMwciyKazjhJZjoV83X3dJplA==}
 
   '@rbxts/signal@1.1.1':
     resolution: {integrity: sha512-WX+ONE+ld4pG9PvRkR8OgDld9NpaV1RfXyUIw+Q2oXP/5rehkYzvt20NWtrLAP3NhMc5inYInLd+hnufey6nFw==}
@@ -5997,7 +5997,7 @@ snapshots:
     dependencies:
       '@rbxts/services': 1.5.5
 
-  '@rbxts/sift@0.0.9': {}
+  '@rbxts/sift@0.0.11': {}
 
   '@rbxts/signal@1.1.1': {}
 
