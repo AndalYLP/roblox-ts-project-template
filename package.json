@@ -60,7 +60,7 @@
 		"@rbxts/ripple": "0.9.3",
 		"@rbxts/services": "1.5.5",
 		"@rbxts/set-timeout": "1.1.2",
-		"@rbxts/sift": "0.0.9",
+		"@rbxts/sift": "0.0.11",
 		"@rbxts/signal": "1.1.1",
 		"@rbxts/string-utils": "1.0.3",
 		"@rbxts/t": "3.2.1",
