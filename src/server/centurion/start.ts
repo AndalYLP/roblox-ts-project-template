@@ -1,7 +1,7 @@
 import { Centurion } from "@rbxts/centurion";
-import { ReplicatedStorage } from "@rbxts/services";
+import { ReplicatedStorage, ServerScriptService } from "@rbxts/services";
 
-const centurion = script.Parent as ServerScriptService["TS"]["centurion"];
+const { centurion } = ServerScriptService.TS;
 const replicatedCenturion = ReplicatedStorage.TS.centurion;
 
 export async function startCenturion(): Promise<void> {
