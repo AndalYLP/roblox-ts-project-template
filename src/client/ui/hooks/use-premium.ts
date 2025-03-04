@@ -11,12 +11,12 @@ import { LocalPlayer } from "client/constants/player";
  * @returns True if the local player has a premium membership.
  */
 export function usePremium(): boolean {
-	const [isPremium, setPremiumState] = useState(
+	const [isPremium, setPremium] = useState(
 		LocalPlayer.MembershipType === Enum.MembershipType.Premium,
 	);
 
 	useEventListener(Players.PlayerMembershipChanged, player => {
-		setPremiumState(player.MembershipType === Enum.MembershipType.Premium);
+		setPremium(player.MembershipType === Enum.MembershipType.Premium);
 	});
 
 	return isPremium;
