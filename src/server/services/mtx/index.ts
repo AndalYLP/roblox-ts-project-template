@@ -113,7 +113,6 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 		GamePass,
 		Array<(playerEntity: PlayerEntity, gamePassId: GamePass, isActive: boolean) => void>
 	>(Object.values(gamePass).map(gamePassId => [gamePassId, []]));
-
 	private readonly productHandlers = new Map<
 		Product,
 		{
@@ -125,9 +124,7 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 			) => boolean;
 		}
 	>();
-
 	private readonly productInfoCache = new Map<number, ProductInfo>();
-
 	private readonly purchaseIdLog = 50;
 
 	/** @ignore */
@@ -139,6 +136,69 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 		private readonly logger: Logger,
 		private readonly playerService: PlayerService,
 	) {}
+
+	/** @ignore */
+	public onInit(): void {
+		MarketplaceService.PromptGamePassPurchaseFinished.Connect(
+			this.playerService.withPlayerEntity((playerEntity, gamePassId, purchased) => {
+				if (!purchased) {
+					return;
+				}
+
+				this.grantGamePass(playerEntity, gamePassId);
+			}),
+		);
+
+		MarketplaceService.ProcessReceipt = (...args): Enum.ProductPurchaseDecision => {
+			const result = this.processReceipt(...args).expect();
+			this.logger.Info(`ProcessReceipt result: ${result}`);
+			return result;
+		};
+
+		void this.initRegister();
+	}
+
+	/** @ignore */
+	public onStart(): void {
+		events.mtx.setGamePassActive.connect(
+			this.playerService.withPlayerEntity((playerEntity, gamePassId, active) => {
+				this.setGamePassActive(playerEntity, gamePassId, active).catch(err => {
+					this.logger.Error(
+						`Failed to set game pass ${gamePassId} active for ${playerEntity.UserId}: ${err}`,
+					);
+				});
+			}),
+		);
+	}
+
+	/** @ignore */
+	public onPlayerJoin(playerEntity: PlayerEntity): void {
+		const { player } = playerEntity;
+
+		const gamePasses = store.getState(selectPlayerMtx(player))?.gamePasses;
+		if (gamePasses === undefined) {
+			return;
+		}
+
+		const unowned = Object.values(gamePass).filter(gamePassId => !gamePasses.has(gamePassId));
+		for (const gamePassId of unowned) {
+			this.checkForGamePassOwned(playerEntity, gamePassId)
+				.then(owned => {
+					if (!owned) {
+						return;
+					}
+
+					this.grantGamePass(playerEntity, tonumber(gamePassId)!);
+				})
+				.catch(err => {
+					this.logger.Warn(`Error checking game pass ${gamePassId}: ${err}`);
+				});
+		}
+
+		for (const [id, gamePassData] of gamePasses) {
+			this.notifyProductActive(playerEntity, id, gamePassData.active);
+		}
+	}
 
 	public registerProductHandler(
 		productId: Product,
@@ -152,50 +212,6 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 
 		this.logger.Debug(`Registered handler for product ${productId}`);
 		this.productHandlers.set(productId, { args, handler });
-	}
-
-	private async loadDecorator<T extends "GamePass" | "Product">(
-		object: Record<string, Callback>,
-		handler: string,
-		productType: T,
-		productId: T extends "Product" ? Product : GamePass,
-	): Promise<void> {
-		const withContextHandler = function (...handlerArgs: Array<unknown>): boolean {
-			return object[handler](object, ...handlerArgs) as boolean;
-		};
-
-		if (productType === "Product") {
-			this.registerProductHandler(productId as Product, withContextHandler);
-		} else {
-			this.gamePassHandlers.get(productId as GamePass)?.push(withContextHandler);
-		}
-	}
-
-	private async initRegister(): Promise<void> {
-		const mtxEvents = Modding.getDecorators<typeof MtxEvents>();
-
-		for (const { constructor, object } of mtxEvents) {
-			const singleton = Modding.resolveSingleton(constructor!) as Record<string, Callback>;
-			const registerProduct =
-				Modding.getPropertyDecorators<typeof RegisterProductHandler>(object);
-			const registerForEachProduct =
-				Modding.getPropertyDecorators<typeof RegisterHandlerForEachProduct>(object);
-
-			const productDecorators = Sift.Dictionary.merge(
-				registerProduct,
-				registerForEachProduct,
-			);
-
-			for (const [handler, { arguments: args }] of productDecorators) {
-				void this.loadDecorator(singleton, handler, "Product", args[0]);
-			}
-
-			for (const [handler, { arguments: args }] of Modding.getPropertyDecorators<
-				typeof GamePassStatusChanged
-			>(object)) {
-				void this.loadDecorator(singleton, handler, "GamePass", args[0]);
-			}
-		}
 	}
 
 	/**
@@ -243,6 +259,50 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 	 */
 	public isGamePassActive({ player }: PlayerEntity, gamePassId: GamePass): boolean {
 		return store.getState(selectPlayerMtx(player))?.gamePasses.get(gamePassId)?.active ?? false;
+	}
+
+	private async loadDecorator<T extends "GamePass" | "Product">(
+		object: Record<string, Callback>,
+		handler: string,
+		productType: T,
+		productId: T extends "Product" ? Product : GamePass,
+	): Promise<void> {
+		const withContextHandler = function (...handlerArgs: Array<unknown>): boolean {
+			return object[handler](object, ...handlerArgs) as boolean;
+		};
+
+		if (productType === "Product") {
+			this.registerProductHandler(productId as Product, withContextHandler);
+		} else {
+			this.gamePassHandlers.get(productId as GamePass)?.push(withContextHandler);
+		}
+	}
+
+	private async initRegister(): Promise<void> {
+		const mtxEvents = Modding.getDecorators<typeof MtxEvents>();
+
+		for (const { constructor, object } of mtxEvents) {
+			const singleton = Modding.resolveSingleton(constructor!) as Record<string, Callback>;
+			const registerProduct =
+				Modding.getPropertyDecorators<typeof RegisterProductHandler>(object);
+			const registerForEachProduct =
+				Modding.getPropertyDecorators<typeof RegisterHandlerForEachProduct>(object);
+
+			const productDecorators = Sift.Dictionary.merge(
+				registerProduct,
+				registerForEachProduct,
+			);
+
+			for (const [handler, { arguments: args }] of productDecorators) {
+				void this.loadDecorator(singleton, handler, "Product", args[0]);
+			}
+
+			for (const [handler, { arguments: args }] of Modding.getPropertyDecorators<
+				typeof GamePassStatusChanged
+			>(object)) {
+				void this.loadDecorator(singleton, handler, "GamePass", args[0]);
+			}
+		}
 	}
 
 	private async checkForGamePassOwned(
@@ -415,68 +475,5 @@ export class MtxService implements OnInit, OnStart, OnPlayerJoin {
 		}
 
 		store.updateReceiptHistory(player, updatedReceiptHistory);
-	}
-
-	/** @ignore */
-	public onInit(): void {
-		MarketplaceService.PromptGamePassPurchaseFinished.Connect(
-			this.playerService.withPlayerEntity((playerEntity, gamePassId, purchased) => {
-				if (!purchased) {
-					return;
-				}
-
-				this.grantGamePass(playerEntity, gamePassId);
-			}),
-		);
-
-		MarketplaceService.ProcessReceipt = (...args): Enum.ProductPurchaseDecision => {
-			const result = this.processReceipt(...args).expect();
-			this.logger.Info(`ProcessReceipt result: ${result}`);
-			return result;
-		};
-
-		void this.initRegister();
-	}
-
-	/** @ignore */
-	public onStart(): void {
-		events.mtx.setGamePassActive.connect(
-			this.playerService.withPlayerEntity((playerEntity, gamePassId, active) => {
-				this.setGamePassActive(playerEntity, gamePassId, active).catch(err => {
-					this.logger.Error(
-						`Failed to set game pass ${gamePassId} active for ${playerEntity.UserId}: ${err}`,
-					);
-				});
-			}),
-		);
-	}
-
-	/** @ignore */
-	public onPlayerJoin(playerEntity: PlayerEntity): void {
-		const { player } = playerEntity;
-
-		const gamePasses = store.getState(selectPlayerMtx(player))?.gamePasses;
-		if (gamePasses === undefined) {
-			return;
-		}
-
-		const unowned = Object.values(gamePass).filter(gamePassId => !gamePasses.has(gamePassId));
-		for (const gamePassId of unowned) {
-			this.checkForGamePassOwned(playerEntity, gamePassId)
-				.then(owned => {
-					if (!owned) {
-						return;
-					}
-
-					this.grantGamePass(playerEntity, tonumber(gamePassId)!);
-				})
-				.catch(err => {
-					this.logger.Warn(`Error checking game pass ${gamePassId}: ${err}`);
-				});
-		}
-
-		for (const [id, gamePassData] of gamePasses) {
-			this.notifyProductActive(playerEntity, id, gamePassData.active);
-		}
 	}
 }

@@ -48,7 +48,7 @@ export function setupLifecycle<T extends defined>(
  *   as a generic.
  * @metadata macro
  */
-// eslint-disable-next-line ts/max-params -- All params are required
+// eslint-disable-next-line better-max-params/better-max-params -- All params are required
 export function setupWithEventsLifecycle<T extends defined>(
 	index: keyof T,
 	lifecycle: Map<defined, ListenerData<T>>,
@@ -59,7 +59,7 @@ export function setupWithEventsLifecycle<T extends defined>(
 	assert(specifier, "[setupLifecycle] Specifier is required");
 
 	Modding.onListenerAdded<T>(object => {
-		lifecycle.set(2, {
+		lifecycle.set(index, {
 			id: Reflect.getMetadata(object, "identifier") ?? "flamework:unknown",
 			event: object,
 			loadOrder:

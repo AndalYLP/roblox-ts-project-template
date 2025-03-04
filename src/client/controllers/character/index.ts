@@ -32,13 +32,26 @@ export interface OnCharacterRemoved {
 @Controller()
 export class CharacterController implements OnStart {
 	private readonly characterAddedEvents = new Array<ListenerData<OnCharacterAdded>>();
-
 	private readonly characterRemovedEvents = new Array<ListenerData<OnCharacterRemoved>>();
+
 	private currentCharacter?: CharacterRig;
+
 	public readonly onCharacterAdded = new Signal<(character: CharacterRig) => void>();
 	public readonly onCharacterRemoving = new Signal();
 
 	constructor(private readonly logger: Logger) {}
+
+	/** @ignore */
+	public onStart(): void {
+		setupLifecycle<OnCharacterAdded>(this.characterAddedEvents);
+		setupLifecycle<OnCharacterRemoved>(this.characterRemovedEvents);
+
+		onCharacterAdded(LocalPlayer, character => {
+			this.characterAdded(character).catch(err => {
+				this.logger.Fatal(`Could not get character rig because:\n${err}`);
+			});
+		});
+	}
 
 	/**
 	 * Gets the current character for the local player. This is the character
@@ -134,17 +147,5 @@ export class CharacterController implements OnStart {
 				this.logger.Error(`Error in character lifecycle ${id}: ${err}`);
 			});
 		}
-	}
-
-	/** @ignore */
-	public onStart(): void {
-		setupLifecycle<OnCharacterAdded>(this.characterAddedEvents);
-		setupLifecycle<OnCharacterRemoved>(this.characterRemovedEvents);
-
-		onCharacterAdded(LocalPlayer, character => {
-			this.characterAdded(character).catch(err => {
-				this.logger.Fatal(`Could not get character rig because:\n${err}`);
-			});
-		});
 	}
 }

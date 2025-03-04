@@ -9,13 +9,13 @@ export type BalanceState = Readonly<PlayerBalance>;
 const initialState: BalanceState = defaultPlayerBalance;
 
 export const balanceSlice = createProducer(initialState, {
+	/** @ignore */
+	loadPlayerData: (_state, data: PlayerData): BalanceState => data.balance,
+
 	addBalance: (state, amount: number): BalanceState => {
 		return {
 			...state,
 			currency: state.currency + amount,
 		};
 	},
-
-	/** @ignore */
-	loadPlayerData: (_state, data: PlayerData): BalanceState => data.balance,
 });

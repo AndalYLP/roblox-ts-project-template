@@ -10,6 +10,9 @@ export type AudioState = Readonly<PlayerAudioSettings>;
 const initialState: AudioState = defaultPlayerAudioSettings;
 
 export const audioSlice = createProducer(initialState, {
+	/** @ignore */
+	loadPlayerData: (_state, data: PlayerData): AudioState => data.settings.audio,
+
 	/**
 	 * Updates a specific player's settings by modifying the given setting type.
 	 *
@@ -30,7 +33,4 @@ export const audioSlice = createProducer(initialState, {
 			[settingType]: value,
 		};
 	},
-
-	/** @ignore */
-	loadPlayerData: (_state, data: PlayerData): AudioState => data.settings.audio,
 });

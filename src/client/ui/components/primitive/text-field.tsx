@@ -14,9 +14,10 @@ interface TextFieldProps extends FrameProps<TextBox> {
 	readonly Native?: Partial<
 		Omit<
 			React.InstanceProps<TextBox>,
-			"Font" | "Text" | "TextColor" | "TextColor3" | "TextSize"
+			"Font" | "Text" | "TextColor3" | "TextColor" | "TextSize"
 		>
 	>;
+	readonly onChange?: (rbx: TextBox) => void;
 	readonly placeholderColor?: Color3 | React.Binding<Color3>;
 	readonly placeholderText?: React.Binding<string> | string;
 	/**
@@ -25,7 +26,6 @@ interface TextFieldProps extends FrameProps<TextBox> {
 	 */
 	readonly text?: string;
 	readonly textSize?: BindingValue<number>;
-	readonly onChange?: (rbx: TextBox) => void;
 }
 
 export function TextField({

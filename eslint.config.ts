@@ -1,4 +1,4 @@
-import style from "@isentinel/eslint-config";
+import style, { GLOB_TS } from "@isentinel/eslint-config";
 
 export default style(
 	{
@@ -17,23 +17,22 @@ export default style(
 		rules: {
 			"antfu/consistent-list-newline": "off",
 			"perfectionist/sort-objects": [
-				"warn",
+				"error",
 				{
 					customGroups: {
-						id: "id",
-						name: "name",
-						reactProps: ["children", "ref"],
-						reflex: ["loadPlayerData"],
+						id: "^id$",
+						name: "^name$",
+						callbacks: ["\b(on[A-Z][a-zA-Z]*)\b"],
+						reactProps: ["^children$", "^ref$"],
+						reflex: ["^loadPlayerData$", "^closePlayerData$"],
 					},
-					groups: ["id", "name", "unknown", "reflex", "reactProps"],
+					groups: ["id", "name", "reflex", "unknown", "reactProps"],
 					order: "asc",
-					partitionByComment: "Part:**",
+					partitionByComment: "^Part:\\*\\*(.*)$",
 					type: "natural",
 				},
 			],
-			"ts/no-empty-function": "off",
 			"ts/no-non-null-assertion": "off",
-			"ts/no-unused-expressions": "off",
 		},
 		test: true,
 		typescript: {
@@ -41,6 +40,22 @@ export default style(
 				project: "tsconfig.build.json",
 			},
 			tsconfigPath: "tsconfig.build.json",
+		},
+	},
+	{
+		files: [GLOB_TS],
+		rules: {
+			"no-param-reassign": "error",
+			"ts/no-magic-numbers": [
+				"error",
+				{
+					ignore: [0, 1],
+					ignoreEnums: true,
+					ignoreNumericLiteralTypes: true,
+					ignoreReadonlyClassProperties: true,
+					ignoreTypeIndexes: true,
+				},
+			],
 		},
 	},
 	{

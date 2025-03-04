@@ -2,8 +2,10 @@ import { Zone } from "@rbxts/zone-plus";
 
 import { DestroyableComponent } from "shared/components/abstract/destroyable";
 
+type Accuracy = 1 | 2 | 3 | 4;
+
 export type ZoneOptions = Partial<{
-	accuracy: 1 | 2 | 3 | 4;
+	accuracy: Accuracy;
 	autoUpdate: boolean;
 	detection: "Centre" | "WholeBody";
 }>;
@@ -70,6 +72,7 @@ export abstract class TouchInteractable<
 	 * @param player - The player who entered the zone.
 	 */
 	public onPlayerEntered?(player: Player): void;
+
 	/**
 	 * Called when a player exits the zone.
 	 *
@@ -83,7 +86,7 @@ export abstract class TouchInteractable<
 	 *
 	 * @param accuracy - Accuracy level.
 	 */
-	protected setAccuracy(accuracy: 1 | 2 | 3 | 4): void {
+	protected setAccuracy(accuracy: Accuracy): void {
 		this.zone.setAccuracy(accuracy);
 	}
 

@@ -13,6 +13,21 @@ import { badge as enumBadge } from "types/enum/badge";
 export class PlayerBadgeService implements OnPlayerJoin {
 	constructor(private readonly logger: Logger) {}
 
+	/** @ignore */
+	public onPlayerJoin(playerEntity: PlayerEntity): void {
+		const { UserId } = playerEntity;
+
+		this.awardBadge(playerEntity, enumBadge.Welcome).catch(err => {
+			this.logger.Error(
+				`Failed to check if ${UserId} has badge ${enumBadge.Welcome}: ${err}`,
+			);
+		});
+
+		this.awardUnrewardedBadges(playerEntity).catch(err => {
+			this.logger.Error(`Failed to award unrewarded badges to ${UserId}: ${err}`);
+		});
+	}
+
 	/**
 	 * Awards a badge to a player if they don't already have it.
 	 *
@@ -87,20 +102,5 @@ export class PlayerBadgeService implements OnPlayerJoin {
 				this.logger.Error(`Failed to check if ${UserId} has badge ${badge}: ${err}`);
 			});
 		}
-	}
-
-	/** @ignore */
-	public onPlayerJoin(playerEntity: PlayerEntity): void {
-		const { UserId } = playerEntity;
-
-		this.awardBadge(playerEntity, enumBadge.Welcome).catch(err => {
-			this.logger.Error(
-				`Failed to check if ${UserId} has badge ${enumBadge.Welcome}: ${err}`,
-			);
-		});
-
-		this.awardUnrewardedBadges(playerEntity).catch(err => {
-			this.logger.Error(`Failed to award unrewarded badges to ${UserId}: ${err}`);
-		});
 	}
 }

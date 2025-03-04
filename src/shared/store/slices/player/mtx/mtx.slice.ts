@@ -11,6 +11,9 @@ const initialState: MtxState = defaultPlayerMtx;
 
 export const mtxSlice = createProducer(initialState, {
 	/** @ignore */
+	loadPlayerData: (_state, data: PlayerData): MtxState => data.mtx,
+
+	/** @ignore */
 	purchaseDeveloperProduct: (state, productId: Product, currencySpent: number): MtxState => {
 		const purchaseInfo = {
 			purchasePrice: currencySpent,
@@ -56,7 +59,4 @@ export const mtxSlice = createProducer(initialState, {
 			receiptHistory,
 		};
 	},
-
-	/** @ignore */
-	loadPlayerData: (_state, data: PlayerData): MtxState => data.mtx,
 });

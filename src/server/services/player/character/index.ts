@@ -40,6 +40,25 @@ export class CharacterService implements OnStart, OnPlayerJoin {
 
 	constructor(private readonly logger: Logger) {}
 
+	/** @ignore */
+	public onStart(): void {
+		setupLifecycle<OnCharacterAdded>(this.characterAddedEvents);
+		setupLifecycle<OnCharacterRemoved>(this.characterRemovedEvents);
+	}
+
+	/** @ignore */
+	public onPlayerJoin(playerEntity: PlayerEntity): void {
+		const { janitor, player } = playerEntity;
+
+		janitor.Add(
+			onCharacterAdded(player, character => {
+				janitor.AddPromise(this.characterAdded(playerEntity, character)).catch(err => {
+					this.logger.Fatal(`Could not get character rig because:\n${err}`);
+				});
+			}),
+		);
+	}
+
 	/**
 	 * Returns the character rig associated with the given player, if it exists.
 	 *
@@ -176,24 +195,5 @@ export class CharacterService implements OnStart, OnPlayerJoin {
 	private async retryCharacterLoad(player: Player): Promise<void> {
 		this.logger.Warn(`Getting full rig for ${player.UserId} timed out. Retrying...`);
 		return loadCharacter(player);
-	}
-
-	/** @ignore */
-	public onStart(): void {
-		setupLifecycle<OnCharacterAdded>(this.characterAddedEvents);
-		setupLifecycle<OnCharacterRemoved>(this.characterRemovedEvents);
-	}
-
-	/** @ignore */
-	public onPlayerJoin(playerEntity: PlayerEntity): void {
-		const { janitor, player } = playerEntity;
-
-		janitor.Add(
-			onCharacterAdded(player, character => {
-				janitor.AddPromise(this.characterAdded(playerEntity, character)).catch(err => {
-					this.logger.Fatal(`Could not get character rig because:\n${err}`);
-				});
-			}),
-		);
 	}
 }

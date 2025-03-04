@@ -51,6 +51,66 @@ export class PlayerService implements OnStart {
 		private readonly playerRemovalService: PlayerRemovalService,
 	) {}
 
+	/** @ignore */
+	public onStart(): void {
+		setupLifecycle<OnPlayerJoin>(this.playerJoinEvents);
+		setupLifecycle<OnPlayerLeave>(this.playerLeaveEvents);
+
+		onPlayerAdded(player => {
+			this.onPlayerJoin(player).catch(err => {
+				this.logger.Error(`Failed to load player ${player.UserId}: ${err}`);
+			});
+		});
+
+		Players.PlayerRemoving.Connect(
+			this.withPlayerEntity(playerEntity => {
+				this.onPlayerRemoving(playerEntity).catch(err => {
+					this.logger.Error(`Failed to close player ${playerEntity.UserId}: ${err}`);
+				});
+			}),
+		);
+
+		this.bindHoldServerOpen();
+	}
+
+	/**
+	 * Called internally when a player joins the game.
+	 *
+	 * @param player - The player that joined the game.
+	 */
+	private async onPlayerJoin(player: Player): Promise<void> {
+		const playerDocument = await this.playerDataService.loadPlayerData(player);
+		if (!playerDocument) {
+			this.playerRemovalService.removeForBug(player, KickCode.PlayerInstantiationError);
+			return;
+		}
+
+		const janitor = this.setupPlayerJanitor(player, playerDocument);
+		const playerEntity = new PlayerEntity(player, janitor, playerDocument);
+		this.playerEntities.set(player, playerEntity);
+
+		debug.profilebegin("Lifecycle_Player_Join");
+		{
+			for (const { id, event } of this.playerJoinEvents) {
+				janitor
+					.AddPromise(
+						Promise.defer(() => {
+							debug.profilebegin(id);
+							event.onPlayerJoin(playerEntity);
+						}),
+					)
+					.catch(err => {
+						this.logger.Error(`Error in player lifecycle ${id}: ${err}`);
+					});
+			}
+		}
+
+		debug.profileend();
+
+		this.logger.Info(`Player ${player.UserId} joined the game.`);
+		this.onEntityJoined.Fire(playerEntity);
+	}
+
 	/**
 	 * This method wraps a callback and replaces the first argument (that must
 	 * be of type `Player`) with that players `PlayerEntity` class.
@@ -131,28 +191,6 @@ export class PlayerService implements OnStart {
 		return playerEntity;
 	}
 
-	/** @ignore */
-	public onStart(): void {
-		setupLifecycle<OnPlayerJoin>(this.playerJoinEvents);
-		setupLifecycle<OnPlayerLeave>(this.playerLeaveEvents);
-
-		onPlayerAdded(player => {
-			this.onPlayerJoin(player).catch(err => {
-				this.logger.Error(`Failed to load player ${player.UserId}: ${err}`);
-			});
-		});
-
-		Players.PlayerRemoving.Connect(
-			this.withPlayerEntity(playerEntity => {
-				this.onPlayerRemoving(playerEntity).catch(err => {
-					this.logger.Error(`Failed to close player ${playerEntity.UserId}: ${err}`);
-				});
-			}),
-		);
-
-		this.bindHoldServerOpen();
-	}
-
 	private setupPlayerJanitor(player: Player, playerDocument: Document<PlayerData>): Janitor {
 		const janitor = new Janitor();
 
@@ -213,44 +251,6 @@ export class PlayerService implements OnStart {
 		await Promise.all(promises).finally(() => {
 			playerEntity.janitor.Destroy();
 		});
-	}
-
-	/**
-	 * Called internally when a player joins the game.
-	 *
-	 * @param player - The player that joined the game.
-	 */
-	private async onPlayerJoin(player: Player): Promise<void> {
-		const playerDocument = await this.playerDataService.loadPlayerData(player);
-		if (!playerDocument) {
-			this.playerRemovalService.removeForBug(player, KickCode.PlayerInstantiationError);
-			return;
-		}
-
-		const janitor = this.setupPlayerJanitor(player, playerDocument);
-		const playerEntity = new PlayerEntity(player, janitor, playerDocument);
-		this.playerEntities.set(player, playerEntity);
-
-		debug.profilebegin("Lifecycle_Player_Join");
-		{
-			for (const { id, event } of this.playerJoinEvents) {
-				janitor
-					.AddPromise(
-						Promise.defer(() => {
-							debug.profilebegin(id);
-							event.onPlayerJoin(playerEntity);
-						}),
-					)
-					.catch(err => {
-						this.logger.Error(`Error in player lifecycle ${id}: ${err}`);
-					});
-			}
-		}
-
-		debug.profileend();
-
-		this.logger.Info(`Player ${player.UserId} joined the game.`);
-		this.onEntityJoined.Fire(playerEntity);
 	}
 
 	private bindHoldServerOpen(): void {

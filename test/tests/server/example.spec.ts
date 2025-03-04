@@ -1,3 +1,4 @@
+/* eslint-disable ts/no-magic-numbers -- We are just doing an example */
 import { describe, expect, it } from "@rbxts/jest-globals";
 
 // TODO: add an actual test

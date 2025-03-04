@@ -11,13 +11,13 @@ const initialState: AchievementState = defaultPlayerAchievements;
 
 export const achievementsSlice = createProducer(initialState, {
 	/** @ignore */
+	loadPlayerData: (_state, data: PlayerData): AchievementState => data.achievements,
+
+	/** @ignore */
 	awardBadge: (state, badge: Badge, badgeStatus: boolean): AchievementState => {
 		return {
 			...state,
 			badges: new Map([...state.badges]).set(badge, badgeStatus),
 		};
 	},
-
-	/** @ignore */
-	loadPlayerData: (_state, data: PlayerData): AchievementState => data.achievements,
 });

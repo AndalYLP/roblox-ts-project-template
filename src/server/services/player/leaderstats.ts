@@ -48,6 +48,59 @@ export class LeaderstatsService implements OnInit, OnPlayerJoin, OnPlayerLeave {
 		this.registerStat("Currency", "IntValue", "balance.currency");
 	}
 
+	/** @ignore */
+	public onPlayerJoin(playerEntity: PlayerEntity): void {
+		const { Name, player } = playerEntity;
+
+		const leaderstats = new Instance("Folder");
+		leaderstats.Name = "leaderstats";
+		leaderstats.Parent = player;
+
+		this.playerToLeaderstatsMap.set(player, leaderstats);
+
+		this.logger.Info(`Assigning leaderboard stats to ${Name}.`);
+
+		const playerData = store.getState(selectPlayerData(player));
+		const valueMap = new Map<Leaderstats, LeaderstatValue>();
+
+		for (const entry of this.leaderstats) {
+			const stat = new Instance(entry.ValueType);
+			stat.Name = entry.Name;
+			stat.Parent = leaderstats;
+			valueMap.set(entry.Name, stat);
+
+			if (playerData === undefined || entry.PlayerDataKey === undefined) {
+				stat.Value = entry.ValueType === "IntValue" ? 0 : "N/A";
+				continue;
+			}
+
+			stat.Value = this.getPlayerData(playerData, entry.PlayerDataKey);
+		}
+
+		this.subscribeToPlayerData(playerEntity, valueMap);
+
+		this.playerToValueMap.set(player, valueMap);
+	}
+
+	/** @ignore */
+	public onPlayerLeave({ player }: PlayerEntity): Promise<void> | void {
+		const valueMap = this.playerToValueMap.get(player);
+		if (valueMap !== undefined) {
+			for (const [, value] of valueMap) {
+				value.Destroy();
+			}
+		}
+
+		this.playerToValueMap.delete(player);
+
+		const leaderstats = this.playerToLeaderstatsMap.get(player);
+		if (leaderstats !== undefined) {
+			leaderstats.Destroy();
+		}
+
+		this.playerToLeaderstatsMap.delete(player);
+	}
+
 	/**
 	 * Returns a given stat object for a player. This can be used to update the
 	 * leaderboard values for a given player if the stat object is not available
@@ -152,58 +205,5 @@ export class LeaderstatsService implements OnInit, OnPlayerJoin, OnPlayerLeave {
 				}
 			}),
 		);
-	}
-
-	/** @ignore */
-	public onPlayerJoin(playerEntity: PlayerEntity): void {
-		const { Name, player } = playerEntity;
-
-		const leaderstats = new Instance("Folder");
-		leaderstats.Name = "leaderstats";
-		leaderstats.Parent = player;
-
-		this.playerToLeaderstatsMap.set(player, leaderstats);
-
-		this.logger.Info(`Assigning leaderboard stats to ${Name}.`);
-
-		const playerData = store.getState(selectPlayerData(player));
-		const valueMap = new Map<Leaderstats, LeaderstatValue>();
-
-		for (const entry of this.leaderstats) {
-			const stat = new Instance(entry.ValueType);
-			stat.Name = entry.Name;
-			stat.Parent = leaderstats;
-			valueMap.set(entry.Name, stat);
-
-			if (playerData === undefined || entry.PlayerDataKey === undefined) {
-				stat.Value = entry.ValueType === "IntValue" ? 0 : "N/A";
-				continue;
-			}
-
-			stat.Value = this.getPlayerData(playerData, entry.PlayerDataKey);
-		}
-
-		this.subscribeToPlayerData(playerEntity, valueMap);
-
-		this.playerToValueMap.set(player, valueMap);
-	}
-
-	/** @ignore */
-	public onPlayerLeave({ player }: PlayerEntity): Promise<void> | void {
-		const valueMap = this.playerToValueMap.get(player);
-		if (valueMap !== undefined) {
-			for (const [, value] of valueMap) {
-				value.Destroy();
-			}
-		}
-
-		this.playerToValueMap.delete(player);
-
-		const leaderstats = this.playerToLeaderstatsMap.get(player);
-		if (leaderstats !== undefined) {
-			leaderstats.Destroy();
-		}
-
-		this.playerToLeaderstatsMap.delete(player);
 	}
 }

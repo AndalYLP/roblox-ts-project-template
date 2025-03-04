@@ -30,6 +30,25 @@ export class AudioController implements OnInit, OnStart {
 
 	constructor(private readonly logger: Logger) {}
 
+	/** @ignore */
+	public onInit(): void {
+		this.soundGroups.set(SoundType.Music, this.makeSoundGroup(SoundType.Music));
+		this.soundGroups.set(SoundType.SoundEffect, this.makeSoundGroup(SoundType.SoundEffect));
+
+		this.logger.Info(`Setup SoundGroup instances`);
+	}
+
+	/** @ignore */
+	public onStart(): void {
+		store.subscribe(selectPlayerSettingsData(LocalPlayer), current => {
+			if (!current) {
+				return;
+			}
+
+			this.onSettingsChanged(current);
+		});
+	}
+
 	public createSound({
 		attachToPoint,
 		debugName,
@@ -113,24 +132,5 @@ export class AudioController implements OnInit, OnStart {
 		const sfxGroup = this.soundGroups.get(SoundType.SoundEffect);
 		assert(sfxGroup, `SoundEffect SoundGroup not found`);
 		sfxGroup.Volume = current.audio.sfxVolume;
-	}
-
-	/** @ignore */
-	public onInit(): void {
-		this.soundGroups.set(SoundType.Music, this.makeSoundGroup(SoundType.Music));
-		this.soundGroups.set(SoundType.SoundEffect, this.makeSoundGroup(SoundType.SoundEffect));
-
-		this.logger.Info(`Setup SoundGroup instances`);
-	}
-
-	/** @ignore */
-	public onStart(): void {
-		store.subscribe(selectPlayerSettingsData(LocalPlayer), current => {
-			if (!current) {
-				return;
-			}
-
-			this.onSettingsChanged(current);
-		});
 	}
 }
