@@ -12,8 +12,3 @@ export interface MtxClientToServerEvents {
 	 */
 	setGamePassActive: (gamePass: GamePass, active: boolean) => void;
 }
-
-export interface MtxClientToServerFunctions {
-	/** This is just an example. */
-	example: () => void;
-}
