@@ -6,7 +6,6 @@ settings:
 
 overrides:
   '@rbxts/compiler-types': 3.0.0-types.0
-  minimist: 1.2.8
 
 patchedDependencies:
   rbxts-transform-env:
