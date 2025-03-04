@@ -18,4 +18,5 @@ export const Action = TypeBuilder.create<ActionKeys>("Action")
 		return TransformResult.ok(text);
 	})
 	.suggestions(() => Object.keys(STORE_SLICE_ACTIONS))
+	.markForRegistration()
 	.build();
