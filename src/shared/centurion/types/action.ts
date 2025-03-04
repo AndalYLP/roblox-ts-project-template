@@ -2,9 +2,9 @@ import { Flamework } from "@flamework/core";
 import { TransformResult, TypeBuilder } from "@rbxts/centurion";
 import Object from "@rbxts/object-utils";
 
-import { store } from "server/store";
+import { playersSlices } from "shared/store/slices/player";
 
-const STORE_SLICE_ACTIONS = store.getActions();
+const STORE_SLICE_ACTIONS = playersSlices.getActions();
 export type ActionKeys = keyof typeof STORE_SLICE_ACTIONS;
 
 const dispatcherGuard = Flamework.createGuard<ActionKeys>();
