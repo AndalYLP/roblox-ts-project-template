@@ -28,6 +28,9 @@ importers:
       '@rbxts/abbreviate':
         specifier: 3.0.4
         version: 3.0.4
+      '@rbxts/centurion':
+        specifier: 1.0.1
+        version: 1.0.1
       '@rbxts/flamework-binary-serializer':
         specifier: 0.6.0
         version: 0.6.0(@flamework/core@1.2.4)(rbxts-transformer-flamework@1.2.4(typescript@5.8.2))
@@ -656,6 +659,12 @@ packages:
 
   '@rbxts/abbreviate@3.0.4':
     resolution: {integrity: sha512-sf1T7D64AC/ZO76pn/bGIFduViD58d52ZD80W+UvbKI0kuH1qhzZkDZiFSmJHT8Dn7zzf3Dbn/7IWB2Rsax4Ww==}
+
+  '@rbxts/beacon@2.1.1':
+    resolution: {integrity: sha512-QeFMSGj+Iijp+tHcV9eyqVyeKZ/9zp7GqRJ/hecKiHmoTu4yFcyGnUQAaX7OdQKBCgLvWMJ9wK/FXMECjFA2Kg==}
+
+  '@rbxts/centurion@1.0.1':
+    resolution: {integrity: sha512-RFkIvnivn43/jYCg0ue90fXg+aRlhFUUc8OmYP0UWpIPRxTF3PTHpMKp7EZMXoZl7J7XzUngcqYcL1senBnenQ==}
 
   '@rbxts/compiler-types@3.0.0-types.0':
     resolution: {integrity: sha512-VGOHJPoL7+56NTatMGqQj3K7xWuzEV+aP4QD5vZiHu+bcff3kiTmtoadaF6NkJrmwfFAvbsd4Dg764ZjWNceag==}
@@ -4236,6 +4245,14 @@ snapshots:
   '@pkgr/core@0.1.1': {}
 
   '@rbxts/abbreviate@3.0.4': {}
+
+  '@rbxts/beacon@2.1.1': {}
+
+  '@rbxts/centurion@1.0.1':
+    dependencies:
+      '@rbxts/beacon': 2.1.1
+      '@rbxts/services': 1.5.5
+      '@rbxts/t': 3.2.1
 
   '@rbxts/compiler-types@3.0.0-types.0': {}
 
