@@ -1,6 +1,6 @@
 import Log from "@rbxts/log";
 
-import { IS_DEV } from "shared/constants/core";
+import { IS_PROD } from "shared/constants/core";
 
 export function LogExecutionTime<T extends object, P extends Array<unknown>>() {
 	return (
@@ -8,7 +8,7 @@ export function LogExecutionTime<T extends object, P extends Array<unknown>>() {
 		propertyKey: string,
 		descriptor: TypedPropertyDescriptor<(this: T, ...args: Array<unknown>) => P>,
 	) => {
-		if (!IS_DEV) {
+		if (IS_PROD) {
 			return;
 		}
 
