@@ -31,6 +31,9 @@ importers:
       '@rbxts/centurion':
         specifier: 1.0.1
         version: 1.0.1
+      '@rbxts/centurion-ui':
+        specifier: 1.0.5
+        version: 1.0.5(@rbxts/centurion@1.0.1)
       '@rbxts/flamework-binary-serializer':
         specifier: 0.6.0
         version: 0.6.0(@flamework/core@1.2.4)(rbxts-transformer-flamework@1.2.4(typescript@5.8.2))
@@ -663,6 +666,11 @@ packages:
   '@rbxts/beacon@2.1.1':
     resolution: {integrity: sha512-QeFMSGj+Iijp+tHcV9eyqVyeKZ/9zp7GqRJ/hecKiHmoTu4yFcyGnUQAaX7OdQKBCgLvWMJ9wK/FXMECjFA2Kg==}
 
+  '@rbxts/centurion-ui@1.0.5':
+    resolution: {integrity: sha512-aQ7KYrAvcLhMf00P9+ZLZW9pAjb0Js3tRIA1oQYQKd6sAJRQPbH2HmKkU6f5+E8tyyIlDQHtAfn4TTOobN36Nw==}
+    peerDependencies:
+      '@rbxts/centurion': ^1.0.1
+
   '@rbxts/centurion@1.0.1':
     resolution: {integrity: sha512-RFkIvnivn43/jYCg0ue90fXg+aRlhFUUc8OmYP0UWpIPRxTF3PTHpMKp7EZMXoZl7J7XzUngcqYcL1senBnenQ==}
 
@@ -775,6 +783,9 @@ packages:
 
   '@rbxts/validate-tree@2.0.2':
     resolution: {integrity: sha512-OA0E9ZjEeOpPa3XeV5/oC51aro2QFcL5dItufbagYZW8TOsX8C+FDXLx+A/ulMwcF42WcFNcQybxzcWSS/QSrA==}
+
+  '@rbxts/vide@0.5.6':
+    resolution: {integrity: sha512-tY1X6d06Gt9CAxLfZvPTEaacFuRzjzGBfOCyzT7GJBY8kB6kZoJUnbAHpqRKze7YnXTrKQdFEV76ATWD1m4AVw==}
 
   '@rbxts/zone-plus@3.2.0':
     resolution: {integrity: sha512-myxs7QXMVCCPhOpUzaoA/01ZCEG/6TBYRNk6LwksUvSp9bONnIpvEZYEazuWnIDwiOEIw/T9kCPY/7FGjMOvsA==}
@@ -4248,6 +4259,13 @@ snapshots:
 
   '@rbxts/beacon@2.1.1': {}
 
+  '@rbxts/centurion-ui@1.0.5(@rbxts/centurion@1.0.1)':
+    dependencies:
+      '@rbxts/centurion': 1.0.1
+      '@rbxts/services': 1.5.5
+      '@rbxts/set-timeout': 1.1.2
+      '@rbxts/vide': 0.5.6
+
   '@rbxts/centurion@1.0.1':
     dependencies:
       '@rbxts/beacon': 2.1.1
@@ -4362,6 +4380,8 @@ snapshots:
   '@rbxts/ui-labs@2.3.8': {}
 
   '@rbxts/validate-tree@2.0.2': {}
+
+  '@rbxts/vide@0.5.6': {}
 
   '@rbxts/zone-plus@3.2.0': {}
 
