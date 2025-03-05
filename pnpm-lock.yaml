@@ -52,6 +52,9 @@ importers:
       '@rbxts/lapis-mockdatastore':
         specifier: 0.3.7
         version: 0.3.7
+      '@rbxts/lemon-signal':
+        specifier: 1.2.0
+        version: 1.2.0
       '@rbxts/log':
         specifier: 0.6.3
         version: 0.6.3
@@ -94,9 +97,6 @@ importers:
       '@rbxts/sift':
         specifier: 0.0.11
         version: 0.0.11
-      '@rbxts/signal':
-        specifier: 1.1.1
-        version: 1.1.1
       '@rbxts/string-utils':
         specifier: 1.0.3
         version: 1.0.3
@@ -705,6 +705,9 @@ packages:
     resolution: {integrity: sha512-SQTVdSp47Rh7nzuI/ArUsGssz2+KmciPlue4Qlj3i9iO2p3Xgf1ZsgfhvMemPih/kFdjSH47E8wHGA4dY/Y+AA==}
     peerDependencies:
       '@rbxts/t': '*'
+
+  '@rbxts/lemon-signal@1.2.0':
+    resolution: {integrity: sha512-R8iZqtwqLCnA4g2gS8d8j/QVnctkvzLQspq3VfuKfFbXp+Zqs7rw/2LebD/9ifX/NGpHAGgatRqj0C6DABT9Rw==}
 
   '@rbxts/log@0.6.3':
     resolution: {integrity: sha512-YZpDvjL7yif9aYuNAkuM9vnegcwQmOwX0CfvGfWvrzCpmARY4Ey2pTMhoEgxKo36HcdPPi3aLxmcuvn0NHrPPg==}
@@ -4307,6 +4310,8 @@ snapshots:
   '@rbxts/lapis@0.3.8(@rbxts/t@3.2.1)':
     dependencies:
       '@rbxts/t': 3.2.1
+
+  '@rbxts/lemon-signal@1.2.0': {}
 
   '@rbxts/log@0.6.3':
     dependencies:
