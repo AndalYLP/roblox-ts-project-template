@@ -2,10 +2,10 @@ import type { OnStart } from "@flamework/core";
 import { Service } from "@flamework/core";
 import { Janitor } from "@rbxts/janitor";
 import type { Document } from "@rbxts/lapis";
+import Signal from "@rbxts/lemon-signal";
 import type { Logger } from "@rbxts/log";
 import Object from "@rbxts/object-utils";
 import { Players } from "@rbxts/services";
-import Signal from "@rbxts/signal";
 
 import type { PlayerDataService } from "server/services/player/data";
 import { PlayerEntity } from "server/services/player/entity";
