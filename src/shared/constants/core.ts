@@ -1,5 +1,5 @@
+import Signal from "@rbxts/lemon-signal";
 import { RunService } from "@rbxts/services";
-import Signal from "@rbxts/signal";
 
 import { $NODE_ENV } from "rbxts-transform-env";
 

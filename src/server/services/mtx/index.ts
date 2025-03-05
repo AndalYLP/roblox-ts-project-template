@@ -1,11 +1,11 @@
 /* eslint-disable max-lines -- Decorators can't be moved, or other methods. */
 import type { OnInit, OnStart } from "@flamework/core";
 import { Modding, Service } from "@flamework/core";
+import Signal from "@rbxts/lemon-signal";
 import type { Logger } from "@rbxts/log";
 import Object from "@rbxts/object-utils";
 import { MarketplaceService, Players } from "@rbxts/services";
 import Sift from "@rbxts/sift";
-import Signal from "@rbxts/signal";
 
 import { events } from "server/network";
 import type { OnPlayerJoin, PlayerService } from "server/services/player";

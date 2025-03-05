@@ -1,8 +1,8 @@
 import type { OnStart } from "@flamework/core";
 import { Controller } from "@flamework/core";
+import Signal from "@rbxts/lemon-signal";
 import type { Logger } from "@rbxts/log";
 import { setTimeout } from "@rbxts/set-timeout";
-import Signal from "@rbxts/signal";
 import { promiseTree } from "@rbxts/validate-tree";
 
 import { LocalPlayer } from "client/constants/player";
