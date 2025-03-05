@@ -3,6 +3,7 @@ import type Abbreviator from "@rbxts/abbreviate";
 import type { Logger } from "@rbxts/log";
 import Log from "@rbxts/log";
 
+import { startCenturion } from "server/centurion/start";
 import { middleWares, store } from "server/store";
 import { broadcasterMiddleware } from "server/store/middleware/broadcaster";
 import { FLAMEWORK_IGNITED } from "shared/constants/core";
@@ -25,6 +26,11 @@ async function start(): Promise<void> {
 
 	Log.Info("Starting Flamework...");
 	Flamework.ignite();
+
+	Log.Info("Starting Centurion...");
+	startCenturion().catch(err => {
+		Log.Fatal(`Error while running centurion: ${err}`);
+	});
 }
 
 start()

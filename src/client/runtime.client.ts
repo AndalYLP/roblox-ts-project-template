@@ -3,6 +3,7 @@ import type Abbreviator from "@rbxts/abbreviate";
 import type { Logger } from "@rbxts/log";
 import Log from "@rbxts/log";
 
+import { startCenturion } from "client/centurion/start";
 import { createApp, reactConfig } from "client/ui/app/config";
 import { FLAMEWORK_IGNITED } from "shared/constants/core";
 import { setupAbbreviator } from "shared/functions/abbreviator";
@@ -25,6 +26,11 @@ async function start(): Promise<void> {
 
 	createApp().catch(() => {
 		Log.Fatal(`Failed to create React app!`);
+	});
+
+	Log.Info("Starting Centurion...");
+	startCenturion().catch(err => {
+		Log.Fatal(`Error while running centurion: ${err}`);
 	});
 }
 
