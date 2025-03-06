@@ -38,7 +38,7 @@
 
 ## Credits
 
--   [christopher-buss (roblox-ts-project-template)](https://github.com/grilme99/tabletop-island/)
+-   [christopher-buss (roblox-ts-project-template)](https://github.com/christopher-buss/roblox-ts-project-template)
 -   [R-unic (flamework-template)](https://github.com/R-unic/flamework-template)
 -   [ihoponyou (rogue-lineage-tycoon)](https://github.com/ihoponyou/rogue-lineage-tycoon)
 -   [Littensy (Slither)](https://github.com/littensy/slither/)
