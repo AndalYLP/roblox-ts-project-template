@@ -76,4 +76,10 @@ export default style(
 			"import/no-namespace": "off",
 		},
 	},
+	{
+		files: ["**/centurion/commands/**"],
+		rules: {
+			"max-lines-per-function": "off",
+		},
+	},
 );
