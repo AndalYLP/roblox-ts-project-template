@@ -55,6 +55,26 @@ export class ModerationCommand {
 	}
 
 	@Command({
+		name: "unban",
+		arguments: [
+			{
+				name: "Username",
+				description: "Player's username to unban from the game.",
+				type: username.name,
+			},
+		],
+	})
+	public unban(commandContext: CommandContext, userId: number): void {
+		try {
+			Players.UnbanAsync({ UserIds: [userId] });
+
+			commandContext.reply(`Unbanned ${userId}`);
+		} catch (err) {
+			commandContext.error(`Error unbanning ${userId}: ${err}`);
+		}
+	}
+
+	@Command({
 		name: "kick",
 		arguments: [
 			{
