@@ -53,4 +53,30 @@ export class ModerationCommand {
 			commandContext.error(`Error banning user ${userId}: ${err}`);
 		}
 	}
+
+	@Command({
+		name: "kick",
+		arguments: [
+			{
+				name: "Player",
+				description: "Player to kick from the game.",
+				type: CenturionType.Player,
+			},
+			{
+				name: "Reason",
+				description: "Reason of the kick.",
+				optional: true,
+				type: CenturionType.String,
+			},
+		],
+	})
+	public kick(commandContext: CommandContext, player: Player, reason?: string): void {
+		try {
+			player.Kick(reason);
+
+			commandContext.reply(`Player ${player.UserId} kicked.`);
+		} catch (err) {
+			commandContext.error(`Error kicking player: ${err}`);
+		}
+	}
 }
