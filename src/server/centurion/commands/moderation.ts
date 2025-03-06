@@ -35,6 +35,7 @@ export class ModerationCommand {
 				type: CenturionType.Number,
 			},
 		],
+		description: "Ban a player from the game.",
 	})
 	public ban(
 		commandContext: CommandContext,
@@ -65,6 +66,7 @@ export class ModerationCommand {
 				type: username.name,
 			},
 		],
+		description: "Unban a player from the game.",
 	})
 	public unban(commandContext: CommandContext, userId: number): void {
 		try {
@@ -91,6 +93,7 @@ export class ModerationCommand {
 				type: CenturionType.String,
 			},
 		],
+		description: "Kick a player from the game.",
 	})
 	public kick(commandContext: CommandContext, player: Player, reason?: string): void {
 		try {
