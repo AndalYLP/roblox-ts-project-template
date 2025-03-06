@@ -1,7 +1,8 @@
 import type { CommandContext } from "@rbxts/centurion";
-import { CenturionType, Command, Group, Register } from "@rbxts/centurion";
+import { CenturionType, Command, Group, Guard, Register } from "@rbxts/centurion";
 import { Players } from "@rbxts/services";
 
+import { isDeveloper } from "server/centurion/guards/is-developer";
 import { username } from "shared/centurion/types/username";
 
 @Register({
@@ -12,6 +13,7 @@ import { username } from "shared/centurion/types/username";
 		},
 	],
 })
+@Guard(isDeveloper)
 @Group("moderation")
 export class ModerationCommand {
 	@Command({
