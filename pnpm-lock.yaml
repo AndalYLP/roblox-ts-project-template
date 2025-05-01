@@ -17,8 +17,8 @@ importers:
   .:
     dependencies:
       '@flamework/components':
-        specifier: 1.2.4
-        version: 1.2.4(@flamework/core@1.3.1)
+        specifier: 1.3.1
+        version: 1.3.1(@flamework/core@1.3.1)
       '@flamework/core':
         specifier: 1.3.1
         version: 1.3.1
@@ -591,8 +591,8 @@ packages:
     resolution: {integrity: sha512-ZAoA40rNMPwSm+AeHpCq8STiNAwzWLJuP8Xv4CHIc9wv/PSuExjMrmjfYNj682vW0OOiZ1HKxzvjQr9XZIisQA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@flamework/components@1.2.4':
-    resolution: {integrity: sha512-V+yWVX83UljSBAZQse+xbmkh//U8un+SpO4oiru/zhzVd91c+0N149+d576/RDMTBpfSjbN3ywiicj6kda5aQw==}
+  '@flamework/components@1.3.1':
+    resolution: {integrity: sha512-ReiZBq5rtvovgGfPaOReov7VEQ1CHhep0YABjSuwe9L3zeckc4cpiLv6yWRHcTnEd5IWzA1x/tu6g/VkksOaCA==}
     peerDependencies:
       '@flamework/core': '*'
 
@@ -4133,7 +4133,7 @@ snapshots:
       '@eslint/core': 0.13.0
       levn: 0.4.1
 
-  '@flamework/components@1.2.4(@flamework/core@1.3.1)':
+  '@flamework/components@1.3.1(@flamework/core@1.3.1)':
     dependencies:
       '@flamework/core': 1.3.1
       '@rbxts/maid': 1.1.0
