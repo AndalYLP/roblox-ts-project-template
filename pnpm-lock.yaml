@@ -77,8 +77,8 @@ importers:
         specifier: 17.2.3
         version: 17.2.3
       '@rbxts/react-reflex':
-        specifier: 0.3.6
-        version: 0.3.6(@rbxts/react@17.2.3)(@rbxts/reflex@4.3.1)
+        specifier: 0.3.7
+        version: 0.3.7(@rbxts/react@17.2.3)(@rbxts/reflex@4.3.1)
       '@rbxts/react-roblox':
         specifier: 17.2.3
         version: 17.2.3
@@ -749,8 +749,8 @@ packages:
   '@rbxts/rbx-debug@1.0.2-ts.0':
     resolution: {integrity: sha512-vF7xnp16i4xuKHI6JXNS+4EkLvC/4NqjcA5STq2anMl8mmgPp+sXZYXkINzCG81EIbjkfFk2Ql9C3mlBNhhcMQ==}
 
-  '@rbxts/react-reflex@0.3.6':
-    resolution: {integrity: sha512-NlXWbQfSeYHiG1HAXQKIfWlWFhlaluaPrN3qRd8GZEjxNQ9esucmBxehi/6YO7pwcuCatbGdVQEOyVoyP2lfSw==}
+  '@rbxts/react-reflex@0.3.7':
+    resolution: {integrity: sha512-2hSMSdhJweGi0l5/NkGrxw6rE8gAePb4cD1G6u8DW/9a93CBYEbiFevSkMRP0MqnNQAkyqWg048wSvJBcS0H/g==}
     peerDependencies:
       '@rbxts/react': '*'
       '@rbxts/reflex': '*'
@@ -1847,6 +1847,7 @@ packages:
   eslint-plugin-markdown@5.1.0:
     resolution: {integrity: sha512-SJeyKko1K6GwI0AN6xeCDToXDkfKZfXcexA6B+O2Wr2btUS9GrC+YgwSyVli5DJnctUHjFXcQ2cqTaAmVoLi2A==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: Please use @eslint/markdown instead
     peerDependencies:
       eslint: '>=8'
 
@@ -4566,7 +4567,7 @@ snapshots:
 
   '@rbxts/rbx-debug@1.0.2-ts.0': {}
 
-  '@rbxts/react-reflex@0.3.6(@rbxts/react@17.2.3)(@rbxts/reflex@4.3.1)':
+  '@rbxts/react-reflex@0.3.7(@rbxts/react@17.2.3)(@rbxts/reflex@4.3.1)':
     dependencies:
       '@rbxts/react': 17.2.3
       '@rbxts/reflex': 4.3.1
