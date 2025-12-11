@@ -153,8 +153,8 @@ importers:
         specifier: 16.2.7
         version: 16.2.7
       rbxts-build:
-        specifier: 2.4.0
-        version: 2.4.0
+        specifier: 2.4.3
+        version: 2.4.3
       rbxts-transform-debug:
         specifier: github:roblox-aurora/rbxts-transform-debug
         version: https://codeload.github.com/roblox-aurora/rbxts-transform-debug/tar.gz/9cc03b58fe9eb29a24d94d0290abab3ea5950562
@@ -3077,8 +3077,8 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
-  rbxts-build@2.4.0:
-    resolution: {integrity: sha512-aiXkxr6GoY3DjscTUNRvmRaApQzo5WqVtOIX+geGnV0YLh3kks9an57zjpCK5hGeDmEa5i7/mvLCR16s61MS0g==}
+  rbxts-build@2.4.3:
+    resolution: {integrity: sha512-p/v2kzGe6XcIVHU8JYoYDx7eIkrPocoNgojDNidfRDGiczGP6tAdN+jad/vvJXIg4wlr5pIBWGbffCkQE6EKmQ==}
     hasBin: true
 
   rbxts-transform-debug@https://codeload.github.com/roblox-aurora/rbxts-transform-debug/tar.gz/9cc03b58fe9eb29a24d94d0290abab3ea5950562:
@@ -7226,7 +7226,7 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  rbxts-build@2.4.0:
+  rbxts-build@2.4.3:
     dependencies:
       kleur: 4.1.5
       yargs: 17.7.2
