@@ -81,7 +81,7 @@
 		"@rbxts/types": "1.0.896",
 		"eslint": "9.39.1",
 		"eslint-plugin-react-roblox-hooks": "5.1.0-rbx.1",
-		"git-pull-run": "1.6.1",
+		"git-pull-run": "1.6.2",
 		"husky": "9.1.7",
 		"jiti": "2.6.1",
 		"lint-staged": "16.2.7",
