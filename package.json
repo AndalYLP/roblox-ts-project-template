@@ -79,7 +79,7 @@
 		"@isentinel/eslint-config": "0.10.0",
 		"@rbxts/compiler-types": "3.0.0-types.0",
 		"@rbxts/types": "1.0.868",
-		"eslint": "9.26.0",
+		"eslint": "9.39.1",
 		"eslint-plugin-react-roblox-hooks": "5.1.0-rbx.1",
 		"git-pull-run": "1.6.1",
 		"husky": "9.1.7",
