@@ -36,7 +36,7 @@ importers:
         version: 1.0.8(@rbxts/centurion@1.0.1)
       '@rbxts/flamework-binary-serializer':
         specifier: 0.6.0
-        version: 0.6.0(@flamework/core@1.3.1)(rbxts-transformer-flamework@1.3.1(typescript@5.8.3))
+        version: 0.6.0(@flamework/core@1.3.1)(rbxts-transformer-flamework@1.3.2(typescript@5.8.3))
       '@rbxts/janitor':
         specifier: 1.17.0-ts.1
         version: 1.17.0-ts.1
@@ -162,8 +162,8 @@ importers:
         specifier: 3.0.0
         version: 3.0.0(patch_hash=6fa8e9a34eae0fb588fbf82f244cb9b90f344c9f01b060424c5056fee8802daf)
       rbxts-transformer-flamework:
-        specifier: 1.3.1
-        version: 1.3.1(typescript@5.8.3)
+        specifier: 1.3.2
+        version: 1.3.2(typescript@5.8.3)
       rimraf:
         specifier: 6.0.1
         version: 6.0.1
@@ -3088,8 +3088,8 @@ packages:
   rbxts-transform-env@3.0.0:
     resolution: {integrity: sha512-ExKQm90lEPDceCq2GsbROqJzkQ0kAr1ibT+iy4vjobhjTTcW4ywI/3X7/D0gbZBkcdX/vA4jaWBfKgsDj/gnnQ==}
 
-  rbxts-transformer-flamework@1.3.1:
-    resolution: {integrity: sha512-mrHL7KwC9v/wbfQcb91MXCofn+f3RUoypx3lWn//+Ycr09FCnz4h+MEdF0nIG1GXsj6jKAbimm9R8YSvzZ0AxQ==}
+  rbxts-transformer-flamework@1.3.2:
+    resolution: {integrity: sha512-FKAT7+jAmoa2/MZNqZnjZfpSKypNO1+IzRGdHQAjGsKzH8J58Zcbb0fCA/Dydwb4LiPVVYlfgoItrxOCWRh3rg==}
     peerDependencies:
       typescript: '*'
 
@@ -4333,10 +4333,10 @@ snapshots:
 
   '@rbxts/compiler-types@3.0.0-types.0': {}
 
-  '@rbxts/flamework-binary-serializer@0.6.0(@flamework/core@1.3.1)(rbxts-transformer-flamework@1.3.1(typescript@5.8.3))':
+  '@rbxts/flamework-binary-serializer@0.6.0(@flamework/core@1.3.1)(rbxts-transformer-flamework@1.3.2(typescript@5.8.3))':
     dependencies:
       '@flamework/core': 1.3.1
-      rbxts-transformer-flamework: 1.3.1(typescript@5.8.3)
+      rbxts-transformer-flamework: 1.3.2(typescript@5.8.3)
 
   '@rbxts/janitor@1.17.0-ts.1': {}
 
@@ -7250,7 +7250,7 @@ snapshots:
       ts-expose-internals: 5.2.2
       typescript: 5.5.4
 
-  rbxts-transformer-flamework@1.3.1(typescript@5.8.3):
+  rbxts-transformer-flamework@1.3.2(typescript@5.8.3):
     dependencies:
       '@roblox-ts/rojo-resolver': 1.1.0
       ajv: 8.17.1
