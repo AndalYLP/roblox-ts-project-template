@@ -44,7 +44,7 @@
 		"@rbxts/abbreviate": "3.0.4",
 		"@rbxts/centurion": "1.0.1",
 		"@rbxts/centurion-ui": "1.0.8",
-		"@rbxts/flamework-binary-serializer": "0.6.0",
+		"@rbxts/flamework-binary-serializer": "0.7.0",
 		"@rbxts/janitor": "1.17.0-ts.1",
 		"@rbxts/jest": "0.1.0",
 		"@rbxts/jest-globals": "0.1.0",
