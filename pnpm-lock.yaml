@@ -3072,7 +3072,7 @@ packages:
     hasBin: true
 
   rbxts-transform-debug@https://codeload.github.com/roblox-aurora/rbxts-transform-debug/tar.gz/9cc03b58fe9eb29a24d94d0290abab3ea5950562:
-    resolution: {tarball: https://codeload.github.com/roblox-aurora/rbxts-transform-debug/tar.gz/9cc03b58fe9eb29a24d94d0290abab3ea5950562}
+    resolution: {gitHosted: true, tarball: https://codeload.github.com/roblox-aurora/rbxts-transform-debug/tar.gz/9cc03b58fe9eb29a24d94d0290abab3ea5950562}
     version: 2.2.0
 
   rbxts-transform-env@3.0.0:
