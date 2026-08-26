@@ -86,8 +86,8 @@ importers:
         specifier: 4.3.1
         version: 4.3.1
       '@rbxts/ripple':
-        specifier: 0.9.3
-        version: 0.9.3
+        specifier: 0.10.2
+        version: 0.10.2
       '@rbxts/services':
         specifier: 1.6.0
         version: 1.6.0
@@ -775,6 +775,9 @@ packages:
 
   '@rbxts/reflex@4.3.1':
     resolution: {integrity: sha512-S5MbEpHKeRh9NWhwGJ789WbUsmlAlpQziWaNK4+kz1EpaaQ7uHQMZAuN1DYl4+QkqmOSuPlj04COwmArBGWH1Q==}
+
+  '@rbxts/ripple@0.10.2':
+    resolution: {integrity: sha512-IakL24BomX5BX0CZSMjDSZdCUNwRbTA6GP+H62qgXQymql3h9MLjit4Jsaz9+NLrKAZfNKSfajMREr/fJkNEdw==}
 
   '@rbxts/ripple@0.9.3':
     resolution: {integrity: sha512-GmwjQl7a8pvGPGQYLmaAcf2RBPpneOL5P1+U8CzTHt9tBhCdk0TEJ/MQoTv9JnHD62RMBE1jogQBvuGgl9VXAg==}
@@ -2002,6 +2005,7 @@ packages:
   eslint@9.39.1:
     resolution: {integrity: sha512-BhHmn2yNOFA9H9JmmIVKJmd288g9hrVRDkdoIgRCRuSySRUHH7r/DI6aAXW9T1WwUuY3DFgrcaqB+deURBLR5g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -2205,6 +2209,7 @@ packages:
   git-raw-commits@4.0.0:
     resolution: {integrity: sha512-ICsMM1Wk8xSGMowkOmPrzo2Fgmfo4bMHLNX6ytHjajRJUqvHOw/TFapQ+QG75c3X/tTDDhOSRPGC52dDbNM8FQ==}
     engines: {node: '>=16'}
+    deprecated: Deprecated and no longer maintained. Use @conventional-changelog/git-client instead.
     hasBin: true
 
   git-repo-info@2.1.1:
@@ -2226,6 +2231,7 @@ packages:
   glob@9.3.5:
     resolution: {integrity: sha512-e1LleDykUz2Iu+MTYdkSsuWX8lvAjAcs0Xef0lNIu0S2wOAzuTxCJtcd9S3cijlwYF18EsU3rzb8jPVobxDh9Q==}
     engines: {node: '>=16 || 14 >=14.17'}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   global-directory@4.0.1:
     resolution: {integrity: sha512-wHTUcDUoZ1H5/0iVqEudYW4/kAlN5cZ3j/bXn0Dpbizl9iaUVeWSHqiOjsgk6OW2bkLclbBjzewBz6weQ1zA2Q==}
@@ -3546,6 +3552,7 @@ packages:
 
   uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
     hasBin: true
 
   validate-npm-package-license@3.0.4:
@@ -4396,6 +4403,8 @@ snapshots:
       '@rbxts/react-vendor': 17.2.3
 
   '@rbxts/reflex@4.3.1': {}
+
+  '@rbxts/ripple@0.10.2': {}
 
   '@rbxts/ripple@0.9.3': {}
 
